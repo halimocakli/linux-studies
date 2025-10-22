@@ -1,11 +1,10 @@
-
 # Linux Yardım Alma Komutları
 
 Söz konusu komut satırı üzerinden bir işletim sistemini yönetmek olduğunda, neredeyse sınırsız çeşitlilikte pek çok aracı kullanmamız gerekeceği için her aracın her kullanım bilgisini aklımızda tutmamız mümkün ve mantıklı değildir. Yeri geldiğinde ihtiyaçlarımıza göre pek çok farklı aracın pek çok farklı özelliğini kullanacağız. Sık kullandığımız araçlar ve bu araçların sık kullandığımız özellikleri dışındaki çoğu bilgiyi unutmamız son derece normal. Unutmaya ek olarak ayrıca her zaman internete erişmemiz de mümkün olmayabilir. Yani internet üzerinden unuttuğumuz bilgilere bakmamız kimi zaman mümkün olmayabilir. Bu noktada en büyük dostumuz, sistemde mevcut bulunan yani çevrimdışı ulaşılabilir olan yardım sayfalarıdır. En yetenekli ve bilgili sistem uzmanları bile gerektiğinde yardım sayfalarına göz atarlar. Bizler de hem öğrenme aşamasında hem de daha sonrasında sıklıkla yardım sayfalarını kullanıyor olacağız.
 
 Yani özetle, bu bölümde kelimenin tam anlamıyla öğrenmeyi öğreneceğiz.
 
-Grafiksel arayüzlü araçları kullanırken sezgisel olarak özellikleri keşfetmek ve hatırlamak komut satırı araçlarına oranla daha kolaydır. Çünkü grafiksel arayüzde menüleri kurcalayabilir ve çeşitli butonlara tıklayarak etkilerini gözlemleyebilirsiniz. Ancak komut satırı üzerinden kullanılan araçlarda grafiksel arayüzdeki gibi sezgisel olarak keşif için gerekli ortam yoktur. Çünkü komut satırı arayüzündeki araçları kullanırken istisnalar hariç, yerine getirilmesini istediğimiz görevleri spesifik olarak yazılı komutlarınızla belirtmemiz gerekiyor. İlgili komutu veya komutun özelliğini temsil eden seçeneği bilmiyorsak gereken işlemi yapamayız. Tabii ki tüm araçların tüm seçeneklerini bilme ihtimalimiz olmadığı için, komut satırı arayüzü ile çalışan araçlar, tüm özelliklerini iyi biçimde açıklayan yardım dokümantasyonlarına sahipler. 
+Grafiksel arayüzlü araçları kullanırken sezgisel olarak özellikleri keşfetmek ve hatırlamak komut satırı araçlarına oranla daha kolaydır. Çünkü grafiksel arayüzde menüleri kurcalayabilir ve çeşitli butonlara tıklayarak etkilerini gözlemleyebilirsiniz. Ancak komut satırı üzerinden kullanılan araçlarda grafiksel arayüzdeki gibi sezgisel olarak keşif için gerekli ortam yoktur. Çünkü komut satırı arayüzündeki araçları kullanırken istisnalar hariç, yerine getirilmesini istediğimiz görevleri spesifik olarak yazılı komutlarınızla belirtmemiz gerekiyor. İlgili komutu veya komutun özelliğini temsil eden seçeneği bilmiyorsak gereken işlemi yapamayız. Tabii ki tüm araçların tüm seçeneklerini bilme ihtimalimiz olmadığı için, komut satırı arayüzü ile çalışan araçlar, tüm özelliklerini iyi biçimde açıklayan yardım dokümantasyonlarına sahipler.
 
 Linux sistemlerinin temel doküman-bilgi kaynaklarını 4 türe ayırabiliriz:
 
@@ -16,22 +15,22 @@ Linux sistemlerinin temel doküman-bilgi kaynaklarını 4 türe ayırabiliriz:
 
 # `help` Komutu
 
-Daha önce, yerleşik(dahili) ve harici komutların neler olduğundan bahsetmiştik. Yerleşik komutlar kabuğun beraberinde gelen çeşitli araçlardı. İşte `help` komutu da kabukta yerleşik olarak bulunan komutların yardım açıklamalarına ulaşmak için kullandığımız bir araçtır. Hemen denemek için yerleşik bir komut olan `echo` komutunun yardım bilgilerini görüntüleyelim. Bunun için tek yapmamız gereken `help` komutunun ardından yardım bilgisine ulaşmak istediğimiz yerleşik komutu belirtmek. 
+Daha önce, yerleşik(dahili) ve harici komutların neler olduğundan bahsetmiştik. Yerleşik komutlar kabuğun beraberinde gelen çeşitli araçlardı. İşte `help` komutu da kabukta yerleşik olarak bulunan komutların yardım açıklamalarına ulaşmak için kullandığımız bir araçtır. Hemen denemek için yerleşik bir komut olan `echo` komutunun yardım bilgilerini görüntüleyelim. Bunun için tek yapmamız gereken `help` komutunun ardından yardım bilgisine ulaşmak istediğimiz yerleşik komutu belirtmek.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
 └─$ help echo
 echo: echo [-neE] [arg ...]
     Write arguments to the standard output.
-    
+
     Display the ARGs, separated by a single space character and followed by a
     newline, on the standard output.
-    
+
     Options:
       -n        do not append a newline
       -e        enable interpretation of the following backslash escapes
       -E        explicitly suppress interpretation of backslash escapes
-    
+
     `echo' interprets the following backslash-escaped characters:
       \a        alert (bell)
       \b        backspace
@@ -52,28 +51,28 @@ echo: echo [-neE] [arg ...]
                 HHHH can be one to four hex digits.
       \UHHHHHHHH the Unicode character whose value is the hexadecimal value
                 HHHHHHHH. HHHHHHHH can be one to eight hex digits.
-    
+
     Exit Status:
     Returns success unless a write error occurs.
 ```
 
-Bakın, `help` komutu **echo** aracı hakkında çeşitli özet bilgiler sunan yardım bilgisini anında konsola bastırdı. 
+Bakın, `help` komutu **echo** aracı hakkında çeşitli özet bilgiler sunan yardım bilgisini anında konsola bastırdı.
 
 ![1.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/yardim/1.webp)
 
-Çıktıları inceleyecek olursak; 
+Çıktıları inceleyecek olursak;
 
-<p class="kirmizi">İlk olarak komutun nasıl kullanıldığına dair örnek gösterim bulunuyor. Örneğin <code class="language-plaintext highlighter-rouge">echo</code> komutunun ardından seçenekleri yazıp, daha sonra argümanları girebileceğimiz basit şekilde ifade edilmiş.</p> 
+<p class="kirmizi">İlk olarak komutun nasıl kullanıldığına dair örnek gösterim bulunuyor. Örneğin <code class="language-plaintext highlighter-rouge">echo</code> komutunun ardından seçenekleri yazıp, daha sonra argümanları girebileceğimiz basit şekilde ifade edilmiş.</p>
 
 <p class="yesil">Alt tarafta ise araç hakkındaki bilgileri görebiliyoruz. Yani hakkında bilgi almak istediğimiz aracın işlevini buradan kısaca öğrenebiliyoruz.</p>
 
 <p class="sari">Kısa açıklamanın ardından, kullanılabilir olan seçenekler ve bunların açıklamaları yer alıyor.</p>
 
-<p class="mavi">En sonda ise bu aracın çalıştıktan sonra üreteceği çıkış kodu belirtilmiş. Bu çıkış kodu daha çok bash programlama esnasında işimize yarayan bir bildirim.</p> 
+<p class="mavi">En sonda ise bu aracın çalıştıktan sonra üreteceği çıkış kodu belirtilmiş. Bu çıkış kodu daha çok bash programlama esnasında işimize yarayan bir bildirim.</p>
 
-Neticede buradaki yardım çıktılarına bakarak, sorguladığımız araç hakkında tüm temel bilgileri kolayca öğrenebiliyoruz. 
+Neticede buradaki yardım çıktılarına bakarak, sorguladığımız araç hakkında tüm temel bilgileri kolayca öğrenebiliyoruz.
 
-Örneğimizde şahit olduğumuz gibi `help` komutunu, genellikle ilgili komutun kullanım seçenekleri ve işlevleri hakkında kısaca bilgi almak istediğimizde sıklıkla kullanıyor olacağız. 
+Örneğimizde şahit olduğumuz gibi `help` komutunu, genellikle ilgili komutun kullanım seçenekleri ve işlevleri hakkında kısaca bilgi almak istediğimizde sıklıkla kullanıyor olacağız.
 
 Ayrıca hazır yeri gelmişken `help` komutunun yalnızca yerleşik olan araçlar hakkında bilgi sunduğunu teyit etmek için yerleşik olmayan, yani harici olan bir aracın yardım bilgisini `help` komutu üzerinden sorgulamayı da deneyebiliriz. Ben denemek için harici bir araç olan `nano` aracını `help` ile sorgulamak istiyorum.
 
@@ -90,7 +89,7 @@ Bakın, `nano` harici bir araç olduğu için `help` komutu bilgi sunmadı. Çı
 
 # Yardım Bilgisi | `--help`
 
-`help` komutunu kullanmak yerine dilerseniz, ilgili aracın isminden sonra `—help` seçeneğini de kullanabilirsiniz. Hemen `nano` aracının yardım bilgisini görmek için `nano —help` şeklinde komutumuzu girelim. 
+`help` komutunu kullanmak yerine dilerseniz, ilgili aracın isminden sonra `—help` seçeneğini de kullanabilirsiniz. Hemen `nano` aracının yardım bilgisini görmek için `nano —help` şeklinde komutumuzu girelim.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -160,7 +159,7 @@ When a filename is '-', nano reads data from standard input.
 
 Bakın tıpkı daha önce `help` komutu ile bash kabuğuna yerleşik olan `echo` aracı hakkında aldığımız yardım bilgisi gibi, `—help` seçeneği sayesinde harici araç olan `nano` aracı hakkında da yardım bilgisi sorunsuzca konsola bastırıldı.
 
-Burada kullanmış olduğumuz `—help` seçeneği, istisnalar hariç genellikle tüm araçların temel yardım bilgilerini sunuyor. Üstelik aslında hem dahili hem de harici komutlar için `—help` seçeneğini de kullanabiliyoruz. 
+Burada kullanmış olduğumuz `—help` seçeneği, istisnalar hariç genellikle tüm araçların temel yardım bilgilerini sunuyor. Üstelik aslında hem dahili hem de harici komutlar için `—help` seçeneğini de kullanabiliyoruz.
 
 Tam da bu noktada olası kafa karışıklıklarını önleyebilmek için `help` aracının ve `—help` seçeneğinin kullanımına açıklık getirmek istiyorum.
 
@@ -171,19 +170,19 @@ Yerleşik komutların pek çoğu da dahil `—help` seçeneği kullanılarak ilg
 └─$ help cd
 cd: cd [-L|[-P [-e]] [-@]] [dir]
     Change the shell working directory.
-    
+
     Change the current directory to DIR.  The default DIR is the value of the
     HOME shell variable.
-    
+
     The variable CDPATH defines the search path for the directory containing
     DIR.  Alternative directory names in CDPATH are separated by a colon (:).
     A null directory name is the same as the current directory.  If DIR begins
     with a slash (/), then CDPATH is not used.
-    
+
     If the directory is not found, and the shell option `cdable_vars' is set,
     the word is assumed to be  a variable name.  If that variable has a value,
     its value is used for DIR.
-    
+
     Options:
       -L        force symbolic links to be followed: resolve symbolic
                 links in DIR after processing instances of `..'
@@ -195,11 +194,11 @@ cd: cd [-L|[-P [-e]] [-@]] [dir]
                 a non-zero status
       -@        on systems that support it, present a file with extended
                 attributes as a directory containing the file attributes
-    
+
     The default is to follow symbolic links, as if `-L' were specified.
     `..' is processed by removing the immediately previous pathname component
     back to a slash or the beginning of DIR.
-    
+
     Exit Status:
     Returns 0 if the directory is changed, and if $PWD is set successfully when
     -P is used; non-zero otherwise.
@@ -208,19 +207,19 @@ cd: cd [-L|[-P [-e]] [-@]] [dir]
 └─$ cd --help
 cd: cd [-L|[-P [-e]] [-@]] [dir]
     Change the shell working directory.
-    
+
     Change the current directory to DIR.  The default DIR is the value of the
     HOME shell variable.
-    
+
     The variable CDPATH defines the search path for the directory containing
     DIR.  Alternative directory names in CDPATH are separated by a colon (:).
     A null directory name is the same as the current directory.  If DIR begins
     with a slash (/), then CDPATH is not used.
-    
+
     If the directory is not found, and the shell option `cdable_vars' is set,
     the word is assumed to be  a variable name.  If that variable has a value,
     its value is used for DIR.
-    
+
     Options:
       -L        force symbolic links to be followed: resolve symbolic
                 links in DIR after processing instances of `..'
@@ -232,43 +231,43 @@ cd: cd [-L|[-P [-e]] [-@]] [dir]
                 a non-zero status
       -@        on systems that support it, present a file with extended
                 attributes as a directory containing the file attributes
-    
+
     The default is to follow symbolic links, as if `-L' were specified.
     `..' is processed by removing the immediately previous pathname component
     back to a slash or the beginning of DIR.
-    
+
     Exit Status:
     Returns 0 if the directory is changed, and if $PWD is set successfully when
     -P is used; non-zero otherwise.
 ```
 
-Bakın her iki çıktı da birebir aynı yardım bilgisini konsola bastırdı. Bu örnek ile yerleşik komutlarda da `—help` seçeneğini kullanabileceğimizi görebiliyoruz ancak istisnai olan komutlar da bulunduğu için `help` komutuna da ihtiyacımız var. Örneğin `echo` aracı hakkında bilgi almak için `echo —help` şeklinde komut girmeyi deneyebiliriz. 
+Bakın her iki çıktı da birebir aynı yardım bilgisini konsola bastırdı. Bu örnek ile yerleşik komutlarda da `—help` seçeneğini kullanabileceğimizi görebiliyoruz ancak istisnai olan komutlar da bulunduğu için `help` komutuna da ihtiyacımız var. Örneğin `echo` aracı hakkında bilgi almak için `echo —help` şeklinde komut girmeyi deneyebiliriz.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ echo --help                                                                              
+└─$ echo --help
 --help
 ```
 
-Bakın yardım bilgisi yerine doğrudan **—help** ifadesi konsola bastırıldı, çünkü `echo` aracının görevi kendisine argüman olarak verilmiş olan değerleri konsola bastırmaktır. Buradaki **—help** ifadesi de `echo` aracı için konsola bastırılması gereken sıradan bir argüman. İşte tam da `echo` komutunda da olduğu gibi bazı yerleşik komutlar hakkında bilgi almak için `help` aracına ihtiyaç duyabiliyoruz. Eğer hakkında bilgi almak istediğiniz yerleşik bir komut varsa ve bu komut `—help` seçeneği ile bilgi sunmuyorsa `help` komutundan sonra ilgili yerleşik komutu yazıp bilgi alabilirsiniz. Dolayısıyla yerleşik komutların istisnaları haricinde neredeyse tüm komutlar `—help` seçeneği ile yardım bilgisi sunabiliyor. Tek yapmanız gereken bu seçeneği kullanıp çalışıp çalışmadığını denemek. İstisnalar hariç tüm araçlar size bilgi sunmak için `—help` seçeneğini kullanmanızı bekliyor zaten.  
+Bakın yardım bilgisi yerine doğrudan **—help** ifadesi konsola bastırıldı, çünkü `echo` aracının görevi kendisine argüman olarak verilmiş olan değerleri konsola bastırmaktır. Buradaki **—help** ifadesi de `echo` aracı için konsola bastırılması gereken sıradan bir argüman. İşte tam da `echo` komutunda da olduğu gibi bazı yerleşik komutlar hakkında bilgi almak için `help` aracına ihtiyaç duyabiliyoruz. Eğer hakkında bilgi almak istediğiniz yerleşik bir komut varsa ve bu komut `—help` seçeneği ile bilgi sunmuyorsa `help` komutundan sonra ilgili yerleşik komutu yazıp bilgi alabilirsiniz. Dolayısıyla yerleşik komutların istisnaları haricinde neredeyse tüm komutlar `—help` seçeneği ile yardım bilgisi sunabiliyor. Tek yapmanız gereken bu seçeneği kullanıp çalışıp çalışmadığını denemek. İstisnalar hariç tüm araçlar size bilgi sunmak için `—help` seçeneğini kullanmanızı bekliyor zaten.
 
 Umarım `help` komutu ve `—help` seçeneği arasındaki fark net bir biçimde anlaşılmıştır. Çünkü komutlar hakkında kısa ama etkili şekilde bilgi almak için bu yöntemleri sıklıkla kullanıyor olacağız.
 
 # `man`(Manual Sayfası)
 
-Bir diğer yardım kaynağımız da `man` komutu ile ulaşabildiğimiz ve **man pages** olarak geçen yardım sayfalarıdır. 
+Bir diğer yardım kaynağımız da `man` komutu ile ulaşabildiğimiz ve **man pages** olarak geçen yardım sayfalarıdır.
 
-**Manual** ifadesinin kısalmasından gelen **man** sayfaları sistem üzerindeki araçlar için temel yardım bilgileri içeren hiyerarşik düzende bulunan dosyalardır. Buradaki manual ifadesinin nereden geldiğini almak için internet üzerinde görsel arama kısmına “manuals” ya da “product manuals” şeklinde yazıp aratabilirsiniz. 
+**Manual** ifadesinin kısalmasından gelen **man** sayfaları sistem üzerindeki araçlar için temel yardım bilgileri içeren hiyerarşik düzende bulunan dosyalardır. Buradaki manual ifadesinin nereden geldiğini almak için internet üzerinde görsel arama kısmına “manuals” ya da “product manuals” şeklinde yazıp aratabilirsiniz.
 
 ![2.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/yardim/2.webp)
 
 Karşınıza çeşitli ürünlerin kullanımlarını ve özelliklerini açıklayan kılavuz sayfalarının resimleri gelecektir. Zaten bu görseller size tanıdık geliyordur. Örneğin bir telefon veya benzeri bir araç aldığınızda mutlaka kutu içeriğinden kullanma kılavuzu da çıkmıştır. İşte `man` olarak geçen yardım sayfaları da tıpkı gerçek hayattaki “kılavuz” sayfaları gibi sistemimizde yüklü bulunan araçlar hakkında bilgi sunan kılavuz sayfalarıdır. Man ismi de buradan geliyor.
 
-Sistemde varsayılan olarak yüklü bulunan araçlar ve sistemin diğer çeşitli bileşenleri bu manuel sayfalarında tek tek açıklanmıştır. Ayrıca istisnalar hariç, sisteme yeni yüklenen araçlar da beraberinde ilgili araç hakkında bilgi içeren manuel sayfalarıyla birlikte geliyorlar. Bu yaklaşım sayesinde, sistem üzerinde yüklü bulunan neredeyse tüm araçlar hakkında çevrimdışıyken de bilgi alabileceğimiz hiyerarşik düzende bir kılavuza sahip oluyoruz. Yani elimizin altında bir nevi kütüphanemiz var aslında. 
+Sistemde varsayılan olarak yüklü bulunan araçlar ve sistemin diğer çeşitli bileşenleri bu manuel sayfalarında tek tek açıklanmıştır. Ayrıca istisnalar hariç, sisteme yeni yüklenen araçlar da beraberinde ilgili araç hakkında bilgi içeren manuel sayfalarıyla birlikte geliyorlar. Bu yaklaşım sayesinde, sistem üzerinde yüklü bulunan neredeyse tüm araçlar hakkında çevrimdışıyken de bilgi alabileceğimiz hiyerarşik düzende bir kılavuza sahip oluyoruz. Yani elimizin altında bir nevi kütüphanemiz var aslında.
 
 ## Manual Sayfasını Açmak
 
-Manual sayfalarına ulaşmak için, başta söz ettiğimiz `man` komutunu yani aslında **man** aracını kullanıyoruz. Örneğin ben `chmod` hakkındaki bilgilere ulaşmak istiyorsam konsola `man chmod` şeklinde yazarak gerekli bilgilere kolayca ulaşabilirim. 
+Manual sayfalarına ulaşmak için, başta söz ettiğimiz `man` komutunu yani aslında **man** aracını kullanıyoruz. Örneğin ben `chmod` hakkındaki bilgilere ulaşmak istiyorsam konsola `man chmod` şeklinde yazarak gerekli bilgilere kolayca ulaşabilirim.
 
 ![3.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/yardim/3.webp)
 
@@ -276,17 +275,17 @@ Görebildiğiniz gibi `chmod` aracının manuel sayfası açılmış oldu. Tüm 
 
 ## Sayfada Gezinti
 
-Açılan bu kılavuz sayfasında yön tuşlarını kullanarak yukarı aşağı sağa sola hareket edebiliriz. Ayrıca hızlıca alt satırlara inmek istersek sayfa sayfa atlamak için <kbd>space</kbd> tuşunu da kullanabiliriz. Zaten alt çubuktan da tüm manuel sayfasının ne kadarını okuduğunuzu kolayca takip edebilirsiniz. 
+Açılan bu kılavuz sayfasında yön tuşlarını kullanarak yukarı aşağı sağa sola hareket edebiliriz. Ayrıca hızlıca alt satırlara inmek istersek sayfa sayfa atlamak için <kbd>space</kbd> tuşunu da kullanabiliriz. Zaten alt çubuktan da tüm manuel sayfasının ne kadarını okuduğunuzu kolayca takip edebilirsiniz.
 
 ![4.gif](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/yardim/4.gif)
 
 ## Yardım Bilgisi
 
-Ayrıca man sayfasının kısayollarını ve kullanımını görmek isterseniz man sayfası açıkken <kbd>h</kbd> tuşuna basarsanız sizi man kılavuzunun yardım sayfası karşılar, burada man komutunun kullanımı ile ilgili detaylı bilgi yardımı mevcut. 
+Ayrıca man sayfasının kısayollarını ve kullanımını görmek isterseniz man sayfası açıkken <kbd>h</kbd> tuşuna basarsanız sizi man kılavuzunun yardım sayfası karşılar, burada man komutunun kullanımı ile ilgili detaylı bilgi yardımı mevcut.
 
 ![5.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/yardim/5.webp)
 
-Esasen bu kılavuz sayfasında gezinmek için <kbd>space</kbd> ve yukarı aşağı yön tuşları çoğu zaman yeterli olacağı için buradaki detaylı bilgilere muhtemelen pek ihtiyacınız olmayacaktır. Fakat arama özelliği işinize yarayabilir. 
+Esasen bu kılavuz sayfasında gezinmek için <kbd>space</kbd> ve yukarı aşağı yön tuşları çoğu zaman yeterli olacağı için buradaki detaylı bilgilere muhtemelen pek ihtiyacınız olmayacaktır. Fakat arama özelliği işinize yarayabilir.
 
 ## Arama Yapmak
 
@@ -294,7 +293,7 @@ Mevcut bulunduğunuz satırdan sonra, aradığınız kelime ile eşleşenleri bu
 
 ![6.gif](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/yardim/6.gif)
 
-Bakın “change” ile eşleşenler renkli şekilde aydınlatıldı. Yani aradığım ifade ile eşleşenleri görebiliyorum. Eğer eşleşmeler arası ileri geri atlamak istersek, önceki ve sonraki eşleşmelerde atlamak için <kbd>n</kbd> ve <kbd>N</kbd> tuşlarını kullanabiliyoruz. Büyük “N” karakteri için <kbd>Shift</kbd> + <kbd>n</kbd> ya da <kbd>Capslock</kbd> açıkken <kbd>n</kbd> tuşuna basmanız yeterli. Bu sayede eşleşmeler arasında ileri geri geçiş yapabilirsiniz. 
+Bakın “change” ile eşleşenler renkli şekilde aydınlatıldı. Yani aradığım ifade ile eşleşenleri görebiliyorum. Eğer eşleşmeler arası ileri geri atlamak istersek, önceki ve sonraki eşleşmelerde atlamak için <kbd>n</kbd> ve <kbd>N</kbd> tuşlarını kullanabiliyoruz. Büyük “N” karakteri için <kbd>Shift</kbd> + <kbd>n</kbd> ya da <kbd>Capslock</kbd> açıkken <kbd>n</kbd> tuşuna basmanız yeterli. Bu sayede eşleşmeler arasında ileri geri geçiş yapabilirsiniz.
 
 ![7.gif](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/yardim/7.gif)
 
@@ -304,7 +303,7 @@ Kılavuz sayfasını kapatmak için <kbd>q</kbd> tuşuna basmamız yeterli.
 
 ![8.gif](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/yardim/8.gif)
 
-Neticede bizzat deneyimlediğimiz gibi herhangi bir araç hakkında bilgi almak üzere manual sayfalarını kullanmak çok basit. Şimdiye kadar nasıl açılıp, sayfalardan nasıl gezinebileceğimizden bahsettik. Şimdi biraz da **man** sayfasının iç yapısına yani sayfa düzenine kısaca değinelim istiyorum. 
+Neticede bizzat deneyimlediğimiz gibi herhangi bir araç hakkında bilgi almak üzere manual sayfalarını kullanmak çok basit. Şimdiye kadar nasıl açılıp, sayfalardan nasıl gezinebileceğimizden bahsettik. Şimdi biraz da **man** sayfasının iç yapısına yani sayfa düzenine kısaca değinelim istiyorum.
 
 ## Sayfa Yapısı Hakkında
 
@@ -319,9 +318,9 @@ Elbette hakkında bilgi aldığınız araca göre, kılavuz sayfasındaki başl�
 - **REPORTING BUGS:** Hata veya eksikleri bildirebileceğiniz iletişim adresleri hakkında bilgi sunuyor.
 - **COPYRIGHT VE SEE ALSO:** Son bölümde ise, telif hakları ve daha fazla bilgiyi nereden alabileceğimiz gibi ekstra detayları belirten açıklama bulunuyor.
 
-Artık, ihtiyaç duyduğumuzda kılavuz sayfalarından nasıl bilgi edinebileceğimizi öğrendik. 
+Artık, ihtiyaç duyduğumuzda kılavuz sayfalarından nasıl bilgi edinebileceğimizi öğrendik.
 
-Ben sistemimi İngilizce kullandığım için manual sayfaları da İngilizce açıklamalar içeriyor. Eğer siz Türkçe olarak kullanıyorsanız hepsi olmasa da bazı manual sayfalarının Türkçeleştirildiğini görebilirsiniz. 
+Ben sistemimi İngilizce kullandığım için manual sayfaları da İngilizce açıklamalar içeriyor. Eğer siz Türkçe olarak kullanıyorsanız hepsi olmasa da bazı manual sayfalarının Türkçeleştirildiğini görebilirsiniz.
 
 Manuel sayfalarının farklı dillere çevrilmesi kimi kullanıcılar için kolaylık sağlasa da manuel sayfalarının yerelleştirilmesi çoğunlukla eksik kaldığından en doyurucu bilgiye standart olan İngilizce dili üzerinden ulaşabiliyoruz. Bu sebeple ben sizlere ingilizce haricindeki manuel sayfalarını kullanmanızı önermiyorum. En ulaşılabilir ve en detaylı olanı ingilizcede bulunuyor. Eğer kendi dilinizde kullanmak isterseniz kısa bir araştırma ile nasıl yapabileceğinizi öğrenebilirsiniz.
 
@@ -331,7 +330,7 @@ Araç veya aracın kısa işlev açıklaması ile eşleşen manual sayfalarını
 
 ## Manual Sayfalarında Araştırma
 
-Manual sayfaları her ne kadar bütüncül olarak faydalı kaynaklar olsa da manuel sayfalarını yalnızca spesifik bir konu veya araç hakkında yekpare bilgi almak için kullanmanız gerekmiyor. Yani manual sayfalarını yalnızca dokümanları baştan sonra okumak için kullanmamız şart değil. Örneğin yalnızca manual sayfalarının başında yer alan, ilgili aracın isminin ve işlevinin açıklandığı bölümden de faydalanmak isteyebiliriz. Bu duruma örnek verebilmek için öncelikle `man passwd` komutu ile **passwd** aracının açıklandığı manual sayfası açalım. 
+Manual sayfaları her ne kadar bütüncül olarak faydalı kaynaklar olsa da manuel sayfalarını yalnızca spesifik bir konu veya araç hakkında yekpare bilgi almak için kullanmanız gerekmiyor. Yani manual sayfalarını yalnızca dokümanları baştan sonra okumak için kullanmamız şart değil. Örneğin yalnızca manual sayfalarının başında yer alan, ilgili aracın isminin ve işlevinin açıklandığı bölümden de faydalanmak isteyebiliriz. Bu duruma örnek verebilmek için öncelikle `man passwd` komutu ile **passwd** aracının açıklandığı manual sayfası açalım.
 
 ![9.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/yardim/9.webp)
 
@@ -339,15 +338,15 @@ Bakın burada isim bölümünde, daha önce de izah ettiğimiz şekilde, aracın
 
 ![10.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/yardim/10.webp)
 
-Bakın, burada yazmış olduğum komut sayesinde manuel sayfasının **NAME** yani isim bölümünde yazan araç ismi ve kısaca açıklamasında `passwd` ifadesi geçen tüm manuel sayfaları tek tek konsola bastırıldı. Kimisinin sadece adında, kimisinin de işlev açıklamasında **passwd** ifadesi geçiyor gördüğünüz gibi. Diğer çıktılar isminin bir kısmında veya açıklamasının bir bölümünde passwd yani aradığımız ifade geçen manual sayfaları. 
+Bakın, burada yazmış olduğum komut sayesinde manuel sayfasının **NAME** yani isim bölümünde yazan araç ismi ve kısaca açıklamasında `passwd` ifadesi geçen tüm manuel sayfaları tek tek konsola bastırıldı. Kimisinin sadece adında, kimisinin de işlev açıklamasında **passwd** ifadesi geçiyor gördüğünüz gibi. Diğer çıktılar isminin bir kısmında veya açıklamasının bir bölümünde passwd yani aradığımız ifade geçen manual sayfaları.
 
-Neticede işte bizler `man -k` komutu ile araştırma yaparken aslında tüm manual sayfalarının isim bölümlerine bakılıyor ve araştırdığımız ifade veya ifadeler ile eşleşen bir manual sayfası varsa bize çıktı olarak sunuluyor. 
+Neticede işte bizler `man -k` komutu ile araştırma yaparken aslında tüm manual sayfalarının isim bölümlerine bakılıyor ve araştırdığımız ifade veya ifadeler ile eşleşen bir manual sayfası varsa bize çıktı olarak sunuluyor.
 
 Ben örnek olarak **passwd** aracının ismini yazdım ancak manuel sayfalarının **NAME** başlığı altında geçen dilediğiniz bir kelimeyi veya kelime gruplarını araştırmanız mümkündür. Ben bu kez yeni bir örnek olarak "**change file**" kelimelerini araştırabiliriz. Yani bu kez, aracın işlevinden aracın ismine ulaşmayı deneyelim.
 
 ![11.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/yardim/11.webp)
 
-Görebildiğiniz gibi içerisinde tam olarak "change file" ifadesi geçen tüm manuel sayfaları listelendi. Buradaki eşleşmenin, ismin yanındaki kısa açıklama bilgisi sayesinde yakalandığını da buradaki çıktılara bakarak kolayca teyit edebiliyoruz. 
+Görebildiğiniz gibi içerisinde tam olarak "change file" ifadesi geçen tüm manuel sayfaları listelendi. Buradaki eşleşmenin, ismin yanındaki kısa açıklama bilgisi sayesinde yakalandığını da buradaki çıktılara bakarak kolayca teyit edebiliyoruz.
 
 Netice buradaki örneklerimizde bizzat deneyimlediğimiz gibi manual sayfalarının isim bölümlerinde araştırma yapmak için `man -k` komutundan yararlanabiliyoruz. Yalnız burada dikkat etmeniz gereken detay, bütünleşik olarak birden fazla kelime içeren bir araştırma yapmak istiyorsanız bu kelimeleri tırnak işareti içine alarak yazmanızdır. Örneğin ben `man -k “change file”` komutunu girdiğim için doğrudan bu ifade ile eşleşenler konsola bastırıldı. Eğer tırnak içinde yazmasaydım hem “**change**” hem de “**file**” ifadelerinden tek biri veya her ikisi ile de eşleşen tüm sayfalar tek tek bastırılacaktı. Hemen deneyelim.
 
@@ -378,7 +377,7 @@ Hazır `man -k` komutundan bahsetmişken `apropos` komutunda da bahsetmemek olma
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ man -k "change file"                                                                 
+└─$ man -k "change file"
 chattr (1)           - change file attributes on a Linux file system
 chcon (1)            - change file security context
 chmod (1)            - change file mode bits
@@ -386,7 +385,7 @@ chown (1)            - change file owner and group
 touch (1)            - change file timestamps
 
 ┌──(taylan@linuxdersleri)-[~]
-└─$ apropos "change file"                                                                
+└─$ apropos "change file"
 chattr (1)           - change file attributes on a Linux file system
 chcon (1)            - change file security context
 chmod (1)            - change file mode bits
@@ -394,15 +393,15 @@ chown (1)            - change file owner and group
 touch (1)            - change file timestamps
 ```
 
-Bakın birebir aynı çıktıyı aldık çünkü `man -k` ile `apropos` komutu aynı işlevi gören iki farklı komut. Hatta `man —help` komutu ile man aracının yardım bilgisini listeleyip kontrol edebiliriz. 
+Bakın birebir aynı çıktıyı aldık çünkü `man -k` ile `apropos` komutu aynı işlevi gören iki farklı komut. Hatta `man —help` komutu ile man aracının yardım bilgisini listeleyip kontrol edebiliriz.
 
 ![12.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/yardim/12.webp)
 
 Bakın `-k` seçeneğinin uzun karşılığı olarak burada da **apropos** ifadesinin kullanıldığını görebiliyoruz. **apropos** aracının ismi de buradan geliyor zaten. Apropos ifadesi Türkçe olarak “uygun” ifadesine karşılık geldiği için bizler de bu aracı aradığımız kelimelere uygun olan manual sayfalarını bulmak amacıyla kullandığımızdan bence hatırlaması kolay bir komut. Sizin için hangisi daha akılda kalıcı ise onu kullanmakta özgürsünüz.
 
-Yani özetle, man sayfalarında yer alan açıklamalar sayesinde, tam olarak ismini hatırlayamadığınız araçların isimlerini ya da tam tersi şekilde ismini bilip işlevini hatırlayamadığınız durumlarda da işlevlerini `apropos` ya da `man -k` komutu yardımıyla kolaylıkla sorgulayabilirsiniz. 
+Yani özetle, man sayfalarında yer alan açıklamalar sayesinde, tam olarak ismini hatırlayamadığınız araçların isimlerini ya da tam tersi şekilde ismini bilip işlevini hatırlayamadığınız durumlarda da işlevlerini `apropos` ya da `man -k` komutu yardımıyla kolaylıkla sorgulayabilirsiniz.
 
-Sanırım, manuel sayfalarının ne kadar faydalı olabileceğine dair az çok fikir edinebildik. Şimdiye kadar özellikle değinmedik ancak, elbette manual sayfalarındaki bilgilerin faydalı olabilmesi için güncel olmaları da gerekiyor. O halde son olarak manuel sayfalarını nasıl güncelleyebileceğimizi de ele alalım. 
+Sanırım, manuel sayfalarının ne kadar faydalı olabileceğine dair az çok fikir edinebildik. Şimdiye kadar özellikle değinmedik ancak, elbette manual sayfalarındaki bilgilerin faydalı olabilmesi için güncel olmaları da gerekiyor. O halde son olarak manuel sayfalarını nasıl güncelleyebileceğimizi de ele alalım.
 
 ## Manual Sayfalarını Güncellemek | `mandb`
 
@@ -424,19 +423,19 @@ Bakın görebildiğiniz gibi işlem son derece kısa sürdü ve güncelleme işl
 
 # `info` Komutu
 
-Türkçe kılavuz olarak geçen **man** yani **manual**'e ek olarak 90'ların başında, GNU projesi "**man**" dokümantasyon sisteminin güncelliğini yitirdiğine karar verdi ve onun yerini alması için **info** aracı geliştirildi. Ancak ne yazık ki **info**, dönemine göre nispeten daha kolay okunur olsa da hiç bir zaman man kadar popüler olamadı. Nitekim günümüzde de **man** kılavuz sayfaları halen **info** ya oranla daha sık tercih ediliyor. Man sayfalarını kullanamaya benzer olması ve bilmenin elzem olmaması sebebiyle info aracını özellikle ele alarak vakit kaybetmek istemiyorum. Bilseniz fena olmaz, ama şart da sayılmaz. Kısa bir araştırma ile tıpkı **man** gibi kullanılabildiğini kendiniz de bizzat görebilirsiniz. 
+Türkçe kılavuz olarak geçen **man** yani **manual**'e ek olarak 90'ların başında, GNU projesi "**man**" dokümantasyon sisteminin güncelliğini yitirdiğine karar verdi ve onun yerini alması için **info** aracı geliştirildi. Ancak ne yazık ki **info**, dönemine göre nispeten daha kolay okunur olsa da hiç bir zaman man kadar popüler olamadı. Nitekim günümüzde de **man** kılavuz sayfaları halen **info** ya oranla daha sık tercih ediliyor. Man sayfalarını kullanamaya benzer olması ve bilmenin elzem olmaması sebebiyle info aracını özellikle ele alarak vakit kaybetmek istemiyorum. Bilseniz fena olmaz, ama şart da sayılmaz. Kısa bir araştırma ile tıpkı **man** gibi kullanılabildiğini kendiniz de bizzat görebilirsiniz.
 
 # Dokümantasyonlar
 
-İstisnalar hariç, genellikle sistem bir araç kurulduğu zaman bu araçla birlikte ilgili aracın kullanımı hakkında bilgi, örnek ve değişim notları gibi detayları içeren dokümantasyonlar da sisteme ekleniyor. Bu dokümanların içeriğini sınırlayarak anlatmam mümkün değil çünkü ilgili aracın kullanım alanına göre pek çok türde dosya bulunabiliyor. Bu dokümanlar da varsayılan olarak sistemde ***/usr/share/doc*** dizini altında tutuluyor. Hemen bu dizinde ne kadar çok araca ait doküman klasörü olduğunu görebilmek için `cd /usr/share/doc` komutu ile ilgili dizine geçiş yapıp `ls` komutu ile içeriği listeleyelim. 
+İstisnalar hariç, genellikle sistem bir araç kurulduğu zaman bu araçla birlikte ilgili aracın kullanımı hakkında bilgi, örnek ve değişim notları gibi detayları içeren dokümantasyonlar da sisteme ekleniyor. Bu dokümanların içeriğini sınırlayarak anlatmam mümkün değil çünkü ilgili aracın kullanım alanına göre pek çok türde dosya bulunabiliyor. Bu dokümanlar da varsayılan olarak sistemde **_/usr/share/doc_** dizini altında tutuluyor. Hemen bu dizinde ne kadar çok araca ait doküman klasörü olduğunu görebilmek için `cd /usr/share/doc` komutu ile ilgili dizine geçiş yapıp `ls` komutu ile içeriği listeleyelim.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ cd /usr/share/doc                                                                    
+└─$ cd /usr/share/doc
 
 ┌──(taylan@linuxdersleri)-[/usr/share/doc]
 └─$ ls
-...                                                 
+...
 xorg-docs-core
 xserver-common
 xserver-xorg
@@ -462,36 +461,36 @@ zsh-syntax-highlighting
 
 <p class="mavi"><strong>ℹ️ Not:</strong> Çıktı çok uzun olduğu için kısaltarak verdim.</p>
 
-Bakın burada sistemde yüklü bulunan pek çok araca ait dokümanların klasörleri bulunuyor. 
+Bakın burada sistemde yüklü bulunan pek çok araca ait dokümanların klasörleri bulunuyor.
 
-Ben örnek olarak ileride ayrıca kullanımını ele alacağımız **nano** aracının dokümanlarına göz atmak istiyorum. `cd nano` komutu ile geçiş yapıp `ls` komutu ile listeleyelim. 
+Ben örnek olarak ileride ayrıca kullanımını ele alacağımız **nano** aracının dokümanlarına göz atmak istiyorum. `cd nano` komutu ile geçiş yapıp `ls` komutu ile listeleyelim.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[/usr/share/doc/nano]
-└─$ ls                                                                                   
+└─$ ls
 AUTHORS              changelog.gz  examples  IMPROVEMENTS.gz  NEWS.gz    THANKS.gz
 changelog.Debian.gz  copyright     faq.html  nano.html        README.gz  TODO
 ```
 
-Bakın burada birtakım dosyalar ve klasörler bulunuyor. Elbette tüm araçların dokümantasyon içeriği buradaki ile birebir aynı olmayacaktır. Ancak bu dizinin içeriği bize az çok dokümantasyon dizininde hangi türden içeriğin olduğuna dair bir fikir verebilir. Örneğin aracın yazarları, değişim notları, telif hakkı, örnek klasörü, sıkça sorulanlar, geliştirmeler, yenilikler ve benzeri pek çok farklı türde bilgiyi sunan farklı türde dosyalar burada bulunuyor. İhtiyaç halinde gerekli olan bilgilere buradaki dosyalar üzerinden ulaşabilirsiniz. 
+Bakın burada birtakım dosyalar ve klasörler bulunuyor. Elbette tüm araçların dokümantasyon içeriği buradaki ile birebir aynı olmayacaktır. Ancak bu dizinin içeriği bize az çok dokümantasyon dizininde hangi türden içeriğin olduğuna dair bir fikir verebilir. Örneğin aracın yazarları, değişim notları, telif hakkı, örnek klasörü, sıkça sorulanlar, geliştirmeler, yenilikler ve benzeri pek çok farklı türde bilgiyi sunan farklı türde dosyalar burada bulunuyor. İhtiyaç halinde gerekli olan bilgilere buradaki dosyalar üzerinden ulaşabilirsiniz.
 
-Ben yalnızca **nano** aracı üzerinden inceleme yaptım ancak farklı araçların dokümanlarına baktığınızda, pek çok türde dosyanın yer aldığını sizler de bizzat göreceksiniz. Ayrıca başta da belirttiğim şekilde her aracın doküman dosyaları olacak diye bir kaide de yok. Kimi aracın vardır, kimisinin yoktur. 
+Ben yalnızca **nano** aracı üzerinden inceleme yaptım ancak farklı araçların dokümanlarına baktığınızda, pek çok türde dosyanın yer aldığını sizler de bizzat göreceksiniz. Ayrıca başta da belirttiğim şekilde her aracın doküman dosyaları olacak diye bir kaide de yok. Kimi aracın vardır, kimisinin yoktur.
 
 Neticede bizzat teyit ettiğimiz üzere, sistemde yüklü bulunan araçların, dokümanları da bu konumda yer alıyor. Dolayısıyla sizler de gerektiğinde değişim notları, yenilikler, örnek dosyalar ve benzeri dokümantasyon kaynakları için bu dizini kontrol edebilirsiniz. Buradaki dokümanlar help ya da manuel sayfalarından çok daha farklı türde pek çok bilgi barındırıyor. Yani aslında buradaki dokümanlara muhtemelen çok sıklıkla ihtiyaç duymayabilirsiniz ancak yine de araçlarla birlikte sisteme eklenmiş olan dokümanlardan da haberdar olmamız kimi araçları kullanırken gerekli olabilir. Dokümantasyonların varlığından haberdar olmak bence önemli, bu sebeple kısaca bahsetmek istedim.
 
-Ayrıca bu bölümü bitirmeden önce, yardım sayfaları için katı bir kural olmadığını da hatırlatmak istiyorum. Yardım sayfaları konusunda benimsenmiş tek bir yaklaşım olamadığı için bu bölüm içinde bahsetmiş olduğumuz gibi birden fazla alternatif yönetimi bilmemiz gerekiyor. 
+Ayrıca bu bölümü bitirmeden önce, yardım sayfaları için katı bir kural olmadığını da hatırlatmak istiyorum. Yardım sayfaları konusunda benimsenmiş tek bir yaklaşım olamadığı için bu bölüm içinde bahsetmiş olduğumuz gibi birden fazla alternatif yönetimi bilmemiz gerekiyor.
 
-Örneğin yerleşik komutlar hakkında bilgi almak için `help` komutunu kullanabileceğimizden bahsetmiştik. Bunun yanında eğer yerleşik komutların manuel sayfalarına bakmak istersek, kimi komutların manuel sayfalarının olmadığını görebiliriz. Hemen deneyelim, ben `man cd` yazarak, yerleşik olan `cd` komutu hakkında almak istiyorum. 
+Örneğin yerleşik komutlar hakkında bilgi almak için `help` komutunu kullanabileceğimizden bahsetmiştik. Bunun yanında eğer yerleşik komutların manuel sayfalarına bakmak istersek, kimi komutların manuel sayfalarının olmadığını görebiliriz. Hemen deneyelim, ben `man cd` yazarak, yerleşik olan `cd` komutu hakkında almak istiyorum.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[/usr/share/doc/nano]
-└─$ man cd                                                                               
+└─$ man cd
 No manual entry for cd
 ```
 
-Gördüğünüz gibi `cd` komutu için manuel sayfası yok. Çünkü dahili komutlar **bash** kabuğunun bir parçası olduğu için bash kabuğu haricinde manual sayfalarında ayrı ayrı açıklamaları yer almıyor. Eğer bu durumu teyit etmek isterseniz `man bash` komutunu girip, bash kabuğunda yerleşik olan komutların bu manual sayfası içinde açıklanmış olduğunu bizzat teyit edebilirsiniz. 
+Gördüğünüz gibi `cd` komutu için manuel sayfası yok. Çünkü dahili komutlar **bash** kabuğunun bir parçası olduğu için bash kabuğu haricinde manual sayfalarında ayrı ayrı açıklamaları yer almıyor. Eğer bu durumu teyit etmek isterseniz `man bash` komutunu girip, bash kabuğunda yerleşik olan komutların bu manual sayfası içinde açıklanmış olduğunu bizzat teyit edebilirsiniz.
 
-Bunun yanında örneğin bash kabuğunun dahili komutu olan `pwd` komutu için `man pwd` komutu ile manual sayfasını kontrol edecek olursak bu isimde bir sayfa olduğunu görebiliriz. 
+Bunun yanında örneğin bash kabuğunun dahili komutu olan `pwd` komutu için `man pwd` komutu ile manual sayfasını kontrol edecek olursak bu isimde bir sayfa olduğunu görebiliriz.
 
 ```bash
 PWD(1)                               User Commands                              PWD(1)
@@ -521,26 +520,26 @@ DESCRIPTION
 
 Gördüğünüz gibi `pwd` komutu için manuel sayfaları mevcut. Bu durumun nedeni aslında buradaki `pwd` aracının bash kabuğundaki yerleşik `pwd` aracı yerine kullanılan alternatif araç olması. Sistemimizde farklı sebeplerden dolayı, kabukta bulunan bazı araçlarla aynı isimli olan harici araçlar yüklü olabiliyor. İşte `pwd` aracı da buna bir örnek. Dahili araçla aynı isimde harici bir araç olduğu için de bu aracın kendisine ait bir manual sayfası var. Bu sebeple `cd` komutu için harici bir manual sayfası yokken, `pwd` aracı için mevcut gözüküyor.
 
-İşte bu örnekler üzerinden de teyit edebildiğimiz gibi, yardım sayfalarında katı bir zorunluluk olmadığından, komutlar hakkında bilgi edinmek için farklı yardım araçlarını kullanmamız gerekebiliyor. Ancak sorun değil, zaten tüm temel yardım araçlarını öğrendiğimiz için, gerektiğinde alternatif yardım araçlarını kullanabiliriz. Örneğin `cd` komutu için manuel sayfası yok, ama `help cd` komutu ile ya da `cd —help` komutu ile yardım bilgisine kolayca ulaşabiliyoruz. 
+İşte bu örnekler üzerinden de teyit edebildiğimiz gibi, yardım sayfalarında katı bir zorunluluk olmadığından, komutlar hakkında bilgi edinmek için farklı yardım araçlarını kullanmamız gerekebiliyor. Ancak sorun değil, zaten tüm temel yardım araçlarını öğrendiğimiz için, gerektiğinde alternatif yardım araçlarını kullanabiliriz. Örneğin `cd` komutu için manuel sayfası yok, ama `help cd` komutu ile ya da `cd —help` komutu ile yardım bilgisine kolayca ulaşabiliyoruz.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[/usr/share/doc/nano]
-└─$ help cd                                                                              
+└─$ help cd
 cd: cd [-L|[-P [-e]] [-@]] [dir]
     Change the shell working directory.
-    
+
     Change the current directory to DIR.  The default DIR is the value of the
     HOME shell variable.
-    
+
     The variable CDPATH defines the search path for the directory containing
     DIR.  Alternative directory names in CDPATH are separated by a colon (:).
     A null directory name is the same as the current directory.  If DIR begins
     with a slash (/), then CDPATH is not used.
-    
+
     If the directory is not found, and the shell option `cdable_vars' is set,
     the word is assumed to be  a variable name.  If that variable has a value,
     its value is used for DIR.
-    
+
     Options:
       -L        force symbolic links to be followed: resolve symbolic
                 links in DIR after processing instances of `..'
@@ -552,32 +551,32 @@ cd: cd [-L|[-P [-e]] [-@]] [dir]
                 a non-zero status
       -@        on systems that support it, present a file with extended
                 attributes as a directory containing the file attributes
-    
+
     The default is to follow symbolic links, as if `-L' were specified.
     `..' is processed by removing the immediately previous pathname component
     back to a slash or the beginning of DIR.
-    
+
     Exit Status:
     Returns 0 if the directory is changed, and if $PWD is set successfully when
     -P is used; non-zero otherwise.
 
 ┌──(taylan@linuxdersleri)-[/usr/share/doc/nano]
-└─$ cd --help                                                                            
+└─$ cd --help
 cd: cd [-L|[-P [-e]] [-@]] [dir]
     Change the shell working directory.
-    
+
     Change the current directory to DIR.  The default DIR is the value of the
     HOME shell variable.
-    
+
     The variable CDPATH defines the search path for the directory containing
     DIR.  Alternative directory names in CDPATH are separated by a colon (:).
     A null directory name is the same as the current directory.  If DIR begins
     with a slash (/), then CDPATH is not used.
-    
+
     If the directory is not found, and the shell option `cdable_vars' is set,
     the word is assumed to be  a variable name.  If that variable has a value,
     its value is used for DIR.
-    
+
     Options:
       -L        force symbolic links to be followed: resolve symbolic
                 links in DIR after processing instances of `..'
@@ -589,11 +588,11 @@ cd: cd [-L|[-P [-e]] [-@]] [dir]
                 a non-zero status
       -@        on systems that support it, present a file with extended
                 attributes as a directory containing the file attributes
-    
+
     The default is to follow symbolic links, as if `-L' were specified.
     `..' is processed by removing the immediately previous pathname component
     back to a slash or the beginning of DIR.
-    
+
     Exit Status:
     Returns 0 if the directory is changed, and if $PWD is set successfully when
     -P is used; non-zero otherwise.
@@ -601,8 +600,8 @@ cd: cd [-L|[-P [-e]] [-@]] [dir]
 
 # Genel Özet
 
-Bu bölümü bitirmeden önce son bir kısa özet ve hatırlatmada bulunmam gerekirse: daha önce ele aldığımız `—help` seçeneği, genellikle ilgili aracın işlevine ve kullanımına dair özet bilgi sunarken, manual sayfaları araçlarla ilgili çok daha fazla detay bulunuyor. Pek sık tercih edilmese de manual sayfalarına ek olarak tıpkı manual sayfaları gibi uzun açıklamalar bulunduran ve komut satırı üzerinden daha rahat dolaşım imkanı tanıyan `info` aracını da kullanabilirsiniz. Ancak tüm dağıtımlarda varsayılan olarak yüklü bulunmadığı için öncelikli tercihiniz manual sayfaları olabilir. Ayrıca tüm bunların yanında, eğer kullandığınız araç, harici olarak dokümanlar sunuyorsa gerektiğinde ***/usr/share/doc/*** dizini altındaki bu dokümanları da kullanabilirsiniz.
+Bu bölümü bitirmeden önce son bir kısa özet ve hatırlatmada bulunmam gerekirse: daha önce ele aldığımız `—help` seçeneği, genellikle ilgili aracın işlevine ve kullanımına dair özet bilgi sunarken, manual sayfaları araçlarla ilgili çok daha fazla detay bulunuyor. Pek sık tercih edilmese de manual sayfalarına ek olarak tıpkı manual sayfaları gibi uzun açıklamalar bulunduran ve komut satırı üzerinden daha rahat dolaşım imkanı tanıyan `info` aracını da kullanabilirsiniz. Ancak tüm dağıtımlarda varsayılan olarak yüklü bulunmadığı için öncelikli tercihiniz manual sayfaları olabilir. Ayrıca tüm bunların yanında, eğer kullandığınız araç, harici olarak dokümanlar sunuyorsa gerektiğinde **_/usr/share/doc/_** dizini altındaki bu dokümanları da kullanabilirsiniz.
 
 Özetle kapsamlı bilgi almak için `man` ya da `info` sayfalarını tercih ederken, komutun unuttuğumuz özelliklerini işlevlerini hızlıca hatırlamak için genellikle `—help` seçeneğini kullanıyoruz. Ek dokümanlar ile de araca dair ek bilgiler edinebiliyoruz.
 
-Evet neticede sistem üzerinde yer alan tüm temel yardım mekanizmalarından kısaca söz ettik. Artık yardım gerektiğinde kendi başınızın çaresine nasıl bakacağınızı biliyorsunuz. Elbette yardım alırken yalnızca sistem üzerindeki kaynaklarla sınırlı değilsiniz. Dilerseniz internet üzerinden de ekstra pek çok bilgiye ulaşabilirsiniz. Doğru şekilde araştırdığınız sürece blog yazıları, forum siteleri ve benzeri pek çok kaynaktan örneklerle açıklanmış pek çok bilgiye rahatlıkla ulaşabilirsiniz. Yine de sistem üzerindeki yardım mekanizmaları çoğu zaman ilk başvurduğumuz kaynaklar olacağından, burada anlatılan yardım alma yöntemlerini dikkate almanızı şiddetle tavsiye ederim. 
+Evet neticede sistem üzerinde yer alan tüm temel yardım mekanizmalarından kısaca söz ettik. Artık yardım gerektiğinde kendi başınızın çaresine nasıl bakacağınızı biliyorsunuz. Elbette yardım alırken yalnızca sistem üzerindeki kaynaklarla sınırlı değilsiniz. Dilerseniz internet üzerinden de ekstra pek çok bilgiye ulaşabilirsiniz. Doğru şekilde araştırdığınız sürece blog yazıları, forum siteleri ve benzeri pek çok kaynaktan örneklerle açıklanmış pek çok bilgiye rahatlıkla ulaşabilirsiniz. Yine de sistem üzerindeki yardım mekanizmaları çoğu zaman ilk başvurduğumuz kaynaklar olacağından, burada anlatılan yardım alma yöntemlerini dikkate almanızı şiddetle tavsiye ederim.

@@ -1,4 +1,5 @@
 # Doküman Hakkında
+
 <img align="left" width="250" height="140" src="https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/linux-doc.png">Buradaki doküman, videolu eğitim olarak ele aldığımız [Kali Linux ile Sıfırdan Temel Linux Eğitimi](https://www.linuxdersleri.net/kurs)'nin komut satırı dersleri dokümantasyon kaynağıdır. Bu eğitim serisi, Linux sistemlerini nasıl yönetebileceğimizi sıfırdan başlayarak sıralı şekilde ele aldığımız temel konu anlatımlarından oluşturulmuştur. Müfredat ve daha fazla bilgi için aşağıdaki bilgileri gözden geçirebilirsiniz.
 
 # Linux Komut Satırı Dokümantasyon Müfredatı
@@ -70,20 +71,18 @@
   </tbody>
 </table>
 
-
-
-
-
 # Web ve Android Uygulamaları Hakkında
 
-Buradaki "[Türkçe Temel Linux Dokümantasyonu](https://github.com/taylanbildik/Linux_Dersleri)" içeriğini kolay takip edebilmeniz için hem web hem de android uygulamaları geliştirilmiştir. Tüm doküman içeriğine kesintisiz şekilde dilediğiniz cihazdan ulaşmak ve kolayca takip edebilmek için uygulamaları kullanabilirsiniz. 
+Buradaki "[Türkçe Temel Linux Dokümantasyonu](https://github.com/taylanbildik/Linux_Dersleri)" içeriğini kolay takip edebilmeniz için hem web hem de android uygulamaları geliştirilmiştir. Tüm doküman içeriğine kesintisiz şekilde dilediğiniz cihazdan ulaşmak ve kolayca takip edebilmek için uygulamaları kullanabilirsiniz.
 
 ## Web Platformu | [linuxdersleri.net](https://linuxdersleri.net)
+
 Dilediğiniz cihazdan kolayca doküman içeriğini takip edebileceğiniz web platformudur.
 
 ![web-platform-image](https://raw.githubusercontent.com/Linux-Dersleri/linux-dersleri.github.io/master/data/img/web-platformu.png)
 
 ### Projenin Github Adresi: [Linux-Dersleri](https://github.com/Linux-Dersleri/linux-dersleri.github.io)
+
 ### Platform Tanıtım Videosu: https://youtu.be/g00i4px9r6w
 
 ![](https://raw.githubusercontent.com/Linux-Dersleri/linux-dersleri.github.io/master/img/menu/platform.gif)
@@ -98,7 +97,7 @@ Mevcut web platformunun mobil uyumlu olmasına ek olarak, doğrudan çevrimdış
 [<img src="https://raw.githubusercontent.com/Linux-Dersleri/linux-dersleri.github.io/master/data/img/7.png" height="400">](https://play.google.com/store/apps/details?id=com.bildik.linuxdersleri)
 
 ## iOS Test Uygulaması
-Linuxdersleri.net adresinde bulunan "[Temel Linux](https://www.linuxdersleri.net/temel-linux)" eğitimi içerisindeki anlatımlardan yola çıkılarak hazırlanmış olan basit [test uygulaması](https://apps.apple.com/tr/app/linux-testi/id6474895980). Her defasında 20 soru ile boş vakitlerinizde kendinizi test edebilirsiniz. 
+Linuxdersleri.net adresinde bulunan "[Temel Linux](https://www.linuxdersleri.net/temel-linux)" eğitimi içerisindeki anlatımlardan yola çıkılarak hazırlanmış olan basit [test uygulaması](https://apps.apple.com/tr/app/linux-testi/id6474895980). Her defasında 20 soru ile boş vakitlerinizde kendinizi test edebilirsiniz.
 
 [<img src="https://raw.githubusercontent.com/Linux-Dersleri/linux-dersleri.github.io/master/data/img/0a.png" height="400">](https://apps.apple.com/tr/app/linux-testi/id6474895980)
 [<img src="https://raw.githubusercontent.com/Linux-Dersleri/linux-dersleri.github.io/master/data/img/3a.png" height="400">](https://apps.apple.com/tr/app/linux-testi/id6474895980)
@@ -106,8 +105,8 @@ Linuxdersleri.net adresinde bulunan "[Temel Linux](https://www.linuxdersleri.net
 [<img src="https://raw.githubusercontent.com/Linux-Dersleri/linux-dersleri.github.io/master/data/img/5a.png" height="400">](https://apps.apple.com/tr/app/linux-testi/id6474895980)
 -->
 
-
 ## :postbox: Geri Bildirimde Bulunun
+
 Fark etmiş olduğunuz hata, eksiklik ve yazım yanlışlarını bildirebilirsiniz.
 
 :email: [info.trdokuman@gmail.com](mailto:info.trdokuman@gmail.com)

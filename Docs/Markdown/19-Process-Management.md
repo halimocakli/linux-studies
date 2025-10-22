@@ -1,6 +1,6 @@
 # İşlem Yönetimi
 
-Bu bölümde "**process**" olarak geçen "**işlem**" kavramının anlaşılması ve yönetilebilmesi üzerinde duracağız. Öncelikle isim tanımı ile başlayacak olursak. Kimi zaman "**process**" terimi için Türkçe olarak "**süreç**" ifadesi hatta doğrudan "**proses**" kullanılsa da, terimin yapısı gereği Türkçe "**işlem**" ifadesi daha doğru bir tanımlama olacaktır. Ben de anlatımlar sırasında "**process**" kavramı için "**işlem**" ifadesini kullanıyor olacağım. Bu açıklamayı, harici Türkçe kaynaklara göz attığınızda "**işlem**" yerine "**süreç**" ya da "**proses**" ifadeleriyle karşılaşmanız halinde herhangi bir karışıklık yaşamamanız için kısaca dile getirmek istedim. 
+Bu bölümde "**process**" olarak geçen "**işlem**" kavramının anlaşılması ve yönetilebilmesi üzerinde duracağız. Öncelikle isim tanımı ile başlayacak olursak. Kimi zaman "**process**" terimi için Türkçe olarak "**süreç**" ifadesi hatta doğrudan "**proses**" kullanılsa da, terimin yapısı gereği Türkçe "**işlem**" ifadesi daha doğru bir tanımlama olacaktır. Ben de anlatımlar sırasında "**process**" kavramı için "**işlem**" ifadesini kullanıyor olacağım. Bu açıklamayı, harici Türkçe kaynaklara göz attığınızda "**işlem**" yerine "**süreç**" ya da "**proses**" ifadeleriyle karşılaşmanız halinde herhangi bir karışıklık yaşamamanız için kısaca dile getirmek istedim.
 
 <p class="mavi">
 ℹ️ Buradaki anlatımları yalnızca temel sistem yönetimi kapsamında ele alıyor olacağız. Daha fazla detay için elbette işletim sistemi özelinde harici kaynaklara(işletim sistemi nasıl çalışır? işletim sistemi nasıl programlanır ? vb.) kaynaklara göz atabilirsiniz.
@@ -9,7 +9,7 @@ Bu bölümde "**process**" olarak geçen "**işlem**" kavramının anlaşılmas�
 
 ## İşlem(Process) Nedir?
 
-Oldukça genel bir tanımla, söz konusu işletim sistemleri olduğunda; diskimiz üzerinde mevcut bulunan ve sistemin çalıştırabileceği yapıda olan her türlü programın öncelikle RAM yani hafızaya yüklenmesi ve oradan da sırası geldiğinde CPU yani işlemci üzerinde işlenmesine bütüncül olarak "***process***" yani "***işlem***" diyoruz. 
+Oldukça genel bir tanımla, söz konusu işletim sistemleri olduğunda; diskimiz üzerinde mevcut bulunan ve sistemin çalıştırabileceği yapıda olan her türlü programın öncelikle RAM yani hafızaya yüklenmesi ve oradan da sırası geldiğinde CPU yani işlemci üzerinde işlenmesine bütüncül olarak "**_process_**" yani "**_işlem_**" diyoruz.
 
 ![process.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/islem/process.webp)
 
@@ -28,17 +28,17 @@ Kabuk başlatabileceği iki tür işlem vardır.
 
 Anlatımın başında da belirttiğimiz gibi arka planda ve ön planda çalışan olmak üzere iki tür işlem mevcuttur.
 
-Ön plandaki(foreground) işlemler terminal araçlarına bağımlı olan işlemlerdir. Bu işlemlerin durdurulması, devam ettirilmesi veya sonlandırılması gibi işlemler için bu işlemlerin başlatıldıkları kabuğa ve konsola ihtiyaçları vardır. Bu sebeple ön planda çalışan işlem sınıfındadırlar. 
+Ön plandaki(foreground) işlemler terminal araçlarına bağımlı olan işlemlerdir. Bu işlemlerin durdurulması, devam ettirilmesi veya sonlandırılması gibi işlemler için bu işlemlerin başlatıldıkları kabuğa ve konsola ihtiyaçları vardır. Bu sebeple ön planda çalışan işlem sınıfındadırlar.
 
-Arka plandaki(background) işlemler terminal aracından bağımsızdır. Yönetimi(durdurulması, devam ettirilmesi, sonlandırılması vb..) için işlemi başlatan konsola veya kabuğa yani kullanıcı etkileşimine ihtiyaç duymadan arka planda işlerini yerine getirirler. 
+Arka plandaki(background) işlemler terminal aracından bağımsızdır. Yönetimi(durdurulması, devam ettirilmesi, sonlandırılması vb..) için işlemi başlatan konsola veya kabuğa yani kullanıcı etkileşimine ihtiyaç duymadan arka planda işlerini yerine getirirler.
 
 ## Ön Plandaki İşlemler
 
-Örneğin konsola `firefox` komutunu girecek olursak mevcut kabuk, `firefox` aracını bulup çalıştıracaktır. 
+Örneğin konsola `firefox` komutunu girecek olursak mevcut kabuk, `firefox` aracını bulup çalıştıracaktır.
 
 ![firefox.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/islem/firefox.webp)
 
-Fakat **firefox** aracı açık olduğu sürece “`firefox`” komutunu girmiş olduğumuz konsola yani bu kabuğa yeni herhangi bir komut giremeyiz. 
+Fakat **firefox** aracı açık olduğu sürece “`firefox`” komutunu girmiş olduğumuz konsola yani bu kabuğa yeni herhangi bir komut giremeyiz.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -48,7 +48,7 @@ ls
 echo "deneme"
 ```
 
-Çünkü **firefox** aracı mevcut konsola bağlı ve bizim konsoldan etkileşim kurabileceğimiz şekilde ön planda başlatılan bir işlemdir. Bu sayede ben bu aracı durdurma kapatma gibi işlemleri bu konsol üzerinden gerçekleştirebilirim. Örneğin kapatmak için konsola <kbd>Ctrl</kbd> + <kbd>C</kbd> tuşlamasını yapabilirim. 
+Çünkü **firefox** aracı mevcut konsola bağlı ve bizim konsoldan etkileşim kurabileceğimiz şekilde ön planda başlatılan bir işlemdir. Bu sayede ben bu aracı durdurma kapatma gibi işlemleri bu konsol üzerinden gerçekleştirebilirim. Örneğin kapatmak için konsola <kbd>Ctrl</kbd> + <kbd>C</kbd> tuşlamasını yapabilirim.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -62,19 +62,19 @@ Exiting due to channel error.
 Exiting due to channel error.
 ```
 
-Üstelik ön plandaki işlemler grafiksel arayüze sahip olmak zorunda da değil. Örneğin `cat > deneme` komutunu girdiğimizde mevcut konsol, `cat` aracının “***deneme***” isimli dosyaya veri yazması için işlemi beklemeye başlıyor. Yani konsol sayesinde `cat` aracı ile etkileşimde bulunuyoruz. Bu noktada mevcut konsola başka bir komut girmemiz mümkün değil. 
+Üstelik ön plandaki işlemler grafiksel arayüze sahip olmak zorunda da değil. Örneğin `cat > deneme` komutunu girdiğimizde mevcut konsol, `cat` aracının “**_deneme_**” isimli dosyaya veri yazması için işlemi beklemeye başlıyor. Yani konsol sayesinde `cat` aracı ile etkileşimde bulunuyoruz. Bu noktada mevcut konsola başka bir komut girmemiz mümkün değil.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
 └─$ cat > deneme
-bu 
-bir 
+bu
+bir
 deneme
 echo deneme
 ls
 ```
 
-Ben <kbd>Ctrl</kbd> + <kbd>D</kbd> tuşlaması ile veri girişini sonlandırana kadar `cat` işlemi ön planda bu konsol üzerinden benden etkileşim bekliyor olacak. İşte bu da ön planda çalışan ve kullanıcı etkileşimine ihtiyaç duyan işleme bir diğer örnektir. 
+Ben <kbd>Ctrl</kbd> + <kbd>D</kbd> tuşlaması ile veri girişini sonlandırana kadar `cat` işlemi ön planda bu konsol üzerinden benden etkileşim bekliyor olacak. İşte bu da ön planda çalışan ve kullanıcı etkileşimine ihtiyaç duyan işleme bir diğer örnektir.
 
 ## Arka Plan İşlemleri
 
@@ -102,7 +102,7 @@ Başlatılan **firefox** işleminin **pid** yani **işlem numarası** konsola ba
 deneme
 ```
 
-Bash kabuğu üzerinde bir işlemi arka planda başlatmak bu kadar kolay. Bizim başlattığımız arka plandaki işlemler dışında zaten sistem üzerindeki neredeyse tüm işlemler arka plandadır. Yani çalışmaları için doğrudan her zaman bizim etkileşimimize ihtiyaçları yoktur. Çalışır ve görevlerini yerine getirirler. 
+Bash kabuğu üzerinde bir işlemi arka planda başlatmak bu kadar kolay. Bizim başlattığımız arka plandaki işlemler dışında zaten sistem üzerindeki neredeyse tüm işlemler arka plandadır. Yani çalışmaları için doğrudan her zaman bizim etkileşimimize ihtiyaçları yoktur. Çalışır ve görevlerini yerine getirirler.
 
 # İş Kontrolü | Job Control
 
@@ -121,7 +121,7 @@ Ben örnek olması için öncelikle `firefox &` komutu ile mevcut kabuk üzerind
 └─$
 ```
 
-Başlatılan işlemin işlem numarası konsola bastırıldı. Bu bilgi dışında eğer başlatılan işlemin durumunu kontrol etmek istersek `jobs` komutunu girip, mevcut kabuğun kontrolünde olan tüm işlemleri listeleyebiliriz. 
+Başlatılan işlemin işlem numarası konsola bastırıldı. Bu bilgi dışında eğer başlatılan işlemin durumunu kontrol etmek istersek `jobs` komutunu girip, mevcut kabuğun kontrolünde olan tüm işlemleri listeleyebiliriz.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -141,9 +141,9 @@ Mevcut kabuk üzerinden yalnızca **firefox** aracını arkaplanda çalıştırd
 
 Yeni kabukta bir çıktı almadık, çünkü bu yeni kabuk üzerinden henüz bir işlem başlatmadık. Bu çıktıyla birlikte, kabukların yalnızca kendi başlattıkları işlemleri “job control” mekanizması üzerinden yönetebileceğini de teyit etmiş olduk.
 
-Şimdi tekrar çıktımıza dönecek olursak işlemin başında gördüğümüz “**1**” numarası, bu işlemin mevcut kabuktaki **işlem sırasıdır**. Yani işlem numarasından(**pid**) farklı olarak, mevcut kabuktaki işlemlerin sahip olduğu sıralama sayısıdır. Bu sayede mevcut kabuk üzerinde çok daha az işlem başlatıldığı için bu sayılar üzerinden yönetmek çok daha kolay oluyor. 
+Şimdi tekrar çıktımıza dönecek olursak işlemin başında gördüğümüz “**1**” numarası, bu işlemin mevcut kabuktaki **işlem sırasıdır**. Yani işlem numarasından(**pid**) farklı olarak, mevcut kabuktaki işlemlerin sahip olduğu sıralama sayısıdır. Bu sayede mevcut kabuk üzerinde çok daha az işlem başlatıldığı için bu sayılar üzerinden yönetmek çok daha kolay oluyor.
 
-İşlem numarasından sonra gelen “**Running**” ifadesi, bu işlemin şu anda çalışmakta olduğunu bildiren durum bilgisidir. Bu bilgiden yola çıkarak işlem hakkında bilgi alabiliyoruz. 
+İşlem numarasından sonra gelen “**Running**” ifadesi, bu işlemin şu anda çalışmakta olduğunu bildiren durum bilgisidir. Bu bilgiden yola çıkarak işlem hakkında bilgi alabiliyoruz.
 
 Sonda ise, bu işlemin komut bilgisi yani bu işlemin hangi komuta ait olduğu bildiriliyor.
 
@@ -167,7 +167,7 @@ ls
 echo
 ```
 
-**firefox** işlemi ön plana alındığı için kabuğa yeni komutlar veremez olduk çünkü kabuk şu anda yalnızca firefox işlemi ile meşgul. Ön plandaki işlemi durdurmak için <kbd>Ctrl</kbd> + <kbd>Z</kbd> tuşlaması yapabiliriz. 
+**firefox** işlemi ön plana alındığı için kabuğa yeni komutlar veremez olduk çünkü kabuk şu anda yalnızca firefox işlemi ile meşgul. Ön plandaki işlemi durdurmak için <kbd>Ctrl</kbd> + <kbd>Z</kbd> tuşlaması yapabiliriz.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -183,11 +183,11 @@ echo
 [1]+  Stopped                 firefox
 ```
 
-<kbd>Ctrl</kbd> + <kbd>Z</kbd> ile işlemi durdurduğum için `jobs` komutunun çıktısında “**Stopped**” yazıyor. Şu anda **firefox** işlemi durduğu için **firefox** aracını kullanamayız. Teyit etmek isterseniz firefox aracını kullanmayı deneyebilirsiniz. 
+<kbd>Ctrl</kbd> + <kbd>Z</kbd> ile işlemi durdurduğum için `jobs` komutunun çıktısında “**Stopped**” yazıyor. Şu anda **firefox** işlemi durduğu için **firefox** aracını kullanamayız. Teyit etmek isterseniz firefox aracını kullanmayı deneyebilirsiniz.
 
 ### İşi Arka Plana Almak
 
-Başlatılmış olan işlemleri arka plana almak için işlemi durdurduktan sonra “**b**ack**g**round” ifadesinin kısaltmasından gelen `bg iş-numarası` şeklinde komutumuzu girebiliriz. 
+Başlatılmış olan işlemleri arka plana almak için işlemi durdurduktan sonra “**b**ack**g**round” ifadesinin kısaltmasından gelen `bg iş-numarası` şeklinde komutumuzu girebiliriz.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -207,18 +207,18 @@ Daha önce durdurmuş olduğumuz işlem, arka plana alınmasıyla birlikte `jobs
 
 ### İşi Sonlandırmak
 
-Eğer işlemi sonlandırmak istersek “öldürmek” anlamındaki `kill % iş-numarası` komutunu kullanabiliyoruz. 
+Eğer işlemi sonlandırmak istersek “öldürmek” anlamındaki `kill % iş-numarası` komutunu kullanabiliyoruz.
 
 ```bash
-┌──(taylan㉿linuxdersleri)-[~]                                               
-└─$ jobs                                                                     
-[1]+  Running                 firefox &                                                                                                                                     
-                                                                             
-┌──(taylan㉿linuxdersleri)-[~]                                               
-└─$ kill %1                                                                  
-                                                                             
-┌──(taylan㉿linuxdersleri)-[~]                                               
-└─$ jobs                                                                                                                                                    
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ jobs
+[1]+  Running                 firefox &
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ kill %1
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ jobs
 [1]+  Terminated              firefox
 ```
 
@@ -230,12 +230,12 @@ Daha önce ele aldık ancak üstünde bir kez daha durmak istiyorum. Çalışmak
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ firefox                                                                                                                                                 
+└─$ firefox
 ^Z
 [1]+  Stopped                 firefox
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ jobs                                                                                                                                                    
+└─$ jobs
 [1]+  Stopped                 firefox
 
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -246,17 +246,17 @@ firefox
 [1]+  Stopped                 firefox
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ bg 1                                                                                                                                                    
+└─$ bg 1
 [1]+ firefox &
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ jobs                                                                                                                                                    
+└─$ jobs
 [1]+  Running                 firefox &
 ```
 
 ### İşin Sahiplikten Çıkarılması
 
-Kabuk, kendi başlatmış olduğu işlemlerin sahibi(owner) konumundadır. Dolayısıyla kabuk kapanırsa ilgili işlem de sonlandırılır. Yani biz mevcut kabuk üzerinde arkaplanda bir işlem başlatmış olsak bile, eğer bu kabuk kapatılırsa ilgili işlem de otomatik olarak sonlandırılıyor. 
+Kabuk, kendi başlatmış olduğu işlemlerin sahibi(owner) konumundadır. Dolayısıyla kabuk kapanırsa ilgili işlem de sonlandırılır. Yani biz mevcut kabuk üzerinde arkaplanda bir işlem başlatmış olsak bile, eğer bu kabuk kapatılırsa ilgili işlem de otomatik olarak sonlandırılıyor.
 
 Eğer kabuğun başlatmış olduğu bir işlemi kabuğun kontrolünden çıkarmak istersek “sahip çıkmamak-reddetmek” anlamına gelen `disown` komutunu kullanabiliyoruz. Ben test etmek için arka planda `firefox` aracını başlatıp daha sonra bu aracın kontrolünü bash kabuğundan kaldırmak istiyorum.
 
@@ -286,13 +286,13 @@ Birden fazla işlemi koşullara bağlı şekilde başlatmak için bash kabuğunu
 
 ## Mantıksal Operatörler `&` `||` `&&` `;`
 
-Bash kabuğunun, özellikle programlama yapılırken kullanılan pek çok operatörü bulunuyor. Operatörden kastım özel işlevleri olan yani kabuk için özel anlama sahip olan çeşitli karakterlerdir. İşte mantıksal operatörler de bu özel karakterlerden birkaçıdır. Mantıksal operatörler kullanarak birden fazla işlemin mantıksal durumlara göre çalıştırılmasını sağlayabiliyoruz. 
+Bash kabuğunun, özellikle programlama yapılırken kullanılan pek çok operatörü bulunuyor. Operatörden kastım özel işlevleri olan yani kabuk için özel anlama sahip olan çeşitli karakterlerdir. İşte mantıksal operatörler de bu özel karakterlerden birkaçıdır. Mantıksal operatörler kullanarak birden fazla işlemin mantıksal durumlara göre çalıştırılmasını sağlayabiliyoruz.
 
 ### Ya da(veya) Operatörü ( `||` )
 
 **Ya da** operatörü yani çift pipe "**`||`**" operatörü kullanıldığında, ilk komut başarısız olursa ikinci komut çalıştırılır. Eğer ilk komut başarılı olursa ikinci komut çalıştırılmaz.
 
-Hemen uygulamalı olarak deneyelim. Ben denemek için öncelikle `echo bir || echo iki` şeklinde yazıyorum. 
+Hemen uygulamalı olarak deneyelim. Ben denemek için öncelikle `echo bir || echo iki` şeklinde yazıyorum.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -300,7 +300,7 @@ Hemen uygulamalı olarak deneyelim. Ben denemek için öncelikle `echo bir || ec
 bir
 ```
 
-İlk komut başarılı olduğu için ikinci komut çalıştırılmadı dolayısıyla “**iki**” çıktısını konsolda göremiyoruz. Eğer ilk komut hatalı olsaydı ikinci komut çalıştırılacaktı. Ben denemek için `asdf || echo iki` komutunu giriyorum. 
+İlk komut başarılı olduğu için ikinci komut çalıştırılmadı dolayısıyla “**iki**” çıktısını konsolda göremiyoruz. Eğer ilk komut hatalı olsaydı ikinci komut çalıştırılacaktı. Ben denemek için `asdf || echo iki` komutunu giriyorum.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -314,7 +314,7 @@ Try: sudo apt install <deb name>
 iki
 ```
 
-İlk komut hatalı olduğu için ilk komuttan sonra bu kez ikinci komut da çalıştırıldı. İşte "ya da" operatörünü kullandığımızda başarılı komut bulunana kadar sırasıyla komutlar çalıştırılıyor. Bir komut başarılı sonuç döndürürse ondan sonrası çalıştırılmıyor. Emin olmak için `asdf || xyzt || echo bir || echo iki` şeklinde komut girebiliriz. 
+İlk komut hatalı olduğu için ilk komuttan sonra bu kez ikinci komut da çalıştırıldı. İşte "ya da" operatörünü kullandığımızda başarılı komut bulunana kadar sırasıyla komutlar çalıştırılıyor. Bir komut başarılı sonuç döndürürse ondan sonrası çalıştırılmıyor. Emin olmak için `asdf || xyzt || echo bir || echo iki` şeklinde komut girebiliriz.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -329,15 +329,15 @@ xyzt: command not found
 bir
 ```
 
-İlk iki komut yani ilk iki işlem başarısız olduğu için üçüncü komuta geçildi ve `echo bir` komutu çalıştırıldı. Ancak üçüncü komut başarılı olduğu için son komut yani `echo iki` çalıştırılmadı. 
+İlk iki komut yani ilk iki işlem başarısız olduğu için üçüncü komuta geçildi ve `echo bir` komutu çalıştırıldı. Ancak üçüncü komut başarılı olduğu için son komut yani `echo iki` çalıştırılmadı.
 
 ### Ve Operatörü ( `&&` )
 
-**Ve** "**`&&`**" operatöründe ise “**ya da**” operatörünün tersi şekilde, hatalı komut ile karşılaşılıncaya kadar tüm komutlar sırasıyla çalıştırılır. Diğer bir deyişle, **`&&`** operatörü kullanıldığında soldaki komut başarılı olursa sağdaki komut çalıştırılır. Ben denemek için `echo bir && echo iki && asdf && echo üç` şeklinde yazıyorum ve komutu onaylıyorum. 
+**Ve** "**`&&`**" operatöründe ise “**ya da**” operatörünün tersi şekilde, hatalı komut ile karşılaşılıncaya kadar tüm komutlar sırasıyla çalıştırılır. Diğer bir deyişle, **`&&`** operatörü kullanıldığında soldaki komut başarılı olursa sağdaki komut çalıştırılır. Ben denemek için `echo bir && echo iki && asdf && echo üç` şeklinde yazıyorum ve komutu onaylıyorum.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ echo bir && echo iki && asdf && echo üç                              
+└─$ echo bir && echo iki && asdf && echo üç
 bir
 iki
 Command 'asdf' not found, did you mean:
@@ -348,17 +348,17 @@ Command 'asdf' not found, did you mean:
 Try: sudo apt install <deb name>
 ```
 
-İlk komut başarılı olduğu için ikinci komut çalıştırıldı ve ikinci komut başarılı olduğu için de üçüncü komut çalıştırıldı. Ancak üçüncü komut başarısız olduğu için son komut çalıştırılmadı. Bu "`&&`" mantık operatörünü, peşi sıra kullandığınız komutlardan bir komutun hata vermesi durumunda devam edilmesini istemediğiniz durumlarda kullanabilirsiniz. 
+İlk komut başarılı olduğu için ikinci komut çalıştırıldı ve ikinci komut başarılı olduğu için de üçüncü komut çalıştırıldı. Ancak üçüncü komut başarısız olduğu için son komut çalıştırılmadı. Bu "`&&`" mantık operatörünü, peşi sıra kullandığınız komutlardan bir komutun hata vermesi durumunda devam edilmesini istemediğiniz durumlarda kullanabilirsiniz.
 
-Örneğin güncelleme işlemi için `sudo apt update && sudo apt upgrade -y` komutunu kullanabiliriz. Bu sayede ilk komut yani repo indexlerini güncelleme işlemi başarılı ise yükseltme işlemi uygulanır. Eğer index bilgileri güncellenmezse zaten paketleri yükseltme işlemi de başarısız olacağı için ilk komut başarılı olmadan ikinci komutun çalışmasının bir önemi yoktur. İşte sizler de tıpkı bu basit örnekte olduğu gibi çalıştırılması için kendisinden önceki komutların başarılı olmasına ihtiyaç duyan komutlarınız için "**ve**" “`&&`” operatörünü kullanabilirsiniz. 
+Örneğin güncelleme işlemi için `sudo apt update && sudo apt upgrade -y` komutunu kullanabiliriz. Bu sayede ilk komut yani repo indexlerini güncelleme işlemi başarılı ise yükseltme işlemi uygulanır. Eğer index bilgileri güncellenmezse zaten paketleri yükseltme işlemi de başarısız olacağı için ilk komut başarılı olmadan ikinci komutun çalışmasının bir önemi yoktur. İşte sizler de tıpkı bu basit örnekte olduğu gibi çalıştırılması için kendisinden önceki komutların başarılı olmasına ihtiyaç duyan komutlarınız için "**ve**" “`&&`” operatörünü kullanabilirsiniz.
 
 ### Komut Ayırıcı ( `;` )
 
-Bash kabuğu üzerinde; önceki ya da sonraki komutun çıkış durumundan yani hatalı ya da hatasız olmasından bağımsız olarak, komutların hepsini peş peşe çalıştırmak için noktalı virgül `;` karakterini kullanabiliyoruz. Komutlar arasında noktalı virgül `;` kullandığımız sürece peşi sıra istediğimiz sayıda komut girip hepsinin soldan sağa doğru sırasıyla çalıştırılmasını sağlayabiliriz. Ben denemek için `echo bir ; asdf; echo iki ; xyzt ; echo üç` şeklinde komutumu giriyorum. 
+Bash kabuğu üzerinde; önceki ya da sonraki komutun çıkış durumundan yani hatalı ya da hatasız olmasından bağımsız olarak, komutların hepsini peş peşe çalıştırmak için noktalı virgül `;` karakterini kullanabiliyoruz. Komutlar arasında noktalı virgül `;` kullandığımız sürece peşi sıra istediğimiz sayıda komut girip hepsinin soldan sağa doğru sırasıyla çalıştırılmasını sağlayabiliriz. Ben denemek için `echo bir ; asdf; echo iki ; xyzt ; echo üç` şeklinde komutumu giriyorum.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ echo bir ; asdf; echo iki ; xyzt ; echo üç                           
+└─$ echo bir ; asdf; echo iki ; xyzt ; echo üç
 bir
 Command 'asdf' not found, did you mean:
   command 'asdfg' from deb aoeui
@@ -371,13 +371,13 @@ xyzt: command not found
 üç
 ```
 
-Hatalı da olsa hatasız da olsa tüm komutlar yazıldığı gibi yani soldan sağa doğru sırasıyla çalıştırıldı. 
+Hatalı da olsa hatasız da olsa tüm komutlar yazıldığı gibi yani soldan sağa doğru sırasıyla çalıştırıldı.
 
-Ayrıca ben hep ayrı ayrı bahsettim ancak mantıksal operatörler ile komut ayırma karakterini bir arada kullanıp özel koşul belirten komut dizesi oluşturabilirsiniz. Örneğim ben yalnızca ilk komut yanlışsa geri kalan tüm komutların çalıştırılması için ilk komutun ardından “**ya da**” operatörünü kullanabilirim. Bir önceki komutun başına `asdf` ekliyorum ve `||` operatörünü kullanıyorum. 
+Ayrıca ben hep ayrı ayrı bahsettim ancak mantıksal operatörler ile komut ayırma karakterini bir arada kullanıp özel koşul belirten komut dizesi oluşturabilirsiniz. Örneğim ben yalnızca ilk komut yanlışsa geri kalan tüm komutların çalıştırılması için ilk komutun ardından “**ya da**” operatörünü kullanabilirim. Bir önceki komutun başına `asdf` ekliyorum ve `||` operatörünü kullanıyorum.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ asdf || echo bir ; asdf; echo iki ; xyzt ; echo üç                   
+└─$ asdf || echo bir ; asdf; echo iki ; xyzt ; echo üç
 Command 'asdf' not found, did you mean:
   command 'asdfg' from deb aoeui
   command 'adsf' from deb ruby-adsf
@@ -396,11 +396,11 @@ xyzt: command not found
 üç
 ```
 
-İlk komut hatalı olduğu için geri kalan tüm komutlar sırasıyla çalıştırıldı. İlk komutu `echo test` komutu ile değiştirelim yani ilk komutu başarılı olacak şekilde değiştirelim ve komutu onaylayalım. 
+İlk komut hatalı olduğu için geri kalan tüm komutlar sırasıyla çalıştırıldı. İlk komutu `echo test` komutu ile değiştirelim yani ilk komutu başarılı olacak şekilde değiştirelim ve komutu onaylayalım.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ echo test || echo bir ; asdf; echo iki ; xyzt ; echo üç              
+└─$ echo test || echo bir ; asdf; echo iki ; xyzt ; echo üç
 test
 Command 'asdf' not found, did you mean:
   command 'sdf' from deb sdf
@@ -413,9 +413,9 @@ xyzt: command not found
 üç
 ```
 
-Şimdi de yalnızca ilk komut(`echo test`) başarılı olduğu için veya `||`  operatörünün yapısı gereği ikinci komut(`echo bir`) başarılı da olsa çalıştırılmadı ama ondan sonrakiler noktalı virgül sayesinde yine sırasıyla çalıştırıldı. Peki ama neden böyle oldu ? 
+Şimdi de yalnızca ilk komut(`echo test`) başarılı olduğu için veya `||` operatörünün yapısı gereği ikinci komut(`echo bir`) başarılı da olsa çalıştırılmadı ama ondan sonrakiler noktalı virgül sayesinde yine sırasıyla çalıştırıldı. Peki ama neden böyle oldu ?
 
-Aslında bunun sebebi tüm komutun parça parça işleniyor olması. Yani kabuk ilk olarak ilk koşula baktı ve ilk komut doğru olduğu için “`||`” operatörü sebebiyle ikinci komutu çalıştırmadı. Ama bu ikinci komuttan sonra başka bir “ya da” operatörü olmadığı için de diğer komutları sırasıyla çalıştırdı. Eğer buradaki komutların hepsini tek bir koşula bağlı kılmak isteseydik yani örneğin ilk komut başarısız olursa diğerlerini çalıştır eğer ilk komut başarılı ise diğer hiç bir komutu çalıştırma demek isteseydik **komut gruplama** özelliğini kullanabilirdik. 
+Aslında bunun sebebi tüm komutun parça parça işleniyor olması. Yani kabuk ilk olarak ilk koşula baktı ve ilk komut doğru olduğu için “`||`” operatörü sebebiyle ikinci komutu çalıştırmadı. Ama bu ikinci komuttan sonra başka bir “ya da” operatörü olmadığı için de diğer komutları sırasıyla çalıştırdı. Eğer buradaki komutların hepsini tek bir koşula bağlı kılmak isteseydik yani örneğin ilk komut başarısız olursa diğerlerini çalıştır eğer ilk komut başarılı ise diğer hiç bir komutu çalıştırma demek isteseydik **komut gruplama** özelliğini kullanabilirdik.
 
 ## Komut Gruplama
 
@@ -423,7 +423,7 @@ Komutları gruplamak için parantez `(komut; komut2)` içinde yazabilirsiniz. Ö
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ echo test || echo bir ; asdf; echo iki ; xyzt ; echo üç              
+└─$ echo test || echo bir ; asdf; echo iki ; xyzt ; echo üç
 test
 Command 'asdf' not found, did you mean:
   command 'adsf' from deb ruby-adsf
@@ -440,11 +440,11 @@ Eğer gruplayacak olursak, grup içindeki tüm komutlar tek bir koşula bağlana
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ echo test || (echo bir ; asdf; echo iki ; xyzt ; echo üç)            
+└─$ echo test || (echo bir ; asdf; echo iki ; xyzt ; echo üç)
 test
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ asdf || (echo bir ; asdf; echo iki ; xyzt ; echo üç)            
+└─$ asdf || (echo bir ; asdf; echo iki ; xyzt ; echo üç)
 Command 'asdf' not found, did you mean:
   command 'sdf' from deb sdf
   command 'adsf' from deb ruby-adsf
@@ -467,53 +467,53 @@ Gördüğünüz gibi ilk girdiğimizde komutta “`||`” operatörü bulunduğu
 
 # Sistem Genelindeki İşlemlerin Kontrolü
 
-Şimdiye kadar ele aldığımız örneklerde hep bash kabuğu tarafından başlatılan ve kontrol edilen işlemleri gördük. Fakat sistemdeki tüm işlemler elbette bash kabuğu tarafından başlatılmıyor. Dolayısıyla sistemi yönetebilmek için sistem genelinde başlatılmış olan işlemleri de kontrol edebiliyor olmamız şart. 
+Şimdiye kadar ele aldığımız örneklerde hep bash kabuğu tarafından başlatılan ve kontrol edilen işlemleri gördük. Fakat sistemdeki tüm işlemler elbette bash kabuğu tarafından başlatılmıyor. Dolayısıyla sistemi yönetebilmek için sistem genelinde başlatılmış olan işlemleri de kontrol edebiliyor olmamız şart.
 
 # İşlemlerin Takibi
 
-İşlemleri yönetebilmek için öncelikle varlıklarından haberdar olmamız gerek. 
+İşlemleri yönetebilmek için öncelikle varlıklarından haberdar olmamız gerek.
 
 ## Anlık Takip | `top`
 
-Sistem üzerinde çalışmakta olan işlemleri anlık olarak takip etmek üzere `top` aracını kullanabiliyoruz. 
+Sistem üzerinde çalışmakta olan işlemleri anlık olarak takip etmek üzere `top` aracını kullanabiliyoruz.
 
 ```bash
 top - 06:18:00 up  1:21,  1 user,  load average: 0.05, 0.03, 0.00
 Tasks: 169 total,   1 running, 168 sleeping,   0 stopped,   0 zombie
 %Cpu(s):  0.7 us,  0.8 sy,  0.0 ni, 98.5 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
 MiB Mem :  10688.6 total,   9663.9 free,    580.3 used,    444.4 buff/cache
-MiB Swap:    975.0 total,    975.0 free,      0.0 used.   9848.9 avail Mem 
+MiB Swap:    975.0 total,    975.0 free,      0.0 used.   9848.9 avail Mem
 
-    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND                                                                              
-    615 root      20   0  424836 126756  57780 S   4.3   1.2   0:14.63 Xorg                                                                                 
-    999 taylan    20   0  420700  95376  74964 S   2.3   0.9   0:00.79 qterminal                                                                            
-    821 taylan    20   0    9616   5372   4316 S   0.3   0.0   0:00.77 dbus-daemon                                                                          
-    898 taylan    20   0  218440   2728   2240 S   0.3   0.0   0:19.50 VBoxClient                                                                           
-    949 taylan    20   0 1065696  88752  65972 S   0.3   0.8   0:08.14 xfwm4                                                                                
-    988 taylan    20   0  343196  26244  16996 S   0.3   0.2   0:00.16 Thunar                                                                               
-   1000 taylan    20   0  209228  32484  19032 S   0.3   0.3   0:17.25 panel-13-cpugra                                                                      
-   1109 taylan    20   0  373832  51812  29388 S   0.3   0.5   0:00.64 blueman-applet                                                                       
-  20219 taylan    20   0   10200   3724   3092 R   0.3   0.0   0:00.03 top                                                                                  
-      1 root      20   0  165520  11284   8288 S   0.0   0.1   0:01.42 systemd                                                                              
-      2 root      20   0       0      0      0 S   0.0   0.0   0:00.03 kthreadd                                                                             
-      3 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_gp                                                                               
-      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_par_gp                                                                           
-      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/0:0H-events_highpri                                                          
-      9 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 mm_percpu_wq                                                                         
-     10 root      20   0       0      0      0 S   0.0   0.0   0:00.00 rcu_tasks_rude_                                                                      
-     11 root      20   0       0      0      0 S   0.0   0.0   0:00.00 rcu_tasks_trace                                                                      
-     12 root      20   0       0      0      0 S   0.0   0.0   0:00.03 ksoftirqd/0                                                                          
-     13 root      20   0       0      0      0 I   0.0   0.0   0:01.98 rcu_sched                                                                            
-     14 root      rt   0       0      0      0 S   0.0   0.0   0:00.12 migration/0                                                                          
-     15 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/0                                                                              
-     16 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/1                                                                              
-     17 root      rt   0       0      0      0 S   0.0   0.0   0:00.91 migration/1                                                                          
-     18 root      20   0       0      0      0 S   0.0   0.0   0:00.04 ksoftirqd/1                                                                          
-     20 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/1:0H-events_highpri                                                          
-     21 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/2                                                                              
-     22 root      rt   0       0      0      0 S   0.0   0.0   0:00.84 migration/2                                                                          
-     23 root      20   0       0      0      0 S   0.0   0.0   0:00.18 ksoftirqd/2                                                                          
-     25 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/2:0H-events_highpri                                                          
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    615 root      20   0  424836 126756  57780 S   4.3   1.2   0:14.63 Xorg
+    999 taylan    20   0  420700  95376  74964 S   2.3   0.9   0:00.79 qterminal
+    821 taylan    20   0    9616   5372   4316 S   0.3   0.0   0:00.77 dbus-daemon
+    898 taylan    20   0  218440   2728   2240 S   0.3   0.0   0:19.50 VBoxClient
+    949 taylan    20   0 1065696  88752  65972 S   0.3   0.8   0:08.14 xfwm4
+    988 taylan    20   0  343196  26244  16996 S   0.3   0.2   0:00.16 Thunar
+   1000 taylan    20   0  209228  32484  19032 S   0.3   0.3   0:17.25 panel-13-cpugra
+   1109 taylan    20   0  373832  51812  29388 S   0.3   0.5   0:00.64 blueman-applet
+  20219 taylan    20   0   10200   3724   3092 R   0.3   0.0   0:00.03 top
+      1 root      20   0  165520  11284   8288 S   0.0   0.1   0:01.42 systemd
+      2 root      20   0       0      0      0 S   0.0   0.0   0:00.03 kthreadd
+      3 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_gp
+      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_par_gp
+      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/0:0H-events_highpri
+      9 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 mm_percpu_wq
+     10 root      20   0       0      0      0 S   0.0   0.0   0:00.00 rcu_tasks_rude_
+     11 root      20   0       0      0      0 S   0.0   0.0   0:00.00 rcu_tasks_trace
+     12 root      20   0       0      0      0 S   0.0   0.0   0:00.03 ksoftirqd/0
+     13 root      20   0       0      0      0 I   0.0   0.0   0:01.98 rcu_sched
+     14 root      rt   0       0      0      0 S   0.0   0.0   0:00.12 migration/0
+     15 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/0
+     16 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/1
+     17 root      rt   0       0      0      0 S   0.0   0.0   0:00.91 migration/1
+     18 root      20   0       0      0      0 S   0.0   0.0   0:00.04 ksoftirqd/1
+     20 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/1:0H-events_highpri
+     21 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/2
+     22 root      rt   0       0      0      0 S   0.0   0.0   0:00.84 migration/2
+     23 root      20   0       0      0      0 S   0.0   0.0   0:00.18 ksoftirqd/2
+     25 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/2:0H-events_highpri
      29 root      20   0       0      0      0 S   0.0   0.0   0:00.02 kdevtmpfs
 ```
 
@@ -527,7 +527,7 @@ Tablodaki temel sütunları açıklayacak olursak:
 
 **PR:** Priority yani işlem önceliğini belirtir.
 
-**NI:** İşlemin “nice” değeri. Diğer işlemlere ne kadar öncelik vereceğini belirtir. 
+**NI:** İşlemin “nice” değeri. Diğer işlemlere ne kadar öncelik vereceğini belirtir.
 
 **S:** Status yani “durum” bilgisidir. Çeşitli durumlar mevcuttur:
 
@@ -546,7 +546,7 @@ Tablodaki temel sütunları açıklayacak olursak:
 
 Bu listede gezinmek için aşağı yukarı yön tuşlarını kullanabilirsiniz. Ayrıca bir işlemi sonlandırmak için o işlemin üzerine geldikten sonra “**k**ill” yani “öldürmek” ifadesinden gelen <kbd>k</kbd> tuşuna basıp <kbd>enter</kbd> ile işlemin sonlandırılmasına onay verebilirsiniz. Fakat bu liste sürekli güncellendiği için işlemlerin bu liste üzerinden sonlandırılması pek pratik sayılmaz. Eğer araçtan çıkış yapmak isterseniz de <kbd>q</kbd> tuşuna basmanız yeterli.
 
-Esasen `top` aracı dışında çok daha işlevsel olan `htop` gibi çeşitli araçları kurup kullanabilirsiniz fakat biz her sistemde varsayılan olarak karşılaşabileceğimiz temel araç olduğu için yalnızca `top` aracına değindik. Zaten diğer araçlar da benzer değerleri sunuyor, ek olarak ek detaylar ve bazı kontrol imkanları sunuluyor. 
+Esasen `top` aracı dışında çok daha işlevsel olan `htop` gibi çeşitli araçları kurup kullanabilirsiniz fakat biz her sistemde varsayılan olarak karşılaşabileceğimiz temel araç olduğu için yalnızca `top` aracına değindik. Zaten diğer araçlar da benzer değerleri sunuyor, ek olarak ek detaylar ve bazı kontrol imkanları sunuluyor.
 
 Yine de işlemlerin anlık takibi ve temel bilgi edinme için `top` aracı son derece işlevsel bir bilgi alma aracı. Tabloda yer alan detaylar şu an sizin için pek anlamlı gelmemiş olabilir. İleride işlemleri daha yakından tanıdıkça buradaki bilgilerin kıymeti daha net anlaşılacak.
 
@@ -558,7 +558,7 @@ Tek başına `ps` komutunu girdiğimizde, yalnızca o anda mevcut konsol üzerin
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ ps                                                                                                                                                      
+└─$ ps
     PID TTY          TIME CMD
    1224 pts/0    00:00:00 bash
   24844 pts/0    00:00:00 ps
@@ -574,7 +574,7 @@ Bash kabuğuna `ps` komutunu girdiğimiz için bu çıktıyı aldık. Yani komut
 
 **CMD:** işlemi başlatan komutun adı
 
-`ps` aracı anlık olarak çalıştığı için **TIME** yani süre bilgisiyle kayda değer bir bilgi almamız pek olası olmasa da `ps` aracının en temel çıktıları bu şekilde. 
+`ps` aracı anlık olarak çalıştığı için **TIME** yani süre bilgisiyle kayda değer bir bilgi almamız pek olası olmasa da `ps` aracının en temel çıktıları bu şekilde.
 
 Manual sayfalarına bakacak olursanız `ps` aracının pek çok ek seçeneği olduğunu görebilirsiniz. Hepsine tek tek değinmemize gerek yok. İhtiyaç duyduğunuz özel bilgiler için uygun olan seçeneği araştırıp kullanabilirsiniz. Biz birkaç temel örnekle ilerleyelim.
 
@@ -588,7 +588,7 @@ Geniş çaplı bilgi almak için genellikle `ps aux` komutu kullanılır.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ ps aux                                                                                                                                                  
+└─$ ps aux
 USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 root           1  0.0  0.1 165520 11284 ?        Ss   04:56   0:01 /sbin/init splash
 root           2  0.0  0.0      0     0 ?        S    04:56   0:00 [kthreadd]
@@ -668,15 +668,15 @@ Elbette temel sistem yönetimi için buradaki tüm sinyallere ihtiyacımız yok.
 - **`SIGSTOP`** (19): Durdurma sinyali. Hedef işlemin askıya alınarak durdurulmasını sağlar. <kbd>Ctrl</kbd> + <kbd>Z</kbd> kısayoluyla da bu sinyal üretilebiliyor.
 - **`SIGCONT`** (18): Devam sinyali. Daha önce durdurulan bir işlemin çalışmaya devam etmesini sağlıyor.
 
-Sistem genelindeki işlemleri yönetirken bu sinyalleri bilmemiz yeterli. 
+Sistem genelindeki işlemleri yönetirken bu sinyalleri bilmemiz yeterli.
 
 ### İşlemi Durdurmak | SIGSTOP
 
-Çalışmakta olan bir işlemi durdurmak için sinyalın ismini ya da sayısal karşılığını `kill SIGSTOP pid` ya da `kill -19 pid` şeklinde girebiliyoruz.  Denemek için öncelikle grafiksel arayüzeden bir metin editörü açalım. Benim sistemimde **mousepad** olduğu için ben bu aracı çalıştırıyorum fakat siz herhangi bir aracı örnek olarak çalıştırabilirsiniz. Aracı açtıktan sonra bu aracın işlem numarasını öğrenmek için `ps x` komutunu girip sondaki çıktılara bakabiliriz.
+Çalışmakta olan bir işlemi durdurmak için sinyalın ismini ya da sayısal karşılığını `kill SIGSTOP pid` ya da `kill -19 pid` şeklinde girebiliyoruz. Denemek için öncelikle grafiksel arayüzeden bir metin editörü açalım. Benim sistemimde **mousepad** olduğu için ben bu aracı çalıştırıyorum fakat siz herhangi bir aracı örnek olarak çalıştırabilirsiniz. Aracı açtıktan sonra bu aracın işlem numarasını öğrenmek için `ps x` komutunu girip sondaki çıktılara bakabiliriz.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ ps x                                                                                                                                                     
+└─$ ps x
     PID TTY      STAT   TIME COMMAND
     797 ?        Ss     0:00 /lib/systemd/systemd --user
     798 ?        S      0:00 (sd-pam)
@@ -687,7 +687,7 @@ Sistem genelindeki işlemleri yönetirken bu sinyalleri bilmemiz yeterli.
     825 ?        Ssl    0:00 xfce4-session
 		...
 		..
-		.    
+		.
 		34680 ?        Sl     0:00 mousepad
 	  34710 pts/0    R+     0:00 ps x
 ```
@@ -699,19 +699,19 @@ Gördüğünüz gibi benim açtığım işlem **34680** pid ile başlatılmış.
 └─$ kill -19 34680
 ```
 
-Bu komutun ardından aracınıza dönüp aracı kullanmayı deneyebilirsiniz fakat işlem durdurulduğu için elbette araç size yanıt vermeyecektir. 
+Bu komutun ardından aracınıza dönüp aracı kullanmayı deneyebilirsiniz fakat işlem durdurulduğu için elbette araç size yanıt vermeyecektir.
 
 Ayrıca örneğin mevcut kabuk üzerinden ön planda çalışan bir işlem başlattıysanız bu işlemi durdurmak için <kbd>Ctrl</kbd> + <kbd>Z</kbd> tuşlamasını da kullanabilirsiniz. Bu tuşlama kabuk üzerinde çalışmakta olan işleme **SIGSTOP** sinyali gönderip duraklatılmasını sağlıyor. Ben denemek için konsola `firefox` komutunu girip mevcut kabuğa bağlı ön planda yeni bir işlem başlatacağım. Daha sonra <kbd>Ctrl</kbd> + <kbd>Z</kbd> tuşlaması ile bu işlemi de durduracağım.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ firefox                                                                                                                                                  
+└─$ firefox
 [GFX1-]: Unrecognized feature VIDEO_OVERLAY
 ^Z
 [1]+  Stopped                 firefox
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ jobs                                                                                                                                                     
+└─$ jobs
 [1]+  Stopped                 firefox
 ```
 
@@ -726,7 +726,7 @@ Durdurulmuş işlemi devam ettirmek için **SIGCONT** veya sinyalin sayısal kar
 └─$ kill -SIGCONT 34680
 ```
 
-İşlemin devam ettiğini teyit etmek isterseniz ilgili aracı kullanmayı deneyebilirsiniz. Denediğinizde aracı temsil eden işlem devam ettiği için aracı kullanabildiğinizi bizzat görmüş olacaksınız. 
+İşlemin devam ettiğini teyit etmek isterseniz ilgili aracı kullanmayı deneyebilirsiniz. Denediğinizde aracı temsil eden işlem devam ettiği için aracı kullanabildiğinizi bizzat görmüş olacaksınız.
 
 ### Sonlandırmak - Öldürmek | SIGKILL
 
@@ -783,19 +783,19 @@ Ben denemek için arka planda birden fazla `sleep` komutunun çalışması için
   60573 pts/0    S+     0:00 tail
 ```
 
-Gördüğünüz gibi `sleep` isimli birden fazla işlem mevcut. Eğer bunları sonlandırmak istersek, tek tek `kill` komutuna **pid** değerlerini argüman olarak verebiliriz. 
+Gördüğünüz gibi `sleep` isimli birden fazla işlem mevcut. Eğer bunları sonlandırmak istersek, tek tek `kill` komutuna **pid** değerlerini argüman olarak verebiliriz.
 
 Bunun yerine `killall -9 sleep` komutunu kullanacak olursak, `sleep` ile eşleşen tüm işlemler sonlandırılacak.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ killall -9 sleep                                                                                                                                         
+└─$ killall -9 sleep
 [1]   Killed                  sleep 1000
 
 [2]-  Killed                  sleep 400
 [3]+  Killed                  sleep 200
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ ps x | tail                                                                                                                                         
+└─$ ps x | tail
    1167 ?        Ssl    0:00 /usr/libexec/gvfs-goa-volume-monitor
    1174 ?        Ssl    0:00 /usr/libexec/gvfs-gphoto2-volume-monitor
    1182 ?        Ssl    0:00 /usr/libexec/gvfs-afc-volume-monitor
@@ -844,7 +844,7 @@ Ben denemek için "nil" isimli kullanıcı hesabına geçiş yapıp çeşitli i�
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
 └─$ su nil
-Password: 
+Password:
 ┌──(nil㉿linuxdersleri)-[/home/taylan]
 └─$ sleep 1000 & sleep 500 & sleep 250&
 [4] 62272
@@ -866,7 +866,7 @@ Password:
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ ps -u nil                                                                                                                                
+└─$ ps -u nil
     PID TTY          TIME CMD
   61798 pts/1    00:00:00 bash
   62272 pts/1    00:00:00 sleep
@@ -880,12 +880,12 @@ Bakın hem birden fazla `sleep` hem de `nano` ve `vi` işlemleri **nil** kullan�
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ sleep 700 & sleep 350&                                                                                                                                   
+└─$ sleep 700 & sleep 350&
 [1] 62872
 [2] 62873
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ ps aux | tail                                                                                                                                            
+└─$ ps aux | tail
 nil        62272  0.0  0.0   5464   860 pts/1    S    10:10   0:00 sleep 1000
 nil        62273  0.0  0.0   5464   880 pts/1    S    10:10   0:00 sleep 500
 nil        62274  0.0  0.0   5464   892 pts/1    S    10:10   0:00 sleep 250
@@ -905,7 +905,7 @@ taylan     62891  0.0  0.0   5496   932 pts/0    S+   10:12   0:00 tail
 └─$ sudo killall -u nil sleep
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ ps aux | tail                                                                                                                                
+└─$ ps aux | tail
 root       61793  0.0  0.0  11108  4784 pts/1    S    10:08   0:00 su nil
 nil        61798  0.0  0.0   8732  5364 pts/1    S+   10:08   0:00 bash
 root       62028  0.0  0.0      0     0 ?        I    10:09   0:00 [kworker/0:0-events]
@@ -918,7 +918,7 @@ taylan     63024  0.0  0.0   9768  1588 pts/0    R+   10:13   0:00 ps aux
 taylan     63025  0.0  0.0   5496   932 pts/0    S+   10:13   0:00 tail
 ```
 
-Gördüğünüz gibi yalnızca “**nil**” kullanıcısına ait olan `sleep` işlemleri sonlandırılmış. Neticede `killall` komutunun farklı kriterlere göre filtreleme yaptığını bizzat görmüş olduk. 
+Gördüğünüz gibi yalnızca “**nil**” kullanıcısına ait olan `sleep` işlemleri sonlandırılmış. Neticede `killall` komutunun farklı kriterlere göre filtreleme yaptığını bizzat görmüş olduk.
 
 Elbette ben `killall` komutunun tüm seçeneklerini tek tek ele almayacağım. Kullanımı son derece kolay olduğu için kısa bir deneme yanılma ile kendiniz de gerektiğinde diğer tüm seçenekleri keşfedebilirsiniz.
 
@@ -930,7 +930,7 @@ Ben denemek için grafiksel arayüzden **firefox** aracını çalıştırıp, bu
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ pgrep firefox                                                                                                                                            
+└─$ pgrep firefox
 64622
 
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -947,14 +947,14 @@ Ben denemek için grafiksel arayüzden **firefox** aracını çalıştırıp, bu
   64949 pts/0    S+     0:00 tail
 ```
 
-**firefox** ismiyle eşleşen ilk işlemin işlem numarası getirilmiş oldu. Bu şekilde isimleri üzerinden işlemlerin benzersiz işlem numaralarına erişebiliyoruz. Bu komut genellikle komut ikamesiyle birlikte işlemleri sonlandırmak için kullanıyor. Örneğin ben bulduğum bu işlemi sonlandırmak istersem `kill -9 $(pgrep firefox)` şeklinde komutumu girebilirim. Komut ikamesi içindeki `pgrep firefox` komutu “**firefox**” işleminin **pid** değerini bulup, `kill` komutuna argüman olarak vereceği için bu işlem sonlandırılacak. 
+**firefox** ismiyle eşleşen ilk işlemin işlem numarası getirilmiş oldu. Bu şekilde isimleri üzerinden işlemlerin benzersiz işlem numaralarına erişebiliyoruz. Bu komut genellikle komut ikamesiyle birlikte işlemleri sonlandırmak için kullanıyor. Örneğin ben bulduğum bu işlemi sonlandırmak istersem `kill -9 $(pgrep firefox)` şeklinde komutumu girebilirim. Komut ikamesi içindeki `pgrep firefox` komutu “**firefox**” işleminin **pid** değerini bulup, `kill` komutuna argüman olarak vereceği için bu işlem sonlandırılacak.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
 └─$ kill -9 $(pgrep firefox)
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ ps x | tail                                                                                                                                 
+└─$ ps x | tail
    1182 ?        Ssl    0:00 /usr/libexec/gvfs-afc-volume-monitor
    1187 ?        Ssl    0:00 /usr/libexec/gvfs-mtp-volume-monitor
    1196 ?        Sl     0:00 /usr/libexec/gvfsd-trash --spawner :1.15 /org/gtk/gvfs/exec_spaw/0
@@ -1017,11 +1017,11 @@ Eğer yatay olarak bölüp yeni konsol oturumu eklenecekse <kbd>Ctrl</kbd> + <kb
 
 ![tmux-horizontal.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/network/tmux-horizontal.webp)
 
-Bu konsollar arasında geçiş yapmak için <kbd>Ctrl</kbd> + <kbd>B</kbd> tuşuna bastıktan sonra klavyemizdeki sağ sol yön tuşları ile ilgili konsol oturumuna geçiş yapabiliyoruz. Zaten hangi konsolda olduğunuzu, pencereleri birbirinden ayıran renkli çizgi sayesinde takip edebilirsiniz. 
+Bu konsollar arasında geçiş yapmak için <kbd>Ctrl</kbd> + <kbd>B</kbd> tuşuna bastıktan sonra klavyemizdeki sağ sol yön tuşları ile ilgili konsol oturumuna geçiş yapabiliyoruz. Zaten hangi konsolda olduğunuzu, pencereleri birbirinden ayıran renkli çizgi sayesinde takip edebilirsiniz.
 
 ![tmux-new-sessions.gif](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/network/tmux-new-sessions.gif)
 
-Eğer bir oturumu sonlandırmak istiyorsanız üzerinde bulunduğunuz `tmux` oturumunu `exit` komutunu girerek kapatabilirsiniz. 
+Eğer bir oturumu sonlandırmak istiyorsanız üzerinde bulunduğunuz `tmux` oturumunu `exit` komutunu girerek kapatabilirsiniz.
 
 ![tmux-exit.gif](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/network/tmux-exit.gif)
 
@@ -1029,7 +1029,7 @@ Konsol oturumunu sonlandırmak yerine, ilgili konsolun arkaplanda çalışmaya d
 
 ![tmux-detach.gif](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/network/tmux-detach.gif)
 
-Ayrıldığımız oturumlara geri dönmek için `tmux attach` komutunu kullanabiliyoruz. 
+Ayrıldığımız oturumlara geri dönmek için `tmux attach` komutunu kullanabiliyoruz.
 
 ![tmux-attach.gif](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/network/tmux-attach.gif)
 
@@ -1037,13 +1037,13 @@ Eğer ayrıldığımız birden fazla oturum varsa geçiş yapmak istediğimiz ot
 
 ![tmux-multi-sessions.gif](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/network/tmux-multi-sessions.gif)
 
-Bu yaklaşım sayesinde oturumlarda gerçekleştirilen işlemler sonlandırılmadan, başka konsol oturumlarında çalışabiliyoruz. Örneğin bir konsolda ssh ile bağlantı sağlayıp işlemler gerçekleştiriyorken, bu şekilde konsoldan ayrıldığımızda ssh bağlantısı ve tabii ilgili işlemler arkaplanda devam edecek. Biz de dilediğimiz zaman bu konsol oturumuna dönebileceğiz. 
+Bu yaklaşım sayesinde oturumlarda gerçekleştirilen işlemler sonlandırılmadan, başka konsol oturumlarında çalışabiliyoruz. Örneğin bir konsolda ssh ile bağlantı sağlayıp işlemler gerçekleştiriyorken, bu şekilde konsoldan ayrıldığımızda ssh bağlantısı ve tabii ilgili işlemler arkaplanda devam edecek. Biz de dilediğimiz zaman bu konsol oturumuna dönebileceğiz.
 
-Bu esnek kullanım özelliğine ek olarak, konsol üzerinde kopyalama ve yapıştırma gibi işlemleri gerçekleştirmemiz de mümkün. Bu özellik, komut satırı arayüzünde çalışan tty konsolları üzerinde çalışmamız gerektiğinde, fare kullanamadığımızda işimizi inanılmaz kolaylaştırıyor. 
+Bu esnek kullanım özelliğine ek olarak, konsol üzerinde kopyalama ve yapıştırma gibi işlemleri gerçekleştirmemiz de mümkün. Bu özellik, komut satırı arayüzünde çalışan tty konsolları üzerinde çalışmamız gerektiğinde, fare kullanamadığımızda işimizi inanılmaz kolaylaştırıyor.
 
-Kopyalamak için <kbd>Ctrl</kbd> + <kbd>B</kbd> tuşlamasından sonra <kbd>[</kbd> sembolünü temsil eden tuşlamayı yapıyoruz. Bu noktadan itibaren imlecimizi mevcut konsol yazıları üzerinde yön tuşları ile rahatça hareket ettirebiliyoruz. Kopyalamak istediğimiz bölümün başına yön tuşları ile geldikten sonra seçme işlemi için <kbd>Ctrl</kbd> + <kbd>Space</kbd> tuşuna bastıktan sonra yine yön tuşları ile ilgili yazı seçiyoruz. Seçme işlemi bittikten sonra <kbd>Ctrl</kbd> + <kbd>W</kbd> tuşu ile seçili metni kopyalıyoruz. 
+Kopyalamak için <kbd>Ctrl</kbd> + <kbd>B</kbd> tuşlamasından sonra <kbd>[</kbd> sembolünü temsil eden tuşlamayı yapıyoruz. Bu noktadan itibaren imlecimizi mevcut konsol yazıları üzerinde yön tuşları ile rahatça hareket ettirebiliyoruz. Kopyalamak istediğimiz bölümün başına yön tuşları ile geldikten sonra seçme işlemi için <kbd>Ctrl</kbd> + <kbd>Space</kbd> tuşuna bastıktan sonra yine yön tuşları ile ilgili yazı seçiyoruz. Seçme işlemi bittikten sonra <kbd>Ctrl</kbd> + <kbd>W</kbd> tuşu ile seçili metni kopyalıyoruz.
 
-Kopyalanmış olan metni yapıştırmak için de <kbd>Ctrl</kbd> + <kbd>B</kbd> tuşlamasından sonra <kbd>]</kbd> sembolünü temsil eden tuşlamayı yapmamız yeterli oluyor. 
+Kopyalanmış olan metni yapıştırmak için de <kbd>Ctrl</kbd> + <kbd>B</kbd> tuşlamasından sonra <kbd>]</kbd> sembolünü temsil eden tuşlamayı yapmamız yeterli oluyor.
 
 ![tmux-copy-paste.gif](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/network/tmux-copy-paste.gif)
 

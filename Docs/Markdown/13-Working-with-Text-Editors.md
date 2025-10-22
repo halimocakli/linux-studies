@@ -75,7 +75,7 @@ Eğer başka bir dosya olarak kaydetmek isterseniz buradaki dosya ismini değiş
 
 ### Farklı Dosya Olarak Kaydetmek
 
-Farklı bir dosya olarak kaydetmeye örnek vermek için öncelikle dosyama “bu farklı bir dosya” verisini ekliyorum ve <kbd>Ctrl</kbd> + <kbd>O</kbd> ile dosyayı kaydediyorum. Şimdi bana sorulan dosya ismini dilediğim gibi belirtebilirim. Ben örnek olması için ***Documents*** dizini altında farklı-dosya ismi şeklinde kaydetmek istiyorum.
+Farklı bir dosya olarak kaydetmeye örnek vermek için öncelikle dosyama “bu farklı bir dosya” verisini ekliyorum ve <kbd>Ctrl</kbd> + <kbd>O</kbd> ile dosyayı kaydediyorum. Şimdi bana sorulan dosya ismini dilediğim gibi belirtebilirim. Ben örnek olması için **_Documents_** dizini altında farklı-dosya ismi şeklinde kaydetmek istiyorum.
 
 ![ ](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin-editoru/save-different.webp)
 
@@ -174,7 +174,7 @@ Bu şekilde büyük dosya içeriklerinde kaybolmadan düzenlemelerinizi kontroll
 
 ## Satırlara Hızlı Geçiş
 
-Ayrıca isterseniz dosya içerisindeki herhangi bir satıra atlamak için <kbd>Ctrl</kbd> + <kbd>_</kbd> kısayolunu kullanıp atlamak istediğiniz satır numarasını girebilirsiniz.
+Ayrıca isterseniz dosya içerisindeki herhangi bir satıra atlamak için <kbd>Ctrl</kbd> + <kbd>\_</kbd> kısayolunu kullanıp atlamak istediğiniz satır numarasını girebilirsiniz.
 
 ![ ](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin-editoru/nano-jump-line.webp)
 
@@ -218,7 +218,7 @@ Lafı daha fazla uzatmadan temelde bilmemiz gerekenlerden bahsederek başlayabil
 
 Şimdiden belirteyim, vi editörü daha önce kullandığınız diğer standart editörlerden biraz farklı çalışıyor ancak kullanımı kesinlikle zor değil. Zaten biz de temel işlevlerden bahsedip ihtiyacımız kadarlık kısmıyla ilgileneceğiz. Bazı kullanıcılar doğru şekilde öğrenmedikleri için `vi` editörünü pek sevmeyebiliyor hatta editörle ilk kez karşılaşıyorlarsa editörden çıkmak bile zor geldiği için nefret edip `vi` editörüne karşı bir önyargı geliştirebiliyor. Ancak editörü doğru şekilde tanıyıp biraz pratik yaparsanız hiç de zor olmadığını kendiniz de göreceksiniz.
 
-**Letitia E. Landon'**ın da dediği gibi**, *"İnsanlar, anlamadıkları şeylerden nefret etmeye hazırdırlar."***
+**Letitia E. Landon'**ın da dediği gibi**, _"İnsanlar, anlamadıkları şeylerden nefret etmeye hazırdırlar."_**
 
 Bu sebeple önce anlamaya çalışalım sonra nefret edip etmeyeceğimize karar veririz :)
 
@@ -238,7 +238,7 @@ Bakın dosya içeriği karşımıza geldi. Komut modundayken dosya içeriğinde 
 
 <kbd>k</kbd> yukarı
 
-<kbd>j</kbd> aşağı 
+<kbd>j</kbd> aşağı
 
 <kbd>^</kbd> satır başına
 
@@ -256,7 +256,7 @@ Komut modundayken dikkat etmeniz gereken detay, dosya içeriğine yeni veri giri
 
 Eğer bu durumu test ettiyseniz, denemenizin ardından herhangi bir veri girişi yapamadığınızı hatta veri girişinin aksine bastığınız tuşların bazı kelimelerin silinmesine ve kelimeler arasında atlamanıza sebep olduğunu bizzat deneyimlemişsinizdir.
 
-Veri girişi yerine mevcut veriler üzerinde değişiklik gerçekleşti çünkü biz şu anda `vi` editörünü komut modunda kullanıyoruz. Komut modunda olduğumuz için klavyemizden bastığımız tuşlar `vi` editörü tarafından çeşitli işlevleri yerine getiren komut kısayolları olarak algılanıyor. Dolayısıyla bu kısayollara göre mevcut metinde düzenlemeler yapılıyor. Peki metin içerisine yeni veri eklemek için ne yapmamız gerekiyor ? 
+Veri girişi yerine mevcut veriler üzerinde değişiklik gerçekleşti çünkü biz şu anda `vi` editörünü komut modunda kullanıyoruz. Komut modunda olduğumuz için klavyemizden bastığımız tuşlar `vi` editörü tarafından çeşitli işlevleri yerine getiren komut kısayolları olarak algılanıyor. Dolayısıyla bu kısayollara göre mevcut metinde düzenlemeler yapılıyor. Peki metin içerisine yeni veri eklemek için ne yapmamız gerekiyor ?
 
 Tabii ki daha önce de bahsettiğim gibi “insert” yani “ekleme moduna” geçiş yapmalıyız. Ekleme modu İngilizce olarak “**i**nsert mod” olarak geçtiği için bu moda geçiş yapmak için de `i` tuşuna basmamız yeterli oluyor. Zaten şu anda komut modunda olduğumuz için `i` tuşuna bastığımızda bu `i` karakteri insert moduna geçmek için kullandığımız bir komut olarak algılanacak.
 
@@ -270,21 +270,21 @@ Bakın “ekleme-insert” moduna geçiş yaptığım sol alt köşede açıkça
 
 ![vi-insert2](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin-editoru/vi-insert2.webp)
 
-Veri girişimiz sonlandığında ekleme modundan çıkmamız gerek. Çünkü bu moddayken birkaç kısayol hariç bastığımız tüm tuşlar veri girişi olarak algılanacak. Yani imleci sağa sola veya yukarı aşağı hareket ettirmek için kullanacağımız bazı kısayollar da veri girişi olacak görülecektir. Denemek isterseniz bir üst bölümde bahsettiğimiz klavye kısayollarını tekrar kullanmayı deneyebilirsiniz. 
+Veri girişimiz sonlandığında ekleme modundan çıkmamız gerek. Çünkü bu moddayken birkaç kısayol hariç bastığımız tüm tuşlar veri girişi olarak algılanacak. Yani imleci sağa sola veya yukarı aşağı hareket ettirmek için kullanacağımız bazı kısayollar da veri girişi olacak görülecektir. Denemek isterseniz bir üst bölümde bahsettiğimiz klavye kısayollarını tekrar kullanmayı deneyebilirsiniz.
 
 Yön tuşları bile yeni karakterler olarak ekleniyor çünkü şu anda ekleme modunda çalışıyoruz. Dolayısıyla istisnai birkaç tuş dışında bastığımız tüm tuşlar veri girişi olarak algılanıyor.
 
 ## Komut Moduna Geçiş
 
-Eğer veri girişi yerine mevcut karakterler arasında gezinmek istersek bunun için komut moduna geçmemiz gerekiyor. Bunun için de <kbd>esc</kbd> tuşunu kullanmamız gerek. <kbd>esc</kbd> tuşuna bastıktan sonra, vi editörünün ilk açıldığında olduğu gibi komut moduna geçiş yaptığını ve burada kısayol tuşlarını kullanabileceğinizi görebilirsiniz. 
+Eğer veri girişi yerine mevcut karakterler arasında gezinmek istersek bunun için komut moduna geçmemiz gerekiyor. Bunun için de <kbd>esc</kbd> tuşunu kullanmamız gerek. <kbd>esc</kbd> tuşuna bastıktan sonra, vi editörünün ilk açıldığında olduğu gibi komut moduna geçiş yaptığını ve burada kısayol tuşlarını kullanabileceğinizi görebilirsiniz.
 
-Hatta ekleme modundan komut moduna geçmek için <kbd>esc</kbd> tuşu uzak kaldığı için <kbd>alt</kbd> tuşuna basılı tutup <kbd>h</kbd> <kbd>l</kbd> <kbd>j</kbd> <kbd>k</kbd> gibi tuşları kullanarak da hızlıca komut moduna geçebiliyoruz. Komut modunda işimiz bittiğinde de <kbd>i</kbd> tuşuna basıp tekrar ekleme moduna dönebiliyoruz. 
+Hatta ekleme modundan komut moduna geçmek için <kbd>esc</kbd> tuşu uzak kaldığı için <kbd>alt</kbd> tuşuna basılı tutup <kbd>h</kbd> <kbd>l</kbd> <kbd>j</kbd> <kbd>k</kbd> gibi tuşları kullanarak da hızlıca komut moduna geçebiliyoruz. Komut modunda işimiz bittiğinde de <kbd>i</kbd> tuşuna basıp tekrar ekleme moduna dönebiliyoruz.
 
 ## Sayfa Sayfa Gezinti
 
 Şimdiye kadar bahsettiğimiz kısayollar dosya içeriği kısa olduğunda gezinti için yeterli. Fakat kimi zaman çok uzun içeriğe sahip dosya içeriklerinde gezinmemiz gerekebiliyor. Bu durumda dosya içeriğini sayfa sayfa atlamak için kullanabileceğimiz kısayollar da mevcut.
 
-İmlecimizin bulunduğu satırdan itibaren ekranımıza sığacak kadarlık dosya içeriğinin devamına atlamak için yani bir sayfa ileri atlamak için “**f**orward” yani “ileri” ifadesinin kısaltmasından gelen <kbd>Ctrl</kbd> + <kbd>f</kbd> kısayolunu kullanabiliyoruz. Benzer şekilde birer sayfa geri atlamak için de “**b**ackward” yani “geri” ifadesinin kısaltmasından gelen <kbd>Ctrl</kbd> + <kbd>b</kbd> kısayolunu kullanabiliyoruz. 
+İmlecimizin bulunduğu satırdan itibaren ekranımıza sığacak kadarlık dosya içeriğinin devamına atlamak için yani bir sayfa ileri atlamak için “**f**orward” yani “ileri” ifadesinin kısaltmasından gelen <kbd>Ctrl</kbd> + <kbd>f</kbd> kısayolunu kullanabiliyoruz. Benzer şekilde birer sayfa geri atlamak için de “**b**ackward” yani “geri” ifadesinin kısaltmasından gelen <kbd>Ctrl</kbd> + <kbd>b</kbd> kısayolunu kullanabiliyoruz.
 
 ## Silme, Kesme, Kopyalama, Yapıştırma
 
@@ -292,21 +292,21 @@ Silme, kopyalama, kesme ve yapıştırma gibi işlemleri komu modundayken gerçe
 
 ### Silmek
 
-İmlecin üzerinde bulunduğu tek bir karakteri silmek için <kbd>x</kbd> 
+İmlecin üzerinde bulunduğu tek bir karakteri silmek için <kbd>x</kbd>
 ![vi-x](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin-editoru/vi-x.gif)
 
-İmlecin sağında kalan kelimeyi veya kelime parçası silmek için “**d**elete **w**ord” ifadesinin kısalmasından gelen <kbd>dw</kbd> 
+İmlecin sağında kalan kelimeyi veya kelime parçası silmek için “**d**elete **w**ord” ifadesinin kısalmasından gelen <kbd>dw</kbd>
 ![vi-dw](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin-editoru/vi-dw.gif)
 
-İmlecin üzerinde durduğu satırın tamamını silmek istersek <kbd>dd</kbd> kısayolunu kullanabiliyoruz. 
+İmlecin üzerinde durduğu satırın tamamını silmek istersek <kbd>dd</kbd> kısayolunu kullanabiliyoruz.
 ![vi-dd](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin-editoru/vi-dd.gif)
 
-Ayrıca silinme sınırını belirtmemiz de mümkün. Örneğin imleçten sonraki 3 satırın silinmesi için <kbd>3dd</kbd> 
+Ayrıca silinme sınırını belirtmemiz de mümkün. Örneğin imleçten sonraki 3 satırın silinmesi için <kbd>3dd</kbd>
 
 İmleçten itibaren 5 karakterin silinmesi için <kbd>5x</kbd>
 ![vi-5x](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin-editoru/vi-5x.gif)
 
-İmleçten sonraki 2 kelimenin silinmesi için <kbd>2dw</kbd> şeklinde yazabiliriz. 
+İmleçten sonraki 2 kelimenin silinmesi için <kbd>2dw</kbd> şeklinde yazabiliriz.
 ![vi-2dw](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin-editoru/vi-2dw.gif)
 
 ### Kopyalama Yapıştırma
@@ -318,19 +318,19 @@ Vi editörü üzerinde kopyalama ve yapıştırma işlemi için “**copy paste*
 
 ### Kesme Yapıştırma
 
-Kopyalama işlemi yerine kes yapıştır işlemi için de ilgili satırı önce <kbd>dw</kbd> veya <kbd>dd</kbd> ile silip daha sonra <kbd>p</kbd> ile istediğimiz yere yapıştırabiliyoruz. 
+Kopyalama işlemi yerine kes yapıştır işlemi için de ilgili satırı önce <kbd>dw</kbd> veya <kbd>dd</kbd> ile silip daha sonra <kbd>p</kbd> ile istediğimiz yere yapıştırabiliyoruz.
 ![vi-dd-dw-p](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin-editoru/vi-dd-dw-p.gif)
 
-Tabii ki yapıştırma işleminde de istediğimiz sayıda kopyanın yapıştırılmasını spesifik olarak belirtebiliyoruz. Örneğin en son kestiğim satırın 3 kez yapıştırılmasını istersem <kbd>3p</kbd> şeklinde yazmam yeterli. 
+Tabii ki yapıştırma işleminde de istediğimiz sayıda kopyanın yapıştırılmasını spesifik olarak belirtebiliyoruz. Örneğin en son kestiğim satırın 3 kez yapıştırılmasını istersem <kbd>3p</kbd> şeklinde yazmam yeterli.
 ![vi-3p](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin-editoru/vi-3p.gif)
 
 ### Spesifik Aralığı Kopyalama ve Kesme
 
-Ben kopyalama veya kesme işleminde tek satır üzerinden gösterdim ancak istediğiniz kadar karakter veya kelimeyi nasıl kesebileceğinizi veya kopyalayabileceğinizi zaten biliyorsunuz. Örneğin ben imlecimden sonraki 3 kelimenin kopyalanmasını istersem <kbd>3yw</kbd> şeklinde komutumu girebilirim. Yani bu örnekler üzerinden de bizzat gördüğümüz gibi, öğrendiğimiz tüm kısayolları bir arada kullanabiliyoruz. Mesela 2 karakteri kesip başka bir yere 5 kez yapıştırmak istersek: öncelikle <kbd>2x</kbd> ile kesip daha sonra <kbd>5p</kbd> ile 5 kez yapıştırabiliyoruz. 
+Ben kopyalama veya kesme işleminde tek satır üzerinden gösterdim ancak istediğiniz kadar karakter veya kelimeyi nasıl kesebileceğinizi veya kopyalayabileceğinizi zaten biliyorsunuz. Örneğin ben imlecimden sonraki 3 kelimenin kopyalanmasını istersem <kbd>3yw</kbd> şeklinde komutumu girebilirim. Yani bu örnekler üzerinden de bizzat gördüğümüz gibi, öğrendiğimiz tüm kısayolları bir arada kullanabiliyoruz. Mesela 2 karakteri kesip başka bir yere 5 kez yapıştırmak istersek: öncelikle <kbd>2x</kbd> ile kesip daha sonra <kbd>5p</kbd> ile 5 kez yapıştırabiliyoruz.
 
 ## Araştırma
 
-Dosya içeriğinde araştırma yapmak için komut modundayken <kbd>/aranacak-veri</kbd> yazıp <kbd>enter</kbd> ile araştırma yapabiliyoruz. Bulunan eşleşmelerde ileri geri geçiş yapmak için de <kbd>n</kbd> ve <kbd>shift</kbd> + <kbd>N</kbd> tuşlarını kullanıyoruz. 
+Dosya içeriğinde araştırma yapmak için komut modundayken <kbd>/aranacak-veri</kbd> yazıp <kbd>enter</kbd> ile araştırma yapabiliyoruz. Bulunan eşleşmelerde ileri geri geçiş yapmak için de <kbd>n</kbd> ve <kbd>shift</kbd> + <kbd>N</kbd> tuşlarını kullanıyoruz.
 ![vi-search](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin-editoru/vi-search.gif)
 
 Örnekleri inanılmaz esneklikte çoğaltmamız mümkün ama bence gerek yok. Çünkü temel kısayolları bildiğinizde geriye yalnızca pratik yapmak kalıyor. Size bahsettiğim manipülasyon kısayolları ile metin editöründe 10 parmak klavye kullanımı ile hızlıca tüm işlerinizi yerine getirebilirsiniz. Burada önemli olan bu kısayollara alışmak. Alışmak için de bir süre kullanmanız gerekiyor. Mesela 2 hafta boyunca her gün düzenli olarak kendi kendinize kısa kısa çalışırsanız ne kadar hızlandığınızı siz de fark edeceksiniz. Tabii ki ben tüm kısayollardan da bahsetmedim ancak zaten temel metin görüntüleme ve düzenleme işlemleriniz için öğrendiklerimiz fazlasıyla yeterli. Daha fazlası için çok kısa bir araştırma yapabilirsiniz. İnternette “[Vim Cheat Sheet](https://vim.rtorr.com/)” şeklinde araştırdığınızda neredeyse tüm kısayollar hakkında pratik bilgiler sunan yerli ve yabancı pek çok rehberi kolayca bulabilirsiniz.
@@ -351,9 +351,9 @@ Vi editöründen çıkmak son derece kolay ancak bilmeyenler için kesinlikle bi
 
 Benim vi editörü hakkında bahsetmek istediklerim bu kadar. Ancak elbette vi editörü benim anlattıklarımla kesinlikle sınırlı değil. Biraz araştırırsanız ne kadar çok özelliği olduğunu bizzat görebilirsiniz.
 
-Ayrıca anlatımın başında **vi** editörü dışında “**vim**” ve “**gvim**” gibi alternatifler olduğundan kısaca bahsetmiştim. Hatta bunlar dışında “**neovim**” gibi alternatifler de var. Bu alternatiflerin hepsi, **vi** editörüne daha fazla fonksiyon ekleyen alternatiflerdir. Yani temelde burada vi hakkında konuştuklarımız aynen bu editörlerde de geçerli ancak bu editörlerde vi editöründen daha fazla özellik sunuyor. Biraz araştırırsanız ne gibi artıları olduğunu ve aralarındaki farkları kolayca öğrenebilirsiniz. Araştırdığınızda aslında ne kadar geniş çaplı ve esnek bir editör yapısı olduğuna eminim şaşıracaksınız. Hatta yaygınlığı dolayısıyla kullanmakta olduğunuz sistemde vim veya gvim araçları varsayılan olarak yüklü olabilir. Yüklü değilse bile zaten kolayca kurulumlarını yapabilirsiniz çünkü çok yaygın editörler. Mutlaka sizin kullandığınız işletim sisteminin paket depolarında da mevcuttur. 
+Ayrıca anlatımın başında **vi** editörü dışında “**vim**” ve “**gvim**” gibi alternatifler olduğundan kısaca bahsetmiştim. Hatta bunlar dışında “**neovim**” gibi alternatifler de var. Bu alternatiflerin hepsi, **vi** editörüne daha fazla fonksiyon ekleyen alternatiflerdir. Yani temelde burada vi hakkında konuştuklarımız aynen bu editörlerde de geçerli ancak bu editörlerde vi editöründen daha fazla özellik sunuyor. Biraz araştırırsanız ne gibi artıları olduğunu ve aralarındaki farkları kolayca öğrenebilirsiniz. Araştırdığınızda aslında ne kadar geniş çaplı ve esnek bir editör yapısı olduğuna eminim şaşıracaksınız. Hatta yaygınlığı dolayısıyla kullanmakta olduğunuz sistemde vim veya gvim araçları varsayılan olarak yüklü olabilir. Yüklü değilse bile zaten kolayca kurulumlarını yapabilirsiniz çünkü çok yaygın editörler. Mutlaka sizin kullandığınız işletim sisteminin paket depolarında da mevcuttur.
 
-Vi editörü anlatımının burada sonuna geliyoruz. Ancak dediğim gibi zaten “vi” ve özellikle “vim” editörü başlı başına bir dokümantasyon konusu ki bu bilgileri burada izah etsem bile fazlaca gereksiz ayrıntıya değinmiş, sizlere ve kendimi boş yere yormuş olurdum. Daha fazla bilgi için gerektiğinde ben de yardım sayfalarını kullanıyorum. Yani ben de yalnızca en temel işlevleri biliyorum. 
+Vi editörü anlatımının burada sonuna geliyoruz. Ancak dediğim gibi zaten “vi” ve özellikle “vim” editörü başlı başına bir dokümantasyon konusu ki bu bilgileri burada izah etsem bile fazlaca gereksiz ayrıntıya değinmiş, sizlere ve kendimi boş yere yormuş olurdum. Daha fazla bilgi için gerektiğinde ben de yardım sayfalarını kullanıyorum. Yani ben de yalnızca en temel işlevleri biliyorum.
 
 İnternette yer alan tüm zengin kaynaklar ile birlikte man kılavuz sayfasından veya doğrudan vim editörü içerisinde iken `:help` komutundan kolayca bilgi edinip öğrendiklerinizi pratiğe geçirebilirsiniz.
 

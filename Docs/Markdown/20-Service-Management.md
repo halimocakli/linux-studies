@@ -2,13 +2,13 @@
 
 Servisler, sürekli olarak çalışan, çeşitli görevleri yerine getiren ve sisteme işlevsellik sağlayan arka plan işlemleridir. Genellikle sistem başlangıcında otomatik olarak başlatılır ve sistem çalıştığı süre boyunca aksini gerektiren bir durum olmadığı sürece çalışırlar.
 
-Sistem üzerindeki servisleri yönetmek için de birden fazla alternatif servis yöneticisi vardır. Fakat biz bu bölümde yalnızca en güncel ve yaygın kullanıma sahip olan “**systemd**” servis yöneticisini ele alıyor olacağız. Dilerseniz alternatif servis yöneticilerini ve bunların farklarını araştırıp öğrenebilirsiniz. 
+Sistem üzerindeki servisleri yönetmek için de birden fazla alternatif servis yöneticisi vardır. Fakat biz bu bölümde yalnızca en güncel ve yaygın kullanıma sahip olan “**systemd**” servis yöneticisini ele alıyor olacağız. Dilerseniz alternatif servis yöneticilerini ve bunların farklarını araştırıp öğrenebilirsiniz.
 
 # systemd
 
 **systemd** yönetimi çok detaylı bir konu olmakla birlikte çoğunlukla en temel işlevlerine ihtiyacımız olduğu için öğrenmek oldukça kolay. Temel işleyişi bildiğimizde spesifik ihtiyaçlara yönelik konfigürasyonları araştırıp uygulamamız zaten mümkün. Bu sebeple biz yalnızca en temel kullanıma odaklanıyor olacağız.
 
-**systemd** aracı, kontrolü altındaki tüm yapıları “**birim**” yani “**unit**” olarak görüyor. Yazıyı hazırladığım sırada araç dokümanlarında yer alan birimlerin tablosu aşağıdaki şekildeydi: 
+**systemd** aracı, kontrolü altındaki tüm yapıları “**birim**” yani “**unit**” olarak görüyor. Yazıyı hazırladığım sırada araç dokümanlarında yer alan birimlerin tablosu aşağıdaki şekildeydi:
 
 <table class="table table-dark table-striped">
   <thead>
@@ -69,13 +69,13 @@ Sistem üzerindeki servisleri yönetmek için de birden fazla alternatif servis 
   </tbody>
 </table>
 
-Örneğin systemd üzerinden **servisleri** yönetmek istediğimizde “**service unit**” üzerinde işlem yapmamız gerekiyor. Biz bu bölümde yalnızca servisler özelinde anlatımlar gerçekleştireceğiz. Daha fazlası için ek araştırma yapmanız yeterli. Bu açıklama şu an için pek anlamlı gelmemiş olabilir fakat bölüm sonunda netleşecek. 
+Örneğin systemd üzerinden **servisleri** yönetmek istediğimizde “**service unit**” üzerinde işlem yapmamız gerekiyor. Biz bu bölümde yalnızca servisler özelinde anlatımlar gerçekleştireceğiz. Daha fazlası için ek araştırma yapmanız yeterli. Bu açıklama şu an için pek anlamlı gelmemiş olabilir fakat bölüm sonunda netleşecek.
 
 **systemd** aracını yönetirken `systemctl` komutunu kullanıyor olacağız. Anlatımlarımıza birimleri listeleyerek başlayalım.
 
 ## Birimleri Listelemek
 
-Sistemimizde aktif olan tüm birimleri listelemek için `systemctl list-units` komutunu kullanıyoruz. 
+Sistemimizde aktif olan tüm birimleri listelemek için `systemctl list-units` komutunu kullanıyoruz.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -104,7 +104,7 @@ Sistemimizde aktif olan tüm birimleri listelemek için `systemctl list-units` k
   sys-module-fuse.device                                                                   loaded active plugged   /sys/module/fuse
 ```
 
-Ben çıktıları kısaltarak ekledim, fakat siz kendi konsolunuz üzerinde pek çok farklı türde “**unit**” yani “**birim**” olduğunu bizzat görebilirsiniz. Zaten birimler, “**.automount”**, “**.device”**, “**.service”** şeklinde isminin sonunda nokta ve birim ismiyle açıkça belirtiliyor. 
+Ben çıktıları kısaltarak ekledim, fakat siz kendi konsolunuz üzerinde pek çok farklı türde “**unit**” yani “**birim**” olduğunu bizzat görebilirsiniz. Zaten birimler, “**.automount”**, “**.device”**, “**.service”** şeklinde isminin sonunda nokta ve birim ismiyle açıkça belirtiliyor.
 
 Buradaki çıktılarda yalnızca aktif olan yani halihazırda çalışmakta olan birimler listelenmiş oldu. Eğer sistemdeki tüm birimleri listelemek istersek `systemctl list-units —all` komutunu kullanabiliriz.
 
@@ -131,7 +131,7 @@ Ben çıktıları kısalttığım için inaktif olanlar buraya eklediğim çıkt
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ systemctl list-units --all --state=inactive                                                                                                                             
+└─$ systemctl list-units --all --state=inactive
   UNIT                                                                                 LOAD      ACTIVE   SUB  DESCRIPTION                                                       >
 ● home.mount                                                                           not-found inactive dead home.mount
   proc-sys-fs-binfmt_misc.mount                                                        loaded    inactive dead Arbitrary Executable File Formats File System
@@ -150,7 +150,7 @@ Ben çıktıları kısalttığım için inaktif olanlar buraya eklediğim çıkt
 
 Gördüğünüz gibi yalnızca inaktif olanları da filtrelemiş olduk.
 
-Eğer spesifik olarak bir servisin durumunu sorgulamak istersek `status` seçeneğini kullanabiliyoruz. Ben denemek için **apache2** servisini sorguluyorum. 
+Eğer spesifik olarak bir servisin durumunu sorgulamak istersek `status` seçeneğini kullanabiliyoruz. Ben denemek için **apache2** servisini sorguluyorum.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -171,11 +171,11 @@ Eğer spesifik olarak bir servisin durumunu sorgulamak istersek `status` seçene
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ sudo systemctl start apache2.service 
-[sudo] password for taylan: 
+└─$ sudo systemctl start apache2.service
+[sudo] password for taylan:
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ systemctl status apache2.service 
+└─$ systemctl status apache2.service
 ● apache2.service - The Apache HTTP Server
      Loaded: loaded (/lib/systemd/system/apache2.service; disabled; vendor preset: disabled)
      Active: active (running) since Mon 2023-07-24 10:08:06 EDT; 6s ago
@@ -197,11 +197,11 @@ Jul 24 10:08:01 linuxdersleri.net systemd[1]: Starting The Apache HTTP Server...
 Jul 24 10:08:06 linuxdersleri.net systemd[1]: Started The Apache HTTP Server.
 ```
 
-Ben **apache2.service** şeklinde birimin türünü(**.service**) açıkça belirttim fakat **apache2** isminde başka bir birim türü yoksa **apache2.service** yerine doğrudan **apache2** şeklinde de girebilirdim. 
+Ben **apache2.service** şeklinde birimin türünü(**.service**) açıkça belirttim fakat **apache2** isminde başka bir birim türü yoksa **apache2.service** yerine doğrudan **apache2** şeklinde de girebilirdim.
 
 ## Durdurmak | `stop`
 
-Çalışmakta olan birimi durdurmak için `sudo systemctl stop birim-adı` komutunu kullanabiliyoruz. Ben başlattığım apache2 servis birimini durduracağım. 
+Çalışmakta olan birimi durdurmak için `sudo systemctl stop birim-adı` komutunu kullanabiliyoruz. Ben başlattığım apache2 servis birimini durduracağım.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -220,18 +220,19 @@ Jul 24 10:08:33 linuxdersleri.net systemd[1]: Stopping The Apache HTTP Server...
 Jul 24 10:08:38 linuxdersleri.net systemd[1]: apache2.service: Deactivated successfully.
 Jul 24 10:08:38 linuxdersleri.net systemd[1]: Stopped The Apache HTTP Server.
 ```
+
 İlgili birimin durdurulduğunu `status` seçeneği ile teyit etmiş olduk. En alttaki log kayıtlarında hangi işlemin hangi sırada gerçekleştirildiği de açıkça belirtiliyor zaten.
 
 ## Yeniden Başlatmak | `restart` `reload`
 
-Birimi yeniden başlatmak için `restart` seçeneğini kullanabiliyoruz. Örneğin birim dosyası üzerinde konfigürasyon değişikliği yaptığınızda, ilgili birimde bu değişikliğin geçerli olması için o birimi yeniden başlatabilirsiniz. Bu seçenek, hem kapalı hem de halihazırda çalışmakta olan birimin yeniden başlatılmasını sağlıyor. 
+Birimi yeniden başlatmak için `restart` seçeneğini kullanabiliyoruz. Örneğin birim dosyası üzerinde konfigürasyon değişikliği yaptığınızda, ilgili birimde bu değişikliğin geçerli olması için o birimi yeniden başlatabilirsiniz. Bu seçenek, hem kapalı hem de halihazırda çalışmakta olan birimin yeniden başlatılmasını sağlıyor.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ sudo systemctl restart apache2.service 
+└─$ sudo systemctl restart apache2.service
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ systemctl status apache2.service 
+└─$ systemctl status apache2.service
 ● apache2.service - The Apache HTTP Server
      Loaded: loaded (/lib/systemd/system/apache2.service; disabled; vendor preset: disabled)
      Active: active (running) since Mon 2023-07-24 10:09:17 EDT; 23s ago
@@ -257,10 +258,10 @@ Eğer servisi kesintiye uğratmadan yalnızca konfigürasyon değişikliklerinin
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ sudo systemctl reload apache2.service                                                                                                                  
+└─$ sudo systemctl reload apache2.service
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ systemctl status apache2.service                                                                                                                   
+└─$ systemctl status apache2.service
 ● apache2.service - The Apache HTTP Server
      Loaded: loaded (/lib/systemd/system/apache2.service; disabled; vendor preset: disabled)
      Active: active (running) since Mon 2023-07-24 10:09:17 EDT; 56s ago
@@ -284,7 +285,6 @@ Jul 24 10:09:17 linuxdersleri.net systemd[1]: Started The Apache HTTP Server.
 Jul 24 10:10:01 linuxdersleri.net systemd[1]: Reloading The Apache HTTP Server...
 Jul 24 10:10:11 linuxdersleri.net systemd[1]: Reloaded The Apache HTTP Server.
 ```
-
 
 ## Birimlerin Aktif Pasif Hale Getirilmesi
 
@@ -325,7 +325,7 @@ Jul 24 10:10:01 linuxdersleri.net systemd[1]: Reloading The Apache HTTP Server..
 Jul 24 10:10:11 linuxdersleri.net systemd[1]: Reloaded The Apache HTTP Server.
 ```
 
-**apache2** servisi “**enable**” yani “aktif” hale gelmiş oldu. Yani sistem başlangıcında otomatik olarak başlatılıyor olacak. 
+**apache2** servisi “**enable**” yani “aktif” hale gelmiş oldu. Yani sistem başlangıcında otomatik olarak başlatılıyor olacak.
 
 ### Devre Dışı Bırakmak | `disable`
 
@@ -333,13 +333,13 @@ Eğer aktifleştirilmiş bir birimi pasif konuma getirmek istersek `disable` yan
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ sudo systemctl disable apache2                                                                                                                 
+└─$ sudo systemctl disable apache2
 Synchronizing state of apache2.service with SysV service script with /lib/systemd/systemd-sysv-install.
 Executing: /lib/systemd/systemd-sysv-install disable apache2
 Removed /etc/systemd/system/multi-user.target.wants/apache2.service.
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ systemctl status apache2                                                                                                                          
+└─$ systemctl status apache2
 ● apache2.service - The Apache HTTP Server
      Loaded: loaded (/lib/systemd/system/apache2.service; disabled; vendor preset: disabled)
      Active: active (running) since Mon 2023-07-24 10:09:17 EDT; 21min ago
@@ -362,25 +362,25 @@ Jul 24 10:10:01 linuxdersleri.net systemd[1]: Reloading The Apache HTTP Server..
 Jul 24 10:10:11 linuxdersleri.net systemd[1]: Reloaded The Apache HTTP Server.
 ```
 
-Gördüğünüz gibi `enable` seçeneği ile aktifleştiriyorken, `disable` seçeneği ile de pasif konuma getirebiliyoruz. 
+Gördüğünüz gibi `enable` seçeneği ile aktifleştiriyorken, `disable` seçeneği ile de pasif konuma getirebiliyoruz.
 
 # Birimleri Gruplamak | Target
 
 Farklı durumlar için farklı birimlerin sistem açılışında otomatik olarak aktifleştirilmesini isteyebiliriz. systemd bu durumlar için “**target**” ismi verilen birimleri kullanıyor. target sayesinde sistem başlangıcında başlatılmasını istediğimiz tüm birimleri gruplayabiliyoruz. Temel target birimlerini listeleyecek olursak:
 
-- *poweroff*
-- *rescue*
-- *multi-user*
-- *graphical*
-- *reboot*
+- _poweroff_
+- _rescue_
+- _multi-user_
+- _graphical_
+- _reboot_
 
-Bu target’lar, içerisinde amaçları doğrultusunda uygun olan birimleri barındıran gruplardır. Örneğin poweroff.target aslında systemd’nin tüm birimleri sonlandırması sonucu sistemin kapanmasını sağlayan gruptur. 
+Bu target’lar, içerisinde amaçları doğrultusunda uygun olan birimleri barındıran gruplardır. Örneğin poweroff.target aslında systemd’nin tüm birimleri sonlandırması sonucu sistemin kapanmasını sağlayan gruptur.
 
 Kullanmakta olduğunuz sistemdeki varsayılan target bilgisini öğrenmek için `systemctl get-default` komutunu girebilirsiniz.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ systemctl get-default 
+└─$ systemctl get-default
 graphical.target
 ```
 
@@ -390,7 +390,7 @@ Eğer varsayılan target birimini değiştirmek istersek `set-default` seçeneğ
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ systemctl list-units --type target --all                                                                                                                
+└─$ systemctl list-units --type target --all
   UNIT                                                                                 LOAD   ACTIVE   SUB    DESCRIPTION                                  >
   basic.target                                                                         loaded active   active Basic System
   blockdev@dev-disk-by\x2duuid-00253fba\x2dff78\x2d4f04\x2db189\x2dfbc974082345.target loaded inactive dead   Block Device Preparation for /dev/disk/by-uui>
@@ -444,24 +444,23 @@ Ben varsayılan target seviyesini değiştirmeyi örneklemek için **graphical.t
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ systemctl get-default 
+└─$ systemctl get-default
 graphical.target
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ sudo systemctl set-default multi-user.target                                                                                                                 
+└─$ sudo systemctl set-default multi-user.target
 Created symlink /etc/systemd/system/default.target → /lib/systemd/system/multi-user.target.
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ systemctl get-default                                                                                                                 
+└─$ systemctl get-default
 multi-user.target
 ```
 
 Gördüğünüz gibi varsayılan target değişmiş oldu. Bu değişiklik sistem başlangıcında geçerli olacak.
 
-Eğer değişikliğin anında mevcut oturum için geçerli olmasını istersek `sudo systemctl isolate isim.target` şeklinde komutumuzu girebiliriz. Örneğin `sudo systemctl isolate reboot.target` komutunu girecek olursak, **reboot.target** birimi konfigürasyonları sebebiyle sistemin yeniden başlatılmasını sağlayacaktır. Bu komutu onayladığınız anda sisteminiz yeniden başlatılacaktır. Çünkü **reboot.target** birimi bunun için özel olarak konfigüre edilmiştir. 
+Eğer değişikliğin anında mevcut oturum için geçerli olmasını istersek `sudo systemctl isolate isim.target` şeklinde komutumuzu girebiliriz. Örneğin `sudo systemctl isolate reboot.target` komutunu girecek olursak, **reboot.target** birimi konfigürasyonları sebebiyle sistemin yeniden başlatılmasını sağlayacaktır. Bu komutu onayladığınız anda sisteminiz yeniden başlatılacaktır. Çünkü **reboot.target** birimi bunun için özel olarak konfigüre edilmiştir.
 
 Ayrıca birimleri aktif ve pasif şekilde tanımlarken, komut çıktılarında ilgili birimin multi-user.target ile ilişkili olan dosya konumuna sembolik olarak bağlandığını da görmüştük. Bu sayede sistem multi-user.target birimi ile başlatılırken, aktifleştirmiş olduğumuz birim de bu grup dahilinde başlatılmış oluyor.
-
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌──(taylan㉿linuxdersleri)-[~]
 └─$ sudo systemctl enable apache2
@@ -469,7 +468,6 @@ Synchronizing state of apache2.service with SysV service script with /lib/system
 Executing: /lib/systemd/systemd-sysv-install enable apache2
 <span class="mavi">Created symlink /etc/systemd/system/multi-user.target.wants/apache2.service → /lib/systemd/system/apache2.service.</span>
 </code></pre></div></div>
-
 
 <p class="mavi">Bakın multi-user.target birimi altına bu servis sembolik olan bağlanmış oldu. Bu sayede sistem multi-user.target birimi ile başlatılırken bu servis de otomatik olarak başlatılıyor olacak.</p>
 
@@ -488,7 +486,7 @@ Ayrıca ben örnek olarak **graphical.target** yerine **multi-user.target** biri
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ cat /lib/systemd/system/graphical.target                                                                                         
+└─$ cat /lib/systemd/system/graphical.target
 #  SPDX-License-Identifier: LGPL-2.1-or-later
 #
 #  This file is part of systemd.
@@ -526,9 +524,9 @@ Buradaki kısa açıklamayla, birimlerin nasıl aktif ve pasif olarak tanımland
 
 # Yeni Servis Tanımlaması
 
-Basit bir örnek olarak kendimize yeni bir servis tanımlamayı deneyebiliriz. Ben servis olarak arka planda çalıştırılması için bir betik hazırlamak istiyorum. 
+Basit bir örnek olarak kendimize yeni bir servis tanımlamayı deneyebiliriz. Ben servis olarak arka planda çalıştırılması için bir betik hazırlamak istiyorum.
 
-Örnek olarak; çalıştığı her dakika boyunca ***/home/taylan/Desktop/zaman.log*** isimli dosyaya çalışma saatlerini bastıran bir betik kullanacağım. 
+Örnek olarak; çalıştığı her dakika boyunca **_/home/taylan/Desktop/zaman.log_** isimli dosyaya çalışma saatlerini bastıran bir betik kullanacağım.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -537,23 +535,23 @@ Basit bir örnek olarak kendimize yeni bir servis tanımlamayı deneyebiliriz. B
 
 while true; do
     date >> /home/taylan/Desktop/zaman.log
-    sleep 60 
+    sleep 60
 done
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ chmod +x zaman.sh 
+└─$ chmod +x zaman.sh
 
 ┌──(taylan㉿linuxdersleri)-[~]
 └─$ ./zaman.sh
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ cat ~/Desktop/zaman.log 
+└─$ cat ~/Desktop/zaman.log
 Wed Jul 26 10:05:24 AM EDT 2023
 ```
 
-Betik dosyamı hazırladım ve sorunsuzca çalıştığını da teyit ettim. Şimdi bu betik dosyasının servis olarak arka planda çalışması için tanımlama yapalım. 
+Betik dosyamı hazırladım ve sorunsuzca çalıştığını da teyit ettim. Şimdi bu betik dosyasının servis olarak arka planda çalışması için tanımlama yapalım.
 
-Servis dosyasını `/etc/systemd/system/` dizini altında ***servis-ismi.service*** ismiyle oluşturmamız gerekiyor. Dosya isminde Türkçe karakter kullanmayın. Yeni servis dosyası oluşturmak için `nano` aracından faydalanabilirsiniz. 
+Servis dosyasını `/etc/systemd/system/` dizini altında **_servis-ismi.service_** ismiyle oluşturmamız gerekiyor. Dosya isminde Türkçe karakter kullanmayın. Yeni servis dosyası oluşturmak için `nano` aracından faydalanabilirsiniz.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -561,32 +559,32 @@ Servis dosyasını `/etc/systemd/system/` dizini altında ***servis-ismi.service
 [sudo] password for taylan:
 ```
 
-Öncelikle tanımlamayı yapıp dosyamızı kaydedelim. 
+Öncelikle tanımlamayı yapıp dosyamızı kaydedelim.
 
 ```bash
 [Unit]
 Description=zaman.sh isimli betik dosyasını çalıştıran servisin açıklamasıdır.
 
-[Service]                                                                    
-ExecStart=/home/taylan/zaman.sh                                              
-                                                                             
-[Install]                                                                    
+[Service]
+ExecStart=/home/taylan/zaman.sh
+
+[Install]
 WantedBy=multi-user.target
 ```
 
-**`[Unit]`**, birim hakkında bilgi girdiğimiz bölümdür. `Description` seçeneğinin ardından, mevcut birim hakkında **açıklama** ekliyoruz. 
+**`[Unit]`**, birim hakkında bilgi girdiğimiz bölümdür. `Description` seçeneğinin ardından, mevcut birim hakkında **açıklama** ekliyoruz.
 
-**`[Service]`** servisle ilgili konfigürasyonları tanımlayabileceğimiz başlıktır. Bu başlık altında servisin çalışma şekli hakkında ihtiyacımıza yönelik tanımlamalarda bulunabiliyoruz. Ben yalnızca ***/home/taylan/zaman.sh*** konumundaki betik dosyasını çalıştırmak istediğim için “`ExecStart=`” tanımından sonra bu betik dosyasının tam konumunu girdim. Siz çalıştırmak istediğiniz dosyanın tam konumunu belirtebilirsiniz.
+**`[Service]`** servisle ilgili konfigürasyonları tanımlayabileceğimiz başlıktır. Bu başlık altında servisin çalışma şekli hakkında ihtiyacımıza yönelik tanımlamalarda bulunabiliyoruz. Ben yalnızca **_/home/taylan/zaman.sh_** konumundaki betik dosyasını çalıştırmak istediğim için “`ExecStart=`” tanımından sonra bu betik dosyasının tam konumunu girdim. Siz çalıştırmak istediğiniz dosyanın tam konumunu belirtebilirsiniz.
 
 **`[Install]`** başlığı ise, bu birimin ne zaman yani hangi target ile başlatılacağını belirtmemizi sağlıyor. Ben standart olan çok kullanıcılı **multi-user.target** grubunu belirttim. Bu sayede sistem başlangıcında multi-user.target başlatılacağı için, eğer aktifleştirirsem otomatik olarak benim tanımladığım bu servis de başlatılıp, betik dosyası çalıştırılıyor olacak.
 
 Bu değişikliğin geçerli olması için **systemd** aracının konfigürasyon değişikliklerini tanıması üzere `sudo systemctl daemon-reload` komutunu girmemiz gerek.
 
 ```bash
-┌──(taylan㉿linuxdersleri)-[~]                                               
+┌──(taylan㉿linuxdersleri)-[~]
 └─$ sudo systemctl daemon-reload
-                                                                             
-┌──(taylan㉿linuxdersleri)-[~]                                               
+
+┌──(taylan㉿linuxdersleri)-[~]
 └─$ systemctl status zaman
 ○ zaman.service - zaman.sh isimli betik dosyasını çalıştıran servisin açıklamasıdır.
      Loaded: loaded (/etc/systemd/system/zaman.service; disabled; vendor preset: disabled)
@@ -599,10 +597,10 @@ Servisi başlatmak için `sudo systemctl start zaman.service` şeklinde komutumu
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ sudo systemctl start zaman                                                                                                                          
+└─$ sudo systemctl start zaman
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ systemctl status zaman.service 
+└─$ systemctl status zaman.service
 ● zaman.service - zaman.sh isimli betik dosyasını çalıştıran servisin açıklamasıdır.
      Loaded: loaded (/etc/systemd/system/zaman.service; disabled; vendor preset: disabled)
      Active: active (running) since Wed 2023-07-26 10:45:43 EDT; 9s ago
@@ -621,11 +619,11 @@ Servisimiz şu anda çalışıyor fakat sistem başlangıcında otomatik olarak 
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ sudo systemctl enable zaman.service 
+└─$ sudo systemctl enable zaman.service
 Created symlink /etc/systemd/system/multi-user.target.wants/zaman.service → /etc/systemd/system/zaman.service.
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ systemctl status zaman.service 
+└─$ systemctl status zaman.service
 ● zaman.service - zaman.sh isimli betik dosyasını çalıştıran servisin açıklamasıdır.
      Loaded: loaded (/etc/systemd/system/zaman.service; enabled; vendor preset: disabled)
      Active: active (running) since Wed 2023-07-26 10:45:43 EDT; 2min 36s ago
@@ -640,13 +638,13 @@ Created symlink /etc/systemd/system/multi-user.target.wants/zaman.service → /e
 Jul 26 10:45:43 linuxdersleri.net systemd[1]: Started zaman.sh isimli betik dosyasını çalıştıran servisin açıklamasıdır..
 ```
 
-Servis, multi-user.target ile ilişkili olan dizine sembolik linkle bağlanmış oldu. Yani artık böylelikle sistemimiz multi-user.target ile başlatıldığında “**zaman.service**” birimi de otomatik olarak başlatılacak. Teyit etmek isterseniz sisteminizi yeniden başlatıp deneyebilirsiniz. 
+Servis, multi-user.target ile ilişkili olan dizine sembolik linkle bağlanmış oldu. Yani artık böylelikle sistemimiz multi-user.target ile başlatıldığında “**zaman.service**” birimi de otomatik olarak başlatılacak. Teyit etmek isterseniz sisteminizi yeniden başlatıp deneyebilirsiniz.
 
-Elbette servisi nasıl sonlandırabileceğinizi ve pasif hale getirebileceğinizi de biliyorsunuz. Eğer servisi kalıcı olarak silmek isterseniz de, oluşturduğunuz servis birimi dosyasını silmeniz yeterli. 
+Elbette servisi nasıl sonlandırabileceğinizi ve pasif hale getirebileceğinizi de biliyorsunuz. Eğer servisi kalıcı olarak silmek isterseniz de, oluşturduğunuz servis birimi dosyasını silmeniz yeterli.
 
-Biz burada yalnızca çok basit düzeyde servis tanımlamayı ele aldık. Fakat servisin yerine getireceği görevlere göre tanımlanması gereken konfigürasyonalar çok çeşitli olabilir. 
+Biz burada yalnızca çok basit düzeyde servis tanımlamayı ele aldık. Fakat servisin yerine getireceği görevlere göre tanımlanması gereken konfigürasyonalar çok çeşitli olabilir.
 
-Örneğin apache2 servisini incelemek için `cat /lib/systemd/system/apache2.service` komutunu girelim. 
+Örneğin apache2 servisini incelemek için `cat /lib/systemd/system/apache2.service` komutunu girelim.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -670,9 +668,9 @@ Restart=on-abort
 WantedBy=multi-user.target
 ```
 
-Gördüğünüz gibi bizim tanımladığımıza ek olarak daha farklı konfigürasyonlar da mevcut. Tüm konfigürasyonlardan bahsetmemiz mümkün değil. Çünkü hepsi ihtiyaca yönelik olarak tanımlanıyor. Yani sık kullanılmayanların akılda kalması veya tüm konfigürasyonların bilinmesi gibi bir durum mümkün değil. İhtiyaç duyduğunuz konfigürasyonları öğrenmek için systemd aracının manual sayfalarını ve interneti kullanabilirsiniz. 
+Gördüğünüz gibi bizim tanımladığımıza ek olarak daha farklı konfigürasyonlar da mevcut. Tüm konfigürasyonlardan bahsetmemiz mümkün değil. Çünkü hepsi ihtiyaca yönelik olarak tanımlanıyor. Yani sık kullanılmayanların akılda kalması veya tüm konfigürasyonların bilinmesi gibi bir durum mümkün değil. İhtiyaç duyduğunuz konfigürasyonları öğrenmek için systemd aracının manual sayfalarını ve interneti kullanabilirsiniz.
 
-Ayrıca dikkat ettiyseniz, araçlarla birlikte gelen servisler, ***/lib/systemd/system/*** dizini altında tutuluyor. Gerekirse buradan ilgili servis birimlerinin konfigürasyonlarına göz atıp düzenleyebilirsiniz. 
+Ayrıca dikkat ettiyseniz, araçlarla birlikte gelen servisler, **_/lib/systemd/system/_** dizini altında tutuluyor. Gerekirse buradan ilgili servis birimlerinin konfigürasyonlarına göz atıp düzenleyebilirsiniz.
 
 # Zamanlanmış Görevler : cron | systemd timer
 
@@ -693,20 +691,20 @@ Unit=zaman.service
 WantedBy=multi-user.target
 ```
 
-**`[Timer]`** başlığı altında hangi servisin hangi sıklıkla çalıştırılması gerektiğini tanımlayabiliyoruz. 
+**`[Timer]`** başlığı altında hangi servisin hangi sıklıkla çalıştırılması gerektiğini tanımlayabiliyoruz.
 
 `OnBootSec` seçeneği, **1min** tanımlamasıyla systemd aracının bu zamanlanmış görevi sistem başlatıldıktan **1 dakika sonra** tetiklemesi gerektiği belirtiyor. Eğer anında geçerli olması gerekiyorsa **0min** şeklinde de tanımlanabilir.
 
-Tanımlamak için **`YYYY-MM-DD HH:MM:SS`** modeli kullanıyor. 
+Tanımlamak için **`YYYY-MM-DD HH:MM:SS`** modeli kullanıyor.
 
 Yani: `Yıl-Ay-Gün Saat:Dakika:Saniye` şeklinde tanımlayabiliyoruz.
 
 Ben örnek olarak 30 saniyede bir çalıştırılacak şekilde zamanladım. Fakat daha net anlaşılması için birkaç farklı tanımlamayı örnekleyecek olursak:
 
-Spesifik bir tarih için, örneğin 2023 yılının 12. ayının 1. gününde 23.59 da çalışması için: 
+Spesifik bir tarih için, örneğin 2023 yılının 12. ayının 1. gününde 23.59 da çalışması için:
 
 ```bash
-OnCalendar=2023-12-01 23:59:00 
+OnCalendar=2023-12-01 23:59:00
 ```
 
 Her gün saat 9.30 da çalışması için:
@@ -715,7 +713,7 @@ Her gün saat 9.30 da çalışması için:
 OnCalendar=*-*-* 09:30:00
 ```
 
-Her gün sabah 12 ve akşam 12 de çalışması için: 
+Her gün sabah 12 ve akşam 12 de çalışması için:
 
 ```bash
 OnCalendar=*-*-* 12:00:00
@@ -784,11 +782,11 @@ Zamanlanmış görevi timer birimi olarak tanımladıktan sonra, çalışması i
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ systemctl enable zaman.timer 
+└─$ systemctl enable zaman.timer
 Created symlink /etc/systemd/system/multi-user.target.wants/zaman.timer → /lib/systemd/system/zaman.timer.
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ systemctl status zaman.timer                                                                                                                            
+└─$ systemctl status zaman.timer
 ○ zaman.timer - zaman.service için zamanlanmış görev tanımı
      Loaded: loaded (/lib/systemd/system/zaman.timer; enabled; vendor preset: enabled)
      Active: inactive (dead)
@@ -796,7 +794,7 @@ Created symlink /etc/systemd/system/multi-user.target.wants/zaman.timer → /lib
    Triggers: ● zaman.service
 ```
 
-zaman.timer birimi de multi-user.target birimine sembolik linkle dahil edildiği için biz devredışı bırakana kadar sistem başlangıcında otomatik olarak başlatılıyor olacak. Ayrıca `status` komutunun çıktısında gördüğünüz gibi tanımladığım “zaman.timer” zamanlanmış görevi “zaman.service” servisini tetikleyecek şekilde aktif olarak çalışıyor. Ve sistem başlangıcından 1 dakika sonra da her 30 saniyede bir çalışmaya devam edecek. 
+zaman.timer birimi de multi-user.target birimine sembolik linkle dahil edildiği için biz devredışı bırakana kadar sistem başlangıcında otomatik olarak başlatılıyor olacak. Ayrıca `status` komutunun çıktısında gördüğünüz gibi tanımladığım “zaman.timer” zamanlanmış görevi “zaman.service” servisini tetikleyecek şekilde aktif olarak çalışıyor. Ve sistem başlangıcından 1 dakika sonra da her 30 saniyede bir çalışmaya devam edecek.
 
 İşte zamanlanmış görev tanımlamak da bu kadar kolay.
 

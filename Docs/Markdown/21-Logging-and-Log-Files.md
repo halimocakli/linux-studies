@@ -1,14 +1,14 @@
 # Log Kayıtları
 
-Sistemde meydana gelen hatalar, değişiklikler ve neredeyse her faaliyet kayıt altına alınarak saklanır. Kayıt altına alınan bilgilere ”**log**” deniyor. Kontrol etmesi kolay olabilmesi için de elbette farklı türdeki bilgileri barındırmak için ayrı ayrı kayıtlar yani loglar tutuluyor. 
+Sistemde meydana gelen hatalar, değişiklikler ve neredeyse her faaliyet kayıt altına alınarak saklanır. Kayıt altına alınan bilgilere ”**log**” deniyor. Kontrol etmesi kolay olabilmesi için de elbette farklı türdeki bilgileri barındırmak için ayrı ayrı kayıtlar yani loglar tutuluyor.
 
-Bu sayede sistemle ilgili bir sorunu gidermeye çalışmak veya sistemde yetkisiz oturum açma girişimlerini kontrol etmek için elimizde veriler bulunabiliyor. Bu bölümde, log dosyalarının nerede tutulduğundan ve hangi bilgileri nasıl alabileceğimizden çok kısaca bahsediyor olacağız. 
+Bu sayede sistemle ilgili bir sorunu gidermeye çalışmak veya sistemde yetkisiz oturum açma girişimlerini kontrol etmek için elimizde veriler bulunabiliyor. Bu bölümde, log dosyalarının nerede tutulduğundan ve hangi bilgileri nasıl alabileceğimizden çok kısaca bahsediyor olacağız.
 
 Günümüzde modern Linux sistemlerinde log tutmak için `rsyslogd` isimli yapı kullanılıyor. Ayrıca bu yapıya ek olarak **systemd**’nin kapsayıcılık ilkesi dolayısıyla sunulan **systemd-journald** loglama çözümü de mevcut. Fakat bizim bu bölümdeki asıl odak noktamız, temel seviyede bilgi edinebilmek için standart log kayıtları olacak. Yine de bölümün sonunda çok kısaca **journald** `journalctl`'den de bashedeceğiz.
 
 # Log Dosyalarının Konumu
 
-`rsyslogd` tarafından üretilen ve yönetilen log dosyaları, kategorize şekilde ***/var/log/*** dizini altında tutuluyor. Ayrıca sistem üzerindeki diğer çeşitli araçlar da genellikle kendi amaçları doğrultusunda yine ***/var/log/*** dizini altında log kayıtlarını barındırabiliyorlar. 
+`rsyslogd` tarafından üretilen ve yönetilen log dosyaları, kategorize şekilde **_/var/log/_** dizini altında tutuluyor. Ayrıca sistem üzerindeki diğer çeşitli araçlar da genellikle kendi amaçları doğrultusunda yine **_/var/log/_** dizini altında log kayıtlarını barındırabiliyorlar.
 
 Hemen `ls /var/log/` komutu ile dizin içeriğine göz atalım.
 
@@ -30,7 +30,7 @@ auth.log.3.gz          daemon.log.1     dpkg.log.4.gz    kern.log.3.gz   message
 auth.log.4.gz          daemon.log.2.gz  dpkg.log.5.gz    kern.log.4.gz   mysql                syslog.3.gz
 ```
 
-Kullanmakta olduğunuz sistemde mevcut bulunan araçlar ve bu araçların ürettiği log kayıtlarına göre sizin aldığınız çıktı benimkinden biraz farklı olabilir. Biz bu bölümde `rsyslogd` aracılığı ile sistem tarafından üretilen başlıca kayıtlara odaklanacağız. 
+Kullanmakta olduğunuz sistemde mevcut bulunan araçlar ve bu araçların ürettiği log kayıtlarına göre sizin aldığınız çıktı benimkinden biraz farklı olabilir. Biz bu bölümde `rsyslogd` aracılığı ile sistem tarafından üretilen başlıca kayıtlara odaklanacağız.
 
 Kayıtlar, standart dosya biçiminde tutulduğu için `cat` `grep` `head` `tail` gibi araçlar yardımıyla tüm kayıtları okuyup filtreleyebiliyoruz. Önceki bölümlerde, metinsel verileri nasıl işleyeceğimizi ele aldığımız için zaten ihtiyaç duyduğunuz tüm araçların kullanım bilgisine şu an sahipsiniz. Tek ihtiyacınız kayıtları okumak için yönetici ayrıcalıklarına sahip olmak. Zira standart kullanıcıların tüm logları okuması güvenlik gereği mümkün değildir.
 
@@ -38,9 +38,9 @@ Ayrıca kayıt dosyaları, Redhat ve Debian tabanlı dağıtımlarda farklı isi
 
 ## syslog | messages
 
-Uygulamalar, hizmetler ve sistem bileşenlerinin ürettiği bilgi ve hata mesajları ***/var/log/*** dizini altında ***syslog*** veya ***messages*** dosyalarında tutuluyor. Debian tabanlı dağıtımlar “**syslog**” ismi ile kayıt tutuyorken, Redhat tabanlı dağıtımlarda “**messages**” ismiyle aynı kayıtlar tutuluyor.
+Uygulamalar, hizmetler ve sistem bileşenlerinin ürettiği bilgi ve hata mesajları **_/var/log/_** dizini altında **_syslog_** veya **_messages_** dosyalarında tutuluyor. Debian tabanlı dağıtımlar “**syslog**” ismi ile kayıt tutuyorken, Redhat tabanlı dağıtımlarda “**messages**” ismiyle aynı kayıtlar tutuluyor.
 
-Ben Debian dağıtımı üzerinden çalıştığım için en son 5 kayıt satırını okumak için `tail -n 5 /var/log/syslog` komutunu giriyorum. Siz Redhat üzerinde ***messages*** dosyasını okuyabilirsiniz.
+Ben Debian dağıtımı üzerinden çalıştığım için en son 5 kayıt satırını okumak için `tail -n 5 /var/log/syslog` komutunu giriyorum. Siz Redhat üzerinde **_messages_** dosyasını okuyabilirsiniz.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -56,7 +56,7 @@ Jul 27 12:49:12 linuxdersleri systemd[1]: user-130.slice: Consumed 1.983s CPU ti
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ grep -i  networkmanager /var/log/syslog | tail                                                                                    
+└─$ grep -i  networkmanager /var/log/syslog | tail
 Jul 27 07:14:35 linuxdersleri NetworkManager[528]: <info>  [1690456475.4240] policy: set 'Wired connection 1' (eth0) as default for IPv4 routing and DNS
 Jul 27 07:14:35 linuxdersleri dbus-daemon[527]: [system] Activating via systemd: service name='org.freedesktop.resolve1' unit='dbus-org.freedesktop.resolve1.service' requested by ':1.4' (uid=0 pid=528 comm="/usr/sbin/NetworkManager --no-daemon ")
 Jul 27 07:14:35 linuxdersleri NetworkManager[528]: <info>  [1690456475.6018] device (eth0): state change: ip-check -> secondaries (reason 'none', sys-iface-state: 'managed')
@@ -69,9 +69,9 @@ Jul 27 07:14:45 linuxdersleri systemd[1]: NetworkManager-dispatcher.service: Dea
 Jul 27 07:56:36 linuxdersleri NetworkManager[528]: <info>  [1690458996.1981] agent-manager: agent[47b5561f98f13db4,:1.46/org.freedesktop.nm-applet/1000]: agent registered
 ```
 
-Tarih bilgisine ve olay bilgisine bakarak, varsa bir değişim ya da hata kaynağını fark etmem mümkün olabilir. Benzer şekilde servisler, uygulamalar, çekirdek ve sistem geneli için bu dosya içeriğini kontrol etmemiz mümkün. 
+Tarih bilgisine ve olay bilgisine bakarak, varsa bir değişim ya da hata kaynağını fark etmem mümkün olabilir. Benzer şekilde servisler, uygulamalar, çekirdek ve sistem geneli için bu dosya içeriğini kontrol etmemiz mümkün.
 
-En son kayıtlara ulaşmak için ***syslog*** dosyasını okudum. Fakat tüm kayıtlar yalnızca bu dosyadan ibaret değil elbette. Geçmişten günümüzde tüm kayıtlar sıralı şekilde numaralandırılıp arşivleniyor. Bu durumu teyit etmek için `ls -l /var/log/syslog*`  komutunu girebiliriz. 
+En son kayıtlara ulaşmak için **_syslog_** dosyasını okudum. Fakat tüm kayıtlar yalnızca bu dosyadan ibaret değil elbette. Geçmişten günümüzde tüm kayıtlar sıralı şekilde numaralandırılıp arşivleniyor. Bu durumu teyit etmek için `ls -l /var/log/syslog*` komutunu girebiliriz.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -83,15 +83,15 @@ En son kayıtlara ulaşmak için ***syslog*** dosyasını okudum. Fakat tüm kay
 -rw-r----- 1 root adm 428440 Jul  2 09:15 /var/log/syslog.4.gz
 ```
 
-Gördüğünüz gibi sırasıyla isimlendirilmiş ***syslog.1*** ***syslog2.gz*** … şeklinde kayıtlar mevcut. Eğer daha önceki tarihlerde yer alan bir kayda bakmanız gerekiyorsa en yeniden eskiye doğru kayıtları inceleyebilirsiniz. Bu yaklaşım sayesinde kayıtların sistem üzerindeki dağınıklığı ve fazladan alan kullanımı önlenmiş oluyor. 
+Gördüğünüz gibi sırasıyla isimlendirilmiş **_syslog.1_** **_syslog2.gz_** … şeklinde kayıtlar mevcut. Eğer daha önceki tarihlerde yer alan bir kayda bakmanız gerekiyorsa en yeniden eskiye doğru kayıtları inceleyebilirsiniz. Bu yaklaşım sayesinde kayıtların sistem üzerindeki dağınıklığı ve fazladan alan kullanımı önlenmiş oluyor.
 
 ## auth.log | secure
 
-Oturum açma ve kimlik doğrulama hakkında tutulan kayıtlardır. Örneğin Debian tabanlı dağıtımda en sonra oturum açma kayıtlarını görmek için `tail /var/log/auth.log` komutunu girebiliriz. 
+Oturum açma ve kimlik doğrulama hakkında tutulan kayıtlardır. Örneğin Debian tabanlı dağıtımda en sonra oturum açma kayıtlarını görmek için `tail /var/log/auth.log` komutunu girebiliriz.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ tail /var/log/auth.log                                                                                                            
+└─$ tail /var/log/auth.log
 Jul 27 13:35:01 linuxdersleri CRON[68832]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
 Jul 27 13:35:01 linuxdersleri CRON[68832]: pam_unix(cron:session): session closed for user root
 Jul 27 13:36:42 linuxdersleri lightdm: gkr-pam: unable to locate daemon control file
@@ -112,7 +112,7 @@ Buradaki çıktılar oturum açma ve kimlik doğrulama hakkında sunulan bilgile
 deneme
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ tail /var/log/auth.log                                                                                                            
+└─$ tail /var/log/auth.log  
 Jul 27 13:36:42 linuxdersleri lightdm: gkr-pam: stashed password to try later in open session
 Jul 27 13:36:42 linuxdersleri lightdm: pam_unix(lightdm-greeter:session): session closed for user lightdm
 Jul 27 13:36:42 linuxdersleri systemd-logind[532]: Removed session c7.
@@ -120,7 +120,7 @@ Jul 27 13:39:01 linuxdersleri CRON[69797]: pam_unix(cron:session): session opene
 Jul 27 13:39:01 linuxdersleri CRON[69797]: pam_unix(cron:session): session closed for user root
 Jul 27 13:45:01 linuxdersleri CRON[71281]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
 Jul 27 13:45:01 linuxdersleri CRON[71281]: pam_unix(cron:session): session closed for user root
-<span class="mavi">Jul 27 13:48:16 linuxdersleri sudo:   taylan : TTY=pts/0 ; PWD=/home/taylan ; USER=root ; COMMAND=/usr/bin/echo deneme</span>
+<span class="mavi">Jul 27 13:48:16 linuxdersleri sudo: taylan : TTY=pts/0 ; PWD=/home/taylan ; USER=root ; COMMAND=/usr/bin/echo deneme</span>
 <span class="yesil">Jul 27 13:48:16 linuxdersleri sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
 Jul 27 13:48:16 linuxdersleri sudo: pam_unix(sudo:session): session closed for user root</span>
 </code></pre></div></div>
@@ -129,7 +129,7 @@ Jul 27 13:48:16 linuxdersleri sudo: pam_unix(sudo:session): session closed for u
 
 <p class="yesil">Parola doğru girildiği için <strong>sudo</strong> üzerinden <strong>root</strong> yetkileri kazanılmış ve root erişimi açılmış. İşlem tamamlandıktan sonra da root erişimi sonlandırılmış.</p>
 
-Yani bizzat teyit ettiğimiz gibi, yetkilendirme işlemlerini takip etmek için log kayıtlarını kolaylıkla kontrol edebiliyoruz. 
+Yani bizzat teyit ettiğimiz gibi, yetkilendirme işlemlerini takip etmek için log kayıtlarını kolaylıkla kontrol edebiliyoruz.
 
 Benzer şekilde farklı bir kullanıcı hesabında oturum açıp değişimi gözlemleyebiliriz.
 
@@ -142,32 +142,32 @@ Password:
 tail: cannot open '/var/log/auth.log' for reading: Permission denied
 
 ┌──(nil㉿linuxdersleri)-[/home/taylan]
-└─$ sudo tail /var/log/auth.log                                                                                                   
+└─$ sudo tail /var/log/auth.log  
 Jul 27 13:39:01 linuxdersleri CRON[69797]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
 Jul 27 13:39:01 linuxdersleri CRON[69797]: pam_unix(cron:session): session closed for user root
 Jul 27 13:45:01 linuxdersleri CRON[71281]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
 Jul 27 13:45:01 linuxdersleri CRON[71281]: pam_unix(cron:session): session closed for user root
-Jul 27 13:48:16 linuxdersleri sudo:   taylan : TTY=pts/0 ; PWD=/home/taylan ; USER=root ; COMMAND=/usr/bin/echo deneme
+Jul 27 13:48:16 linuxdersleri sudo: taylan : TTY=pts/0 ; PWD=/home/taylan ; USER=root ; COMMAND=/usr/bin/echo deneme
 Jul 27 13:48:16 linuxdersleri sudo: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
 Jul 27 13:48:16 linuxdersleri sudo: pam_unix(sudo:session): session closed for user root
 <span class="mavi">Jul 27 13:50:04 linuxdersleri su: (to nil) taylan on pts/0
 Jul 27 13:50:04 linuxdersleri su: pam_unix(su:session): session opened for user nil(uid=1001) by (uid=1000)</span>
-<span class="yesil">Jul 27 13:54:01 linuxdersleri sudo:      nil : TTY=pts/0 ; PWD=/home/taylan ; USER=root ; COMMAND=/usr/bin/tail /var/log/auth.log
+<span class="yesil">Jul 27 13:54:01 linuxdersleri sudo: nil : TTY=pts/0 ; PWD=/home/taylan ; USER=root ; COMMAND=/usr/bin/tail /var/log/auth.log
 </span>
 </code></pre></div></div>
 
 <p><span class="mavi">Gördüğünüz gibi <strong>taylan</strong> kullanıcısının <code class="language-plaintext highlighter-rouge">su</code> ile <strong>nil</strong> kullanıcı hesabında oturum açtığını</span> ve daha sonra <span class="yesil">yetkili şekilde log kayıtlarını incelediğini</span> buradaki kayıtlardan işlem tarihiyle birlikte kontrol edebiliyoruz. <strong>nil</strong> kullanıcısını daha önce sistem yöneticisi grubuna eklediğim için <code class="language-plaintext highlighter-rouge">sudo</code> üzerinden log kayıtlarını okuyabildi. Fakat standart kullanıcılar bu kayıtları okuyamazlar.</p>
 
-**Özetle**; Debian üzerinde “***auth.log***”, Redhat üzerinde ise “***secure***” dosyaları üzerinden, oturum açma, kimlik doğrulama gibi işlemlerin kayıtlarını öğrenebiliyoruz. Örneğin bir kullanıcı `sudo` ile bir komut çalıştırmayı dener ama başarısız olursa yani parolayı yanlış girer veya yetkisi olmadığı halde işlemi yapmaya çalışırsa bu durum da kayıt ediliyor. Ben denemek için taylan kullanıcısı üzerinden `sudo` komutundan sonra sorulan parolayı bilerek 3 kez yanlış giriyorum.
+**Özetle**; Debian üzerinde “**_auth.log_**”, Redhat üzerinde ise “**_secure_**” dosyaları üzerinden, oturum açma, kimlik doğrulama gibi işlemlerin kayıtlarını öğrenebiliyoruz. Örneğin bir kullanıcı `sudo` ile bir komut çalıştırmayı dener ama başarısız olursa yani parolayı yanlış girer veya yetkisi olmadığı halde işlemi yapmaya çalışırsa bu durum da kayıt ediliyor. Ben denemek için taylan kullanıcısı üzerinden `sudo` komutundan sonra sorulan parolayı bilerek 3 kez yanlış giriyorum.
 
 ```bash
 ──(taylan㉿linuxdersleri)-[~]
 └─$ sudo echo deneme
-[sudo] password for taylan: 
+[sudo] password for taylan:
 Sorry, try again.
-[sudo] password for taylan: 
+[sudo] password for taylan:
 Sorry, try again.
-[sudo] password for taylan: 
+[sudo] password for taylan:
 sudo: 3 incorrect password attempts
 
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -181,11 +181,11 @@ Jul 27 14:01:06 linuxdersleri sudo:   taylan : 3 incorrect password attempts ; T
 
 ## boot.log
 
-Sistem başlangıcında gerçekleştirilen "önyükleme" yani "boot" aşamasının kayıtlarına ulaşmak için  ***/var/log/boot.log*** dosyasını kontrol edebilirsiniz. Boot işlemi çok hızlı gerçekleştiği için, sistem başlangıcında tüm kayıtları gözümüzle takip etmemiz imkansız. Bu sebeple gerektiğinde sistem başlangıcına dair kayıtlara göz atmak için ***/var/log/boot*** dosyalarına bakıyoruz.
+Sistem başlangıcında gerçekleştirilen "önyükleme" yani "boot" aşamasının kayıtlarına ulaşmak için **_/var/log/boot.log_** dosyasını kontrol edebilirsiniz. Boot işlemi çok hızlı gerçekleştiği için, sistem başlangıcında tüm kayıtları gözümüzle takip etmemiz imkansız. Bu sebeple gerektiğinde sistem başlangıcına dair kayıtlara göz atmak için **_/var/log/boot_** dosyalarına bakıyoruz.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ sudo cat /var/log/boot.log                                                                                                       
+└─$ sudo cat /var/log/boot.log
 [  OK  ] Finished Rotate log files.
 [  OK  ] Finished Raise network interfaces.
 [  OK  ] Started User Login Management.
@@ -204,11 +204,11 @@ Sistem başlangıcında gerçekleştirilen "önyükleme" yani "boot" aşamasın�
 [  OK  ] Listening on Load/Save RF Kill Switch Status /dev/rfkill Watch.
 ```
 
-Dosyadaki kayıtlar belirli bir doluluk oranına ulaştığı için son önyüklemenin tamamını bu son ***boot.log*** dosyasında göremedim. Eğer geri kalanına bakmak istersem önceki kayıt olan ***boot.log.1*** dosyasına gözatabilirim.
+Dosyadaki kayıtlar belirli bir doluluk oranına ulaştığı için son önyüklemenin tamamını bu son **_boot.log_** dosyasında göremedim. Eğer geri kalanına bakmak istersem önceki kayıt olan **_boot.log.1_** dosyasına gözatabilirim.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ sudo cat /var/log/boot.log.1 
+└─$ sudo cat /var/log/boot.log.1
 [  OK  ] Finished Rotate log files.
 [  OK  ] Started User Login Management.
 [  OK  ] Started Virtualbox guest utils.
@@ -283,13 +283,13 @@ Gördüğünüz gibi kayıtlar sırasında önyükleme tarihi tam olarak satır 
 
 ## kern.log
 
-Çekirdek yani "**kernel**" kayıtlarını incelemek için ***/var/log/kern.log*** dosyasını inceleyebiliriz.
+Çekirdek yani "**kernel**" kayıtlarını incelemek için **_/var/log/kern.log_** dosyasını inceleyebiliriz.
 
 Üretilen hata çıktılarını görmek için “**error**” tanımıyla filtreleme yapmak istiyorum.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ grep -i "error" /var/log/kern.log                                                                                                
+└─$ grep -i "error" /var/log/kern.log
 Jul 24 15:11:11 linuxdersleri kernel: [22035.572938] A fatal guest X Window error occurred.  This may just mean that the Window system was shut down while the client was still runn
 Jul 24 15:11:11 linuxdersleri kernel: [22035.575718] A fatal guest X Window error occurred.  This may just mean that the Window system was shut down while the client was still runn
 Jul 24 15:11:11 linuxdersleri kernel: [22035.579149] A fatal guest X Window error occurred.  This may just mean that the Window system was shut down while the client was still runn
@@ -304,15 +304,16 @@ Jul 26 10:01:56 linuxdersleri kernel: [   14.378637] EXT4-fs (sda1): re-mounted.
 Jul 27 07:14:26 linuxdersleri kernel: [    4.788743] [drm:vmw_host_printf [vmwgfx]] *ERROR* Failed to send host log message.
 Jul 27 07:14:26 linuxdersleri kernel: [   15.806339] EXT4-fs (sda1): re-mounted. Opts: errors=remount-ro. Quota mode: none.
 ```
-Eşleşen tüm çıktılar getirildi. Bunlar çekirdeğin ürettiği mesajlar. Gerektiğinde, çekirdeğin verdiği reaksiyonları kontrol etmek için bu dosyayı inceleyebiliyoruz. 
+
+Eşleşen tüm çıktılar getirildi. Bunlar çekirdeğin ürettiği mesajlar. Gerektiğinde, çekirdeğin verdiği reaksiyonları kontrol etmek için bu dosyayı inceleyebiliyoruz.
 
 ## apt
 
-Debian tabanlı bir dağıtımda `apt` aracının kullanımı hakkındaki kayıtlara ulaşmak için ***/var/log/apt/*** dizinini kontrol edebiliyoruz. Örneğin dizin altında, `apt` aracının kullanım geçmişi hakkındaki kayıtlar ***history*** isimli dosyada tutuluyor. 
+Debian tabanlı bir dağıtımda `apt` aracının kullanımı hakkındaki kayıtlara ulaşmak için **_/var/log/apt/_** dizinini kontrol edebiliyoruz. Örneğin dizin altında, `apt` aracının kullanım geçmişi hakkındaki kayıtlar **_history_** isimli dosyada tutuluyor.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ tail /var/log/apt/history.log                                           
+└─$ tail /var/log/apt/history.log
 Install: libidn2-dev:amd64 (2.3.3-1+b1, automatic), libgnutls28-dev:amd64 (3.7.9-2), libtasn1-doc:amd64 (4.19.0-2, automatic), libp11-kit-dev:amd64 (0.24.1-2, automatic), libtasn1-6-dev:amd64 (4.19.0-2, automatic), nettle-dev:amd64 (3.8.1-2, automatic), libgnutls-openssl27:amd64 (3.7.9-2, automatic), libgnutlsxx30:amd64 (3.7.9-2, automatic)
 Upgrade: libnettle8:amd64 (3.7.3-1, 3.8.1-2), libidn2-0:amd64 (2.3.2-2, 2.3.3-1+b1), libtasn1-6:amd64 (4.18.0-4, 4.19.0-2), libp11-kit0:amd64 (0.24.0-6, 0.24.1-2), p11-kit-modules:amd64 (0.24.0-6, 0.24.1-2), libhogweed6:amd64 (3.7.3-1, 3.8.1-2)
 End-Date: 2023-07-05  09:47:58
@@ -325,15 +326,15 @@ Upgrade: dmsetup:amd64 (2:1.02.175-2.1, 2:1.02.185-2), libdevmapper1.02.1:amd64 
 End-Date: 2023-07-10  11:43:29
 ```
 
-Gördüğünüz gibi `apt` aracı ile gerçekleştirilen son yükleme işlemi hakkında bilgi almış olduk. Yani bu kayıt sayesinde, kullanıcıların paket yükleme davranışlarını takip etmemiz mümkün oluyor. 
+Gördüğünüz gibi `apt` aracı ile gerçekleştirilen son yükleme işlemi hakkında bilgi almış olduk. Yani bu kayıt sayesinde, kullanıcıların paket yükleme davranışlarını takip etmemiz mümkün oluyor.
 
 ## dpkg
 
-`dpkg` paket yöneticisi kullanılarak gerçekleştirilmiş olan tüm işlemler hakkında bilgi almak için ***/var/log/dpkg*** dosyasını inceleyebiliyoruz.
+`dpkg` paket yöneticisi kullanılarak gerçekleştirilmiş olan tüm işlemler hakkında bilgi almak için **_/var/log/dpkg_** dosyasını inceleyebiliyoruz.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ tail /var/log/dpkg.log                                                  
+└─$ tail /var/log/dpkg.log
 2023-07-10 11:42:15 status installed kali-menu:all 2021.4.2
 2023-07-10 11:42:15 trigproc initramfs-tools:all 0.140 <none>
 2023-07-10 11:42:15 status half-configured initramfs-tools:all 0.140
@@ -350,7 +351,7 @@ Tarih bilgisiyle birlikte, sırasıyla `dpkg` aracı kullanılarak gerçekleşti
 
 ## dnf
 
-Red Hat tabanlı dağıtımlarda gördüğümüz `dnf` paket yöneticisinin kullanımı hakkında tutulmuş olan kayıtlara ***/var/log/dnf*** konumundan ulaşabiliyoruz. Ben Rocky Linux üzerindeki kayıtlarımı kontrol ediyorum.
+Red Hat tabanlı dağıtımlarda gördüğümüz `dnf` paket yöneticisinin kullanımı hakkında tutulmuş olan kayıtlara **_/var/log/dnf_** konumundan ulaşabiliyoruz. Ben Rocky Linux üzerindeki kayıtlarımı kontrol ediyorum.
 
 ```bash
 [taylan@linuxdersleri ~]$ tail /var/log/dnf.log
@@ -375,15 +376,15 @@ Red Hat tabanlı dağıtımlarda gördüğümüz `dnf` paket yöneticisinin kull
 2023-07 -06T18:55:52+0300 DDEBUG Cleaning up.
 ```
 
-Bu dosyada "hata", "bilgi" ve "yükleme" gibi, `dnf` ile ilişkili olan tüm kayıtlar tutuluyor. Bu sayede aracın kullanım geçmişini sorgulamamız da mümkün oluyor. 
+Bu dosyada "hata", "bilgi" ve "yükleme" gibi, `dnf` ile ilişkili olan tüm kayıtlar tutuluyor. Bu sayede aracın kullanım geçmişini sorgulamamız da mümkün oluyor.
 
 ## wtmp
 
-Kullanıcıların sisteme ne zaman giriş, ne zaman çıkış yaptığını ve hangi terminalleri(oturumları) kullandığı ***/var/log/wtmp*** dosyasında tutuluyor. Fakat bu kayıtlar düz metin olarak değil, binary biçiminde tutulduğu için `cat` `grep` `tail` gibi düz metinleri işlediğimiz araçları kullanarak bu kayıtları okuyamıyoruz. Hemen deneyelim. Ben `cat /var/log/wtmp` komutu ile okumayı deniyorum.
+Kullanıcıların sisteme ne zaman giriş, ne zaman çıkış yaptığını ve hangi terminalleri(oturumları) kullandığı **_/var/log/wtmp_** dosyasında tutuluyor. Fakat bu kayıtlar düz metin olarak değil, binary biçiminde tutulduğu için `cat` `grep` `tail` gibi düz metinleri işlediğimiz araçları kullanarak bu kayıtları okuyamıyoruz. Hemen deneyelim. Ben `cat /var/log/wtmp` komutu ile okumayı deniyorum.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ cat /var/log/wtmp 
+└─$ cat /var/log/wtmp
 ~~~reboot5.15.0-kali3-amd64^�bh�5~~~runlevel5.15.0-kali3-amd64f�bk�
                                                                    tty1tty1
                                                                            f�b=U
@@ -391,11 +392,11 @@ Kullanıcıların sisteme ne zaman giriş, ne zaman çıkış yaptığını ve h
                                                                                              f�b=U�tty7:0kali:0��b�
 ```
 
-Bakın dosya içeriği okunamaz halde. Bu dosyayı okumak için `last` aracını kullanmamız gerekiyor. 
+Bakın dosya içeriği okunamaz halde. Bu dosyayı okumak için `last` aracını kullanmamız gerekiyor.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ last                                                                                                                                                    
+└─$ last
 taylan   tty7         :0               Sat Aug 19 01:05   still logged in
 reboot   system boot  5.15.0-kali3-amd Sat Aug 19 01:01   still running
 taylan   tty7         :0               Fri Aug 18 13:31 - crash  (11:30)
@@ -419,7 +420,7 @@ reboot   system boot  5.15.0-kali3-amd Fri Feb 11 18:25 - 18:29  (00:04)
 wtmp begins Fri Feb 11 18:25:18 2022
 ```
 
-Gördüğünüz gibi geçmişten günümüze tüm oturum açma detaylarını ***wtmp*** dosyasından, `last` komutu sayesinde çekmiş olduk. 
+Gördüğünüz gibi geçmişten günümüze tüm oturum açma detaylarını **_wtmp_** dosyasından, `last` komutu sayesinde çekmiş olduk.
 
 ## btmp
 
@@ -442,14 +443,14 @@ ali      pts/2                         Wed Oct  4 17:47 - 17:47  (00:00)
 btmp begins Wed Oct  4 17:47:24 2023
 ```
 
-Buradaki “**b**” ifadesi “**bad**” ifadesinden geliyor. **B**ad login attemps yani "hatalı giriş" denemelerini ifade eden bir kısaltma. 
+Buradaki “**b**” ifadesi “**bad**” ifadesinden geliyor. **B**ad login attemps yani "hatalı giriş" denemelerini ifade eden bir kısaltma.
 
-Normalde biz ek bir argüman belirtmediğimizde `last` komutu ***/var/log/wtmp*** dosyasını okurken, `lastb` ise ***/var/log/btmp*** dosyasını okuyor. Eğer `last` ve `lastb` komutları ile en son oturum bilgilerini görmek yerine daha önceki kayıtlara da ulaşmak isterseniz `-f` seçeneği ile daha önceki kayıtların konumunu argüman olarak belirtmeniz yeterli.
+Normalde biz ek bir argüman belirtmediğimizde `last` komutu **_/var/log/wtmp_** dosyasını okurken, `lastb` ise **_/var/log/btmp_** dosyasını okuyor. Eğer `last` ve `lastb` komutları ile en son oturum bilgilerini görmek yerine daha önceki kayıtlara da ulaşmak isterseniz `-f` seçeneği ile daha önceki kayıtların konumunu argüman olarak belirtmeniz yeterli.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
 └─$ sudo lastb
-[sudo] password for taylan: 
+[sudo] password for taylan:
 UNKNOWN  tty6                          Fri Oct  6 15:50 - 15:50  (00:00)
 ali      pts/2                         Wed Oct  4 17:47 - 17:47  (00:00)
 
@@ -467,22 +468,23 @@ pc       ssh:notty    192.168.1.13     Sun Sep 17 13:23 - 13:23  (00:00)
 btmp.1 begins Sun Sep 17 13:23:09 2023
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ 
+└─$
 
 ```
-Bakın ben bu örnekte, önceki kayıtları görmek için ***/var/log/btmp.1*** dosyasını argüman olarak belirtip `lastb` aracı ile okumuş oldum. Ayrıca `last` ve `lastb` aracının diğer seçeneklerini görmek için yardım sayfasına göz atmanız yeterli. 
+
+Bakın ben bu örnekte, önceki kayıtları görmek için **_/var/log/btmp.1_** dosyasını argüman olarak belirtip `lastb` aracı ile okumuş oldum. Ayrıca `last` ve `lastb` aracının diğer seçeneklerini görmek için yardım sayfasına göz atmanız yeterli.
 
 ## cron
 
-Eğer **cron-crontab** ile zamanlanmış görevler tanımlıysa, bu görevlerin çalışma kayıtlarına ***/var/log/cron*** dosyası üzerinden ulaşabiliyoruz. Benim kullandığım Debian dağıtımında log kayıtlarını tutan rsyslog aracının konfigürasyon dosyasında cron için kayıt tutma devedışı olduğu için ***/var/log/*** dizini altında `cron` için bir kayıt bulunmuyor. 
+Eğer **cron-crontab** ile zamanlanmış görevler tanımlıysa, bu görevlerin çalışma kayıtlarına **_/var/log/cron_** dosyası üzerinden ulaşabiliyoruz. Benim kullandığım Debian dağıtımında log kayıtlarını tutan rsyslog aracının konfigürasyon dosyasında cron için kayıt tutma devedışı olduğu için **_/var/log/_** dizini altında `cron` için bir kayıt bulunmuyor.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ cat /var/log/cron                                                                                                                  
+└─$ cat /var/log/cron
 cat: /var/log/cron: No such file or directory
 ```
 
-Eğer rsyslog aracının cron için kayıt tutmasını istersem ***/etc/rsyslog.conf*** dosyasında cron kaydı için gerekli olan kayıt satırını ekleyebilirim. Ben `sudo nano /etc/rsyslog.conf` dosyasını açıp, log kaydı için gereken satıra `cron.*    /var/log/cron.log` ifadesini ekleyip dosyayı kaydediyorum. 
+Eğer rsyslog aracının cron için kayıt tutmasını istersem **_/etc/rsyslog.conf_** dosyasında cron kaydı için gerekli olan kayıt satırını ekleyebilirim. Ben `sudo nano /etc/rsyslog.conf` dosyasını açıp, log kaydı için gereken satıra `cron.*    /var/log/cron.log` ifadesini ekleyip dosyayı kaydediyorum.
 
 ```bash
 #
@@ -498,7 +500,7 @@ mail.*                          -/var/log/mail.log
 user.*                          -/var/log/user.log
 ```
 
-Değişikliklerin geçerli olabilmesi için `sudo systemctl restart rsyslog.service` komutu ile **rsyslog** servisini yeninden başlatalım. 
+Değişikliklerin geçerli olabilmesi için `sudo systemctl restart rsyslog.service` komutu ile **rsyslog** servisini yeninden başlatalım.
 
 Test etmek için yeni bir **crontab** görevi tanımlayabiliriz. Bunun için `crontab -e` komutunun ardından açılan konfigürasyon dosyasında, istdiğimiz görevi istediğimiz sıklıkta çalışacak şekilde tanımlayalım.
 
@@ -508,58 +510,58 @@ Test etmek için yeni bir **crontab** görevi tanımlayabiliriz. Bunun için `cr
 ┌──(taylan㉿linuxdersleri)-[~]
 └─$ crontab -e
 # Edit this file to introduce tasks to be run by cron.
-# 
+#
 # Each task to run has to be defined through a single line
 # indicating with different fields when the task will be run
 # and what command to run for the task
-# 
+#
 # To define the time you can provide concrete values for
 # minute (m), hour (h), day of month (dom), month (mon),
 # and day of week (dow) or use '*' in these fields (for 'any').
-# 
+#
 # Notice that tasks will be started based on the cron's system
 # daemon's notion of time and timezones.
-# 
+#
 # Output of the crontab jobs (including errors) is sent through
 # email to the user the crontab file belongs to (unless redirected).
-# 
+#
 # For example, you can run a backup of all your user accounts
 # at 5 a.m every week with:
 # 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
-# 
+#
 # For more information see the manual pages of crontab(5) and cron(8)
-# 
+#
 # m h  dom mon dow   command
 * * * * * taylan echo "bu bir zamanlanmıs gorev"
 ```
 
-Her dakika çalışacak bir cron servisi tanımladığım için 1 dakika kadar bekliyorum. Tanımladığım cron işlemini görmek için `crontab -l` komutunu girebiliriz. 
+Her dakika çalışacak bir cron servisi tanımladığım için 1 dakika kadar bekliyorum. Tanımladığım cron işlemini görmek için `crontab -l` komutunu girebiliriz.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
 └─$ crontab -l
 # Edit this file to introduce tasks to be run by cron.
-# 
+#
 # Each task to run has to be defined through a single line
 # indicating with different fields when the task will be run
 # and what command to run for the task
-# 
+#
 # To define the time you can provide concrete values for
 # minute (m), hour (h), day of month (dom), month (mon),
 # and day of week (dow) or use '*' in these fields (for 'any').
-# 
+#
 # Notice that tasks will be started based on the cron's system
 # daemon's notion of time and timezones.
-# 
+#
 # Output of the crontab jobs (including errors) is sent through
 # email to the user the crontab file belongs to (unless redirected).
-# 
+#
 # For example, you can run a backup of all your user accounts
 # at 5 a.m every week with:
 # 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
-# 
+#
 # For more information see the manual pages of crontab(5) and cron(8)
-# 
+#
 # m h  dom mon dow   command
 * * * * * taylan echo "bu bir zamanlanmıs gorev"
 ```
@@ -568,7 +570,7 @@ Süre geçti şimdi `cat /var/log/cron.log` komutu ile tekrar okumayı deneyelim
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ cat /var/log/cron.log                                                                                                                                   
+└─$ cat /var/log/cron.log
 Aug 19 06:02:01 linuxdersleri CRON[33418]: (taylan) CMD (echo "bu bir zamanlanm\304\261s gorev")
 Aug 19 06:02:01 linuxdersleri CRON[33419]: (taylan) CMD (taylan echo "bu bir zamanlanm\304\261s gorev")
 Aug 19 06:02:01 linuxdersleri CRON[33416]: (CRON) info (No MTA installed, discarding output)
@@ -595,7 +597,7 @@ Ben örnek olarak "**Intel**" aygıtlarını listelemek istiyorum.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ sudo dmesg | grep -i "Intel"                                                                                              
+└─$ sudo dmesg | grep -i "Intel"
 [    0.841976] smpboot: CPU0: Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz (family: 0x6, model: 0x5e, stepping: 0x3)
 [    1.508334] intel_pstate: CPU model not supported
 [    4.617000] e1000: Intel(R) PRO/1000 Network Driver
@@ -652,9 +654,9 @@ Elbette burada bahsettiklerim dışında bizzat `ls /var/log/` komutunun çıkt�
 [Thu Jul 27 07:14:41.404338 2023] [core:notice] [pid 730] AH00094: Command line: '/usr/sbin/apache2'
 ```
 
-Burada dikkatiniz çekmek istediğim nokta; apache aracının kayıtlarını nerede tuttuğunu ezberden bilmem gerekmiyor. Kısa bir araştırma ile bu aracın dokümanlarının da yardımıyla ilgili bilgiye istediğim zaman ulaşabilirim. Yine de pek çok kayıtın ***/var/log*** dizini altında tutulduğunun bilincinde olduğumuzda ilk kontrol edeceğimiz yer burası oluyor. Nitekim pek çok araç, genellikle log dosyalarını ***/var/log*** dizini içerisinde kendi isminde bir klasör altında sunuyor zaten.
+Burada dikkatiniz çekmek istediğim nokta; apache aracının kayıtlarını nerede tuttuğunu ezberden bilmem gerekmiyor. Kısa bir araştırma ile bu aracın dokümanlarının da yardımıyla ilgili bilgiye istediğim zaman ulaşabilirim. Yine de pek çok kayıtın **_/var/log_** dizini altında tutulduğunun bilincinde olduğumuzda ilk kontrol edeceğimiz yer burası oluyor. Nitekim pek çok araç, genellikle log dosyalarını **_/var/log_** dizini içerisinde kendi isminde bir klasör altında sunuyor zaten.
 
-İşte benzer şekilde sistem üzerindeki araçların kayıtlarını kontrol etmeniz mümkün. 
+İşte benzer şekilde sistem üzerindeki araçların kayıtlarını kontrol etmeniz mümkün.
 
 # journald | journalctl
 
@@ -664,7 +666,7 @@ En temel kullanımı `journalctl` komutunu girmektir. Bu komut eskiden yeniye do
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ journalctl                                                                                                                                              
+└─$ journalctl
 Jul 04 11:33:56 kali nologin[465551]: Attempted login by kali (UID: 1002) on /dev/pts/0
 Jul 04 17:24:36 kali nologin[530342]: Attempted login by kali (UID: 1002) on /dev/pts/0
 Jul 05 10:47:08 kali nologin[598878]: Attempted login by kali (UID: 1002) on /dev/pts/1
@@ -722,7 +724,7 @@ lines 1-52
 
 Fakat bu kayıtlar, sistemin ne kadar süredir çalışmakta olduğuna da bağlı olarak inanılmaz uzunluklarda olabilir. Bu listeden çıkmak için <kbd>q</kbd> tuşlaması yapmanız yeterli.
 
-Eskiden yeninde doğru görmek yerine en son yaşanmış olan değişimleri listenin başlarında görmek için bu listeyi tersten sıralamak üzere `journalctl -r` komutunu girebiliyoruz. 
+Eskiden yeninde doğru görmek yerine en son yaşanmış olan değişimleri listenin başlarında görmek için bu listeyi tersten sıralamak üzere `journalctl -r` komutunu girebiliyoruz.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -781,13 +783,13 @@ Aug 19 06:30:24 linuxdersleri.net systemd[39681]: Stopped target Basic System.
 Aug 19 06:30:24 linuxdersleri.net systemd[39681]: Removed slice User Core Session Slice.
 ```
 
-Çıktılara dikkat edecek olursanız, systemd tarafından yönetilen birimlere ek olarak, yetkilendirme ve cron gibi ek yapılar hakkında da pek çok kayıt bilgisine bu araç vasıtası ile tek elden ulaşabildiğimizi görebilirsiniz. 
+Çıktılara dikkat edecek olursanız, systemd tarafından yönetilen birimlere ek olarak, yetkilendirme ve cron gibi ek yapılar hakkında da pek çok kayıt bilgisine bu araç vasıtası ile tek elden ulaşabildiğimizi görebilirsiniz.
 
 Bu çıktıları filtrelemek üzere `journalctl` aracının pek çok seçeneği var. Ne kadar çok seçenek olduğunu görmek isterseniz `journalctl —help` komutunu girebilirsiniz.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ journalctl --help                                                                                                                                      
+└─$ journalctl --help
 journalctl [OPTIONS...] [MATCHES...]
 
 Query the journal.
@@ -868,7 +870,7 @@ Spesifik olarak bir birim hakkında bilgi almak için `-u` seçeneğini kullanab
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ journalctl -u NetworkManager.service 
+└─$ journalctl -u NetworkManager.service
 Jul 14 16:22:22 kali systemd[1]: Starting Network Manager...
 Jul 14 16:22:26 kali NetworkManager[478]: <info>  [1657830145.9808] NetworkManager (version 1.34.0) is starting... (for the first time)
 Jul 14 16:22:26 kali NetworkManager[478]: <info>  [1657830146.0211] Read config: /etc/NetworkManager/NetworkManager.conf (lib: no-mac-addr-change.conf)
@@ -887,7 +889,7 @@ Bunlar eskiden yeniden doğru sıralı, dilersek `-r` seçeneğini ekleyip en ye
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ journalctl -ru NetworkManager.service                                                                                                                   
+└─$ journalctl -ru NetworkManager.service
 Aug 19 06:43:31 linuxdersleri.net NetworkManager[526]: <info>  [1692441811.7187] dhcp6 (eth0): state changed timeout -> terminated
 Aug 19 06:43:31 linuxdersleri.net NetworkManager[526]: <info>  [1692441811.7187] dhcp6 (eth0): canceled DHCP transaction
 Aug 19 06:43:31 linuxdersleri.net NetworkManager[526]: <info>  [1692441811.7187] dhcp6 (eth0): state changed unknown -> timeout
@@ -897,11 +899,11 @@ Aug 19 06:43:31 linuxdersleri.net NetworkManager[526]: <warn>  [1692441811.7186]
 .
 ```
 
-Bunlar dışında tıpkı `tail -f` komutunda olduğu gibi log kayıtlarındaki anlık değişimleri görmek üzere `-f` seçeneğini de kullanabiliriz. 
+Bunlar dışında tıpkı `tail -f` komutunda olduğu gibi log kayıtlarındaki anlık değişimleri görmek üzere `-f` seçeneğini de kullanabiliriz.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ journalctl -fu NetworkManager.service                                                                                                                   
+└─$ journalctl -fu NetworkManager.service
 Aug 19 06:42:44 linuxdersleri.net NetworkManager[526]: <info>  [1692441764.5587] device (eth0): state change: secondaries -> activated (reason 'none', sys-iface-state: 'managed')
 Aug 19 06:42:44 linuxdersleri.net NetworkManager[526]: <info>  [1692441764.5590] manager: NetworkManager state is now CONNECTED_SITE
 Aug 19 06:42:44 linuxdersleri.net NetworkManager[526]: <info>  [1692441764.5601] device (eth0): Activation: successful, device activated.
@@ -918,7 +920,7 @@ Ben denemek için ağ bağlantısını kesip, tekrar bağlayarak değişimi göz
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ journalctl -fu NetworkManager.service                                                                                                                   
+└─$ journalctl -fu NetworkManager.service
 Aug 19 06:42:44 linuxdersleri.net NetworkManager[526]: <info>  [1692441764.5587] device (eth0): state change: secondaries -> activated (reason 'none', sys-iface-state: 'managed')
 Aug 19 06:42:44 linuxdersleri.net NetworkManager[526]: <info>  [1692441764.5590] manager: NetworkManager state is now CONNECTED_SITE
 Aug 19 06:42:44 linuxdersleri.net NetworkManager[526]: <info>  [1692441764.5601] device (eth0): Activation: successful, device activated.
@@ -999,13 +1001,13 @@ Jul 08 08:32:01 linuxdersleri.net gpasswd[45023]: user nil added by root to grou
 ..
 ```
 
-Ben çıktıları kısaltarak ekliyorum ama neticede istediğim filtrelemeyi `grep` yardımıyla gerçekleştirdim. 
+Ben çıktıları kısaltarak ekliyorum ama neticede istediğim filtrelemeyi `grep` yardımıyla gerçekleştirdim.
 
 Kayıtlara, sistemin önyüklenme(boot) tarihlerine göre erişme imkanımız da var. Öncelikle sistemde hangi önyüklemelerin kaydedildiğini görmek için `—list-boots` seçeneğini kullanalım.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ journalctl --list-boots 
+└─$ journalctl --list-boots
 -127 9144b98ccd0a4f6c93836b0a477783be Mon 2022-07-04 11:33:56 EDT—Thu 2022-07-07 15:52:41 EDT
 -126 99a9c907b79c4f17adbaf819098bbe5e Thu 2022-07-14 16:22:16 EDT—Thu 2022-07-14 16:25:12 EDT
 -125 af9c16efaed1401ca71166c64c7a487b Fri 2022-07-15 00:30:16 EDT—Sat 2023-01-14 10:35:01 EST
@@ -1048,13 +1050,13 @@ Aug 08 04:38:48 linuxdersleri.net kernel: signal: max sigframe size: 1440
 Aug 08 04:38:48 linuxdersleri.net kernel: BIOS-provided physical RAM map:
 ```
 
-Bu liste günümüze kadar uzanıyor. 
+Bu liste günümüze kadar uzanıyor.
 
 Eğer belirli bir tarihe kadar olacaksa `—until` seçeneğini kullanabiliyoruz. Ben bu kez de “**2023-08-05**” tarihine kadar olanları görmek istiyorum.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ journalctl --until "2023-08-05"                                                                                                                    
+└─$ journalctl --until "2023-08-05"
 Jul 04 11:33:56 kali nologin[465551]: Attempted login by kali (UID: 1002) on /dev/pts/0
 Jul 04 17:24:36 kali nologin[530342]: Attempted login by kali (UID: 1002) on /dev/pts/0
 Jul 05 10:47:08 kali nologin[598878]: Attempted login by kali (UID: 1002) on /dev/pts/1
@@ -1066,7 +1068,7 @@ Eskiden yeniye doğru “**2023-08-05**” tarihine kadar olanlar listelenmiş o
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ journalctl --since "2023-08-05" --until "2023-08-12"                                                                                               
+└─$ journalctl --since "2023-08-05" --until "2023-08-12"
 Aug 08 04:38:48 linuxdersleri.net kernel: Linux version 5.15.0-kali3-amd64 (devel@kali.org) (gcc-11 (Debian 11.2.0-14) 11.2.0, GNU ld (GNU Binutils for Deb>
 Aug 08 04:38:48 linuxdersleri.net kernel: Command line: BOOT_IMAGE=/boot/vmlinuz-5.15.0-kali3-amd64 root=UUID=491d3534-b3d9-47af-ad63-66b0e72fe8dd ro nouve>
 Aug 08 04:38:48 linuxdersleri.net kernel: x86/fpu: x87 FPU will use FXSAVE
@@ -1080,7 +1082,7 @@ Dilersek saat dakika saniye cinsinden filtreleme yapmamız da mümkün. Örneği
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ journalctl --since "05:30:00"                                                                                                                          
+└─$ journalctl --since "05:30:00"
 Aug 19 05:30:01 linuxdersleri.net CRON[25344]: pam_unix(cron:session): session opened for user taylan(uid=1000) by (uid=0)
 Aug 19 05:30:01 linuxdersleri.net CRON[25345]: (taylan) CMD (taylan echo "bu bir zamanlanm\304\261s gorev")
 Aug 19 05:30:01 linuxdersleri.net CRON[25343]: pam_unix(cron:session): session opened for user taylan(uid=1000) by (uid=0)
@@ -1093,7 +1095,7 @@ Aug 19 05:31:01 linuxdersleri.net CRON[25591]: pam_unix(cron:session): session o
 Aug 19 05:31:01 linuxdersleri.net CRON[25593]: (taylan) CMD (taylan echo "bu bir zamanlanm\304\261s gorev")
 ```
 
-Eğer yalnızca saat değil, tarih de belirtirseniz tam olarak ilgili tarihteki ilgili saatte kaydı tutulanlar size getirilecektir. Örneğin **2023-08-18 13:30:00** ile  **2023-08-18 14:00:00** arasındaki tüm kayıtları getiriyorum. 
+Eğer yalnızca saat değil, tarih de belirtirseniz tam olarak ilgili tarihteki ilgili saatte kaydı tutulanlar size getirilecektir. Örneğin **2023-08-18 13:30:00** ile **2023-08-18 14:00:00** arasındaki tüm kayıtları getiriyorum.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -1121,6 +1123,6 @@ Aug 18 13:30:10 linuxdersleri.net kernel: BIOS-provided physical RAM map:
 lines 1-5/5 (END)
 ```
 
-**journald** servisinin en temel kullanımı bu şekilde. Yardım sayfasından bizzat teyit edebileceğiniz gibi esasen çok fazla ek seçeneği mevcut fakat temel seviye için bahsetmiş olduklarımız yeterli. Daha fazlasını merak ediyorsanız elbette araştırmakta özgürsünüz. 
+**journald** servisinin en temel kullanımı bu şekilde. Yardım sayfasından bizzat teyit edebileceğiniz gibi esasen çok fazla ek seçeneği mevcut fakat temel seviye için bahsetmiş olduklarımız yeterli. Daha fazlasını merak ediyorsanız elbette araştırmakta özgürsünüz.
 
 Böylelikle Linux üzerindeki loglara nasıl ulaşabileceğimizi temel düzeyde görmüş olduk.
