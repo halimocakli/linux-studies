@@ -10,7 +10,7 @@ Linux’un ne olduğundan bahsettiğimiz bölümde bilgisayarı ve içindeki iş
 
 ## Kullanıcı Alanı(User Space-User Mode)
 
-Standart bir kullanıcı olarak sistem üzerinde herhangi bir işi yaparken çok fazla çaba sarf etmek istemeyiz. Örneğin ben bir metin belgesi oluşturmak istiyorum diyelim. Bunun için tek yapmam gereken metin editörünü bulup çalıştırmak ve açılan programa istediğim yazıları yazıp metin belgesini kaydetmek. Yani bu işin bilgisayar donanımına nasıl ifade edileceğini düşünmem gerekmez, ben yalnızca ilgili aracı bulup kullanırım. İşte bu ilgili aracı bulma ve kullanma aşaması için de, biz kullanıcılara bir çalışma ortamı gerekiyor.
+Standart bir kullanıcı olarak sistem üzerinde herhangi bir işi yaparken çok fazla çaba sarf etmek istemeyiz. Örneğin ben bir metin belgesi oluşturmak istiyorum diyelim. Bunun için tek yapmam gereken metin editörünü bulup çalıştırmak ve açılan programa istediğim yazıları yazıp metin belgesini kaydetmek. Yani bu işin bilgisayar donanımına nasıl ifade edileceğini düşünmem gerekmez, ben yalnızca ilgili aracı bulup kullanırım. İşte bu ilgili aracı bulma ve kullanma aşamalarını gerçekleştirebilmek için de, biz kullanıcılara bir çalışma ortamı gerekiyor.
 
 Bizzat metin belgesi oluşturma örneğini ele alacak olursak; öncelikle grafiksel arayüzden metin editörü aracını bulup çalıştırmam daha sonra istediğim metni yazıp dosyayı kaydetmem yeterli. Bu sayede grafiksel arayüz üzerinden metin belgesi oluşturma amacımıza ulaşmış oluyoruz.
 

@@ -14,13 +14,13 @@ Burada bahsi geçen pipe mekanizmasını dik çizgi `|` operatörü sayesinde ku
 
 Yani veriler, ilk işlemin ürettiği sıraya uygun şekilde tek yönlü olarak bir sonraki işleme aktarılıyor. Daha iyi anlamak adına çalışma yapısına daha yakından bakalım.
 
-Basit bir örnek üzerinden gidecek olursak; Diyelim ki ben `find` komutu ile ***/etc*** dizini altında sonu “***.sh***” uzantısıyla biten dosyaları araştırmak, bulunan dosyaları isimlerine göre alfanümerik olarak sıralamak ve daha sonra numaralandırmak istiyorum. Bu işi yapacak **tek bir araç** var mı varsa da hangi seçenekleri kullanmalıyım tam olarak bilmiyorum. Ancak her birini yapan ayrı ayrı üç araç biliyorum. `find` `sort` ve `nl` araçları ilk aklıma gelenler. Sizin şu anda `find` aracını bilmediğinizin farkındayım, ancak merak etmeyin ileride bu aracımızı da ayrıca ele alacağız. Şimdi pipe yapısının çalışma mekanizmasını ele alabilmek için vereceğim örneğe odaklanmanız yeterli. Neticede ihtiyacım olan sonuca ulaşabilmek için bu üç aracı bir arada kullanabilirim.
+Basit bir örnek üzerinden gidecek olursak; Diyelim ki ben `find` komutu ile **_/etc_** dizini altında sonu “**_.sh_**” uzantısıyla biten dosyaları araştırmak, bulunan dosyaları isimlerine göre alfanümerik olarak sıralamak ve daha sonra numaralandırmak istiyorum. Bu işi yapacak **tek bir araç** var mı varsa da hangi seçenekleri kullanmalıyım tam olarak bilmiyorum. Ancak her birini yapan ayrı ayrı üç araç biliyorum. `find` `sort` ve `nl` araçları ilk aklıma gelenler. Sizin şu anda `find` aracını bilmediğinizin farkındayım, ancak merak etmeyin ileride bu aracımızı da ayrıca ele alacağız. Şimdi pipe yapısının çalışma mekanizmasını ele alabilmek için vereceğim örneğe odaklanmanız yeterli. Neticede ihtiyacım olan sonuca ulaşabilmek için bu üç aracı bir arada kullanabilirim.
 
-Öncelikle sonu “***.sh***” uzantısı ile biten dosyaların bulunabilmesi için `find /etc -name *.sh -type f` komutunu giriyorum. 
+Öncelikle sonu “**_.sh_**” uzantısı ile biten dosyaların bulunabilmesi için `find /etc -name *.sh -type f` komutunu giriyorum.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ find /etc/ -name "*.sh" -type f                             
+└─$ find /etc/ -name "*.sh" -type f
 /etc/init.d/keyboard-setup.sh
 /etc/init.d/hwclock.sh
 /etc/init.d/console-setup.sh
@@ -43,11 +43,11 @@ find: ‘/etc/ssl/private’: Permission denied
 find: ‘/etc/polkit-1/localauthority’: Permission denied
 ```
 
-Bakın “***/etc***” dizini altında dosya ismi “***.sh***” ile biten tüm dosyalar listelenmiş oldu. Hatta daha temiz bir çıktı almak istersek, yetki hatalarını “***/dev/null***” dosyası aracılığı ile yok edebiliriz.
+Bakın “**_/etc_**” dizini altında dosya ismi “**_.sh_**” ile biten tüm dosyalar listelenmiş oldu. Hatta daha temiz bir çıktı almak istersek, yetki hatalarını “**_/dev/null_**” dosyası aracılığı ile yok edebiliriz.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ find /etc/ -name "*.sh" -type f 2>/dev/null                 
+└─$ find /etc/ -name "*.sh" -type f 2>/dev/null
 /etc/init.d/keyboard-setup.sh
 /etc/init.d/hwclock.sh
 /etc/init.d/console-setup.sh
@@ -66,7 +66,7 @@ Bakın “***/etc***” dizini altında dosya ismi “***.sh***” ile biten tü
 /etc/console-setup/cached_setup_font.sh
 ```
 
-Şimdi bu çıktıları alfabetik olarak sıralamak istediğim için `sort` aracına aktarmam gerekiyor. Aktarmak için pipe kullanabilirim. Pipe çubuk `|` simgesi ile kullanılıyor. 
+Şimdi bu çıktıları alfabetik olarak sıralamak istediğim için `sort` aracına aktarmam gerekiyor. Aktarmak için pipe kullanabilirim. Pipe çubuk `|` simgesi ile kullanılıyor.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -89,11 +89,11 @@ Bakın “***/etc***” dizini altında dosya ismi “***.sh***” ile biten tü
 /etc/xdg/plasma-workspace/env/taylan-themes.sh
 ```
 
-Bakın `find` aracının üretmiş olduğu çıktılar `sort` aracına aktarılıp `sort` aracının sıralama yapıp sonuçlarını konsola yönlendirmesi ile sonuçlanmış oldu. Sıralama işleminden sonra da, sıralanmış çıktıları numaralandırmak için de `sort` aracının çıktılarını `nl` aracına aktarabilirim. 
+Bakın `find` aracının üretmiş olduğu çıktılar `sort` aracına aktarılıp `sort` aracının sıralama yapıp sonuçlarını konsola yönlendirmesi ile sonuçlanmış oldu. Sıralama işleminden sonra da, sıralanmış çıktıları numaralandırmak için de `sort` aracının çıktılarını `nl` aracına aktarabilirim.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ find /etc/ -name "*.sh" -type f 2>/dev/null | sort | nl      
+└─$ find /etc/ -name "*.sh" -type f 2>/dev/null | sort | nl
      1  /etc/console-setup/cached_setup_font.sh
      2  /etc/console-setup/cached_setup_keyboard.sh
      3  /etc/console-setup/cached_setup_terminal.sh
@@ -116,7 +116,7 @@ Neticede gördüğünüz gibi tam olarak istediğim işlevi yerine getirmek içi
 
 Peki bu çıktıyı tam olarak nasıl elde ettik yani pipe tam olarak nasıl çalışıyor ?
 
-Bizim girdiğimiz komutta bulunan üç farklı araç aynı anda üç ayrı işlem olarak başlatıldı. İlk aracın standart çıktısı ikinci aracın standart girdisine bağlandı. İkinci aracın standart çıktısı da üçüncü aracın standart girdisine bağlandı. Üçüncüsü de özellikle başka bir yere yönlendirilmediği için çıktılarını konsola(***/dev/tty*** olarak temsil edildi) bastırmış oldu.
+Bizim girdiğimiz komutta bulunan üç farklı araç aynı anda üç ayrı işlem olarak başlatıldı. İlk aracın standart çıktısı ikinci aracın standart girdisine bağlandı. İkinci aracın standart çıktısı da üçüncü aracın standart girdisine bağlandı. Üçüncüsü de özellikle başka bir yere yönlendirilmediği için çıktılarını konsola(**_/dev/tty_** olarak temsil edildi) bastırmış oldu.
 
 ![9.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin/9.webp)
 
@@ -145,19 +145,19 @@ Aynı işlemi bu kez dosyalara yönlendirme ile deneyelim. Öncelikle komutu yaz
     16  /etc/xdg/plasma-workspace/env/taylan-themes.sh
 ```
 
-Bu girdiğimiz komutta önce `find` komutu çalıştırılacak ve işini tamamladığında, çıktılarını “***bul***” isimli dosyaya aktaracak. Daha sonra `sort` komutu, “***bul***” isimli dosyayı okuyacak ve içeriğindeki verileri sıraladıktan sonra “***sırala***” isimli dosyaya aktaracak. En son `nl` komutu “***sırala***” isimli dosyadaki içeriği okuyup numaralandıracak ve çıktısını konsolumuza basacak. İşte girdiğimiz komutun çalışma yapısı tam olarak bu. Komutların arasında girmiş olduğumuz noktalı virgül karakterleri tek satırda belirtmiş olduğumuz bu komutların sırasıyla çalıştırılmasını sağlıyor. İleride bu konudan da ayrıca bahsedeceğiz.
+Bu girdiğimiz komutta önce `find` komutu çalıştırılacak ve işini tamamladığında, çıktılarını “**_bul_**” isimli dosyaya aktaracak. Daha sonra `sort` komutu, “**_bul_**” isimli dosyayı okuyacak ve içeriğindeki verileri sıraladıktan sonra “**_sırala_**” isimli dosyaya aktaracak. En son `nl` komutu “**_sırala_**” isimli dosyadaki içeriği okuyup numaralandıracak ve çıktısını konsolumuza basacak. İşte girdiğimiz komutun çalışma yapısı tam olarak bu. Komutların arasında girmiş olduğumuz noktalı virgül karakterleri tek satırda belirtmiş olduğumuz bu komutların sırasıyla çalıştırılmasını sağlıyor. İleride bu konudan da ayrıca bahsedeceğiz.
 
 ![10.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin/10.webp)
 
 Bakın pipe yerine kullandığımız bu yönlendirme alternatifini yazması ve açıklaması dahi uzun sürdü.
 
-Çalışma hızı ise pipe’a oranla daha yavaş olacak çünkü bu kullanımda komutlar sırasıyla tek tek ve disk üzerindeki dosyalara veri yazıp okuyarak çalıştırılıyor. Dolayısıyla soldan sağa doğru bir komut çalışmasını tamamlamadan, bir sonraki komut çalıştırılmıyor. Ve disk üzerinde okuma yazma yapıldığı için disk hızına bağlı bir çalışma hızı söz konusu. 
+Çalışma hızı ise pipe’a oranla daha yavaş olacak çünkü bu kullanımda komutlar sırasıyla tek tek ve disk üzerindeki dosyalara veri yazıp okuyarak çalıştırılıyor. Dolayısıyla soldan sağa doğru bir komut çalışmasını tamamlamadan, bir sonraki komut çalıştırılmıyor. Ve disk üzerinde okuma yazma yapıldığı için disk hızına bağlı bir çalışma hızı söz konusu.
 
 Pipe kullanımında ise tüm komutlar ayrı işlem olarak aynı anda paralel şekilde çalıştırılıyor. Her bir aracın ürettiği çıktı da üretilir üretilmez boru hattındaki diğer işlemlere disk üzerine veri yazılıp okunmasına gerek kalmadan sanal dosya sistemi(bellek üzerinden) aktarıldığı için veriler çok daha hızlı işlenmiş oluyor. Bir komut çıktı üretir üretmez, çıktının üretilme sıralaması korunarak bir sonraki işlem aktarıyor, bu sayede tüm veriler sırasıyla işlenmiş oluyor. Tabii ki bizim örneğimizde ilk aracın ürettiği çıktıların hepsinin alındıktan sonra sıralaması gerektiği için `sort` aracı `find` aracının çıktılarını bitirmesini bekledi aslında. Yani araçlar paralel çalışıyor olsalar da çıktıların gönderilme ve okunma durumlarına bağlı olarak birbirlerini de bekleyebiliyorlar. Yine de pipe mekanizması disk üzerindeki dosyalara okuma yazma yapmadığı ve araçları paralel olarak aynı anda çalıştırabildiği için çok daha verimli bir yaklaşım. Üstelik basit örnek üzerinden de görebildiğiniz gibi birden fazla aracı birbirine bağlayarak çalıştırmak istediğimizde pipe ile komut girmek çok da daha kolay ve kısa.
 
 Ayrıca örnek üzerinde peşi sıra pipe kullandığımız bu komutun bütününe de “**pipeline**” yani “boru hattı” deniyor. Neticede birden fazla pipe yani boru kullanarak ikiden fazla aracı birbirine bağladığımız için boru hattı oluşturmuş oluyoruz.
 
-Tıpkı buradaki örneğimizde olduğu gibi ihtiyacımıza yönelik spesifik çözüm için bildiğimiz birden fazla aracın basit özelliklerini pipe yardımıyla bir arada kullanabiliyoruz. Bu yaklaşım sayesinde pek çok işlevi olan tek bir karmaşık araç yerine, basit işlevleri olan pek çok aracı farklı kombinasyonlar ile birlikte kullanıp sınırsız çeşitlilikte çözüm üretebiliyoruz. Zaten zaman içinde pipe yapısını ister istemez ne kadar sık kullandığınıza bizzat şahit olacaksınız. 
+Tıpkı buradaki örneğimizde olduğu gibi ihtiyacımıza yönelik spesifik çözüm için bildiğimiz birden fazla aracın basit özelliklerini pipe yardımıyla bir arada kullanabiliyoruz. Bu yaklaşım sayesinde pek çok işlevi olan tek bir karmaşık araç yerine, basit işlevleri olan pek çok aracı farklı kombinasyonlar ile birlikte kullanıp sınırsız çeşitlilikte çözüm üretebiliyoruz. Zaten zaman içinde pipe yapısını ister istemez ne kadar sık kullandığınıza bizzat şahit olacaksınız.
 
 # `xargs` Komutu
 
@@ -169,20 +169,20 @@ Pipe yapısından bahsederken, pipe’ın önceki işlemden gelen standart çık
 
 Bu aracın çok fazla seçeneği var ama şimdilik temel kullanımı hakkında bilgi sahibi olmamız yeterli.
 
-Ben çok basit bir örnek vermek istiyorum. Bunun için öncelikle içerisinde veri bulunan dosyamı oluşturmak üzere `echo “dosya1 dosya2 dosya3” > oku-beni` şeklinde komutumu giriyorum. 
+Ben çok basit bir örnek vermek istiyorum. Bunun için öncelikle içerisinde veri bulunan dosyamı oluşturmak üzere `echo “dosya1 dosya2 dosya3” > oku-beni` şeklinde komutumu giriyorum.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
 └─$ echo "dosya1 dosya2 dosys3" > oku-beni
 
 ┌──(taylan@linuxdersleri)-[~]
-└─$ cat oku-beni 
+└─$ cat oku-beni
 dosya1 dosya2 dosys3
 ```
 
 Bakın buraya yazmış olduğum ifadeler dosyama kaydolmuş. Şimdi ben bu dosyada geçen ifadelerin kullanılarak yeni dosyalar oluşturulması için `touch` aracına bu dosyadan veri yönlendirmek istiyorum.
 
-Bunun için `cat oku-beni` komutuyla dosyanın okunup pipe ile bu çıktıların `touch` aracına yönlendirilmesini sağlayabiliriz. 
+Bunun için `cat oku-beni` komutuyla dosyanın okunup pipe ile bu çıktıların `touch` aracına yönlendirilmesini sağlayabiliriz.
 
 ```bash
 └─$ cat oku-beni | touch
@@ -191,7 +191,7 @@ Try 'touch --help' for more information.
 
 ```
 
-Gördüğünüz gibi `touch` komutu oluşturulacak dosya isimleri argüman olarak iletilmediği için hata verdi. Bu hatanın argüman eksikliğinden kaynaklandığını teyit etmek istersek tekrar yalnızca `touch` komutunu girebiliriz. 
+Gördüğünüz gibi `touch` komutu oluşturulacak dosya isimleri argüman olarak iletilmediği için hata verdi. Bu hatanın argüman eksikliğinden kaynaklandığını teyit etmek istersek tekrar yalnızca `touch` komutunu girebiliriz.
 
 ```bash
 └─$ touch
@@ -201,18 +201,18 @@ Try 'touch --help' for more information.
 
 Bakın yine aynı hatayı aldık çünkü `touch` aracına herhangi bir dosya ismini argüman olarak iletmedik.
 
-`touch` aracı yalnızca kendisine argüman olarak iletilen verileri işleyip standart girdiden veri okumadığı için pipe ile ilettiğimiz “***oku-beni”*** dosyasının içeriği `touch` aracı tarafından işlenmedi. Bu durumda bu çıktıları önce `xargs` aracına yönlendirip oradan da `touch` aracına argüman olarak iletilmelerini sağlayabiliriz. Ben bunun için komutumu bu kez `cat oku-beni | xargs touch` şeklinde yazıyorum. 
+`touch` aracı yalnızca kendisine argüman olarak iletilen verileri işleyip standart girdiden veri okumadığı için pipe ile ilettiğimiz “**_oku-beni”_** dosyasının içeriği `touch` aracı tarafından işlenmedi. Bu durumda bu çıktıları önce `xargs` aracına yönlendirip oradan da `touch` aracına argüman olarak iletilmelerini sağlayabiliriz. Ben bunun için komutumu bu kez `cat oku-beni | xargs touch` şeklinde yazıyorum.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~/klasor]
-└─$ cat oku-beni | xargs touch 
+└─$ cat oku-beni | xargs touch
 
 ┌──(taylan@linuxdersleri)-[~/klasor]
-└─$ ls                                                           
+└─$ ls
 dosya1  dosya2  dosys3  oku-beni
 ```
 
-Bakın tam olarak dosyada bulunan veriler ile aynı isimde yeni dosyalar oluşturulmuş. Yani `xargs` aracının standart girdiden okuduğu verileri hemen yanındaki komutun argümanı olarak çalıştırdığını bizzat teyit etmiş olduk. 
+Bakın tam olarak dosyada bulunan veriler ile aynı isimde yeni dosyalar oluşturulmuş. Yani `xargs` aracının standart girdiden okuduğu verileri hemen yanındaki komutun argümanı olarak çalıştırdığını bizzat teyit etmiş olduk.
 
 ![11.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin/11.webp)
 
@@ -222,13 +222,13 @@ Bakın tam olarak dosyada bulunan veriler ile aynı isimde yeni dosyalar oluştu
 
 # `tee` Komutu
 
-Biz pipe yapısını kullandığımızda verilerimiz yalnızca tek yönlü şekilde aktarılıyor. Eğer biz hem bir sonraki işleme hem de bir dosyaya aynı verilerin yazılmasını istiyorsak, bu işlem için `tee` aracını kullanmamız gerekiyor. Çünkü pipe mekanizması tek başına bunu desteklemiyor.  Pipe mekanizmasını düz boru `|` olarak düşünecek olursak buradaki `tee` aracı da bildiğiniz `T` boru görevi görüyor. İlk işlemden aldığı çıktıyı okuyor, istenilen dosyaya ve aynı zamanda bir sonraki işlemin standart girdisine yönlendiriyor.
+Biz pipe yapısını kullandığımızda verilerimiz yalnızca tek yönlü şekilde aktarılıyor. Eğer biz hem bir sonraki işleme hem de bir dosyaya aynı verilerin yazılmasını istiyorsak, bu işlem için `tee` aracını kullanmamız gerekiyor. Çünkü pipe mekanizması tek başına bunu desteklemiyor. Pipe mekanizmasını düz boru `|` olarak düşünecek olursak buradaki `tee` aracı da bildiğiniz `T` boru görevi görüyor. İlk işlemden aldığı çıktıyı okuyor, istenilen dosyaya ve aynı zamanda bir sonraki işlemin standart girdisine yönlendiriyor.
 
-Basit bir örnek üzerinden ele alabiliriz. Örneğin  `ls /` komutu ile “***/***” yani ana dizin altındaki dosyaları listeleyecek olursak uzun bir liste alırız. 
+Basit bir örnek üzerinden ele alabiliriz. Örneğin `ls /` komutu ile “**_/_**” yani ana dizin altındaki dosyaları listeleyecek olursak uzun bir liste alırız.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ ls /                                                         
+└─$ ls /
 bin   home            lib32       media  root  sys  vmlinuz
 boot  initrd.img      lib64       mnt    run   tmp  vmlinuz.old
 dev   initrd.img.old  libx32      opt    sbin  usr
@@ -252,11 +252,11 @@ lib32
 lib64
 ```
 
-Bakın yalnızca ilk 10 içerik listelenmiş oldu. Ben `ls` komutunun tüm çıktılarının bir dosyaya kaydedilmesini hem de `head` komutu ile yalnızca ilk 10 satırını okumak istiyor da olabilirim. Bunun için `tee` komutunu kullanabilirim. Yani komutumuzu `ls / | tee liste.txt | head` şeklinde yazabiliriz. Bu komut sayesinde ilk olarak `ls` aracı “***/***” dizini altındaki tüm içeriği listeleyip pipe ile `tee` aracına aktaracak. `tee` aracı da aldığı çıktıyı “***liste.txt***” isimlide dosyaya kaydedecek ve ayrıca aynı verileri `head` aracına pipe ile yönlendirecek. `head` aracı da aldığı verilerden yalnızca ilk 10 satırı konsola çıktı olarak bastıracak. 
+Bakın yalnızca ilk 10 içerik listelenmiş oldu. Ben `ls` komutunun tüm çıktılarının bir dosyaya kaydedilmesini hem de `head` komutu ile yalnızca ilk 10 satırını okumak istiyor da olabilirim. Bunun için `tee` komutunu kullanabilirim. Yani komutumuzu `ls / | tee liste.txt | head` şeklinde yazabiliriz. Bu komut sayesinde ilk olarak `ls` aracı “**_/_**” dizini altındaki tüm içeriği listeleyip pipe ile `tee` aracına aktaracak. `tee` aracı da aldığı çıktıyı “**_liste.txt_**” isimlide dosyaya kaydedecek ve ayrıca aynı verileri `head` aracına pipe ile yönlendirecek. `head` aracı da aldığı verilerden yalnızca ilk 10 satırı konsola çıktı olarak bastıracak.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ ls / | tee liste.txt | head                                  
+└─$ ls / | tee liste.txt | head
 bin
 boot
 dev
@@ -271,12 +271,12 @@ lib64
 └─$
 ```
 
-Bakın ilk 10 satır konsola basılmış oldu. Şimdi “***liste.txt***” dosyasının içeriğine bakalım. 
+Bakın ilk 10 satır konsola basılmış oldu. Şimdi “**_liste.txt_**” dosyasının içeriğine bakalım.
 
 ```bash
 
 ┌──(taylan@linuxdersleri)-[~]
-└─$ cat liste.txt                              
+└─$ cat liste.txt
 bin
 boot
 dev
@@ -326,7 +326,7 @@ lib32
 lib64
 
 ┌──(taylan@linuxdersleri)-[~]
-└─$ cat liste.txt                                                
+└─$ cat liste.txt
 bin
 boot
 dev
@@ -342,17 +342,17 @@ lib64
 └─$
 ```
 
-Bakın `ls /` komutunun çıktıları pipe ile `head` aracına iletildi. `head` aracı da ilk 10 satırı alıp `tee` aracına iletti. `tee` aracı da kendisine iletilen bu 10 satırı hem “***liste.txt***” dosyasına hem de konsola yönlendirdi. Bu sebeple hem konsol çıktısında hem de “***liste.txt***” dosyasında ilk 10 satırı almış olduk.
+Bakın `ls /` komutunun çıktıları pipe ile `head` aracına iletildi. `head` aracı da ilk 10 satırı alıp `tee` aracına iletti. `tee` aracı da kendisine iletilen bu 10 satırı hem “**_liste.txt_**” dosyasına hem de konsola yönlendirdi. Bu sebeple hem konsol çıktısında hem de “**_liste.txt_**” dosyasında ilk 10 satırı almış olduk.
 
 ![13.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin/13.webp)
 
 Bence buradaki iki örnek `tee` aracının nasıl çalıştığını gayet iyi biçimde özetliyor.
 
-Bu temel yaklaşım dışında, birden fazla dosyaya aynı veriyi kaydetmek isterseniz, dosyaların isimlerini argüman olarak vermeniz yeterli. Ben denemek için aynı komutu çağırıp, bir dosya ismi daha belirtiyorum ve komutumu bu şekilde onaylıyorum. 
+Bu temel yaklaşım dışında, birden fazla dosyaya aynı veriyi kaydetmek isterseniz, dosyaların isimlerini argüman olarak vermeniz yeterli. Ben denemek için aynı komutu çağırıp, bir dosya ismi daha belirtiyorum ve komutumu bu şekilde onaylıyorum.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ ls / | head | tee liste.txt liste2.txt          
+└─$ ls / | head | tee liste.txt liste2.txt
 bin
 boot
 dev
@@ -365,11 +365,11 @@ lib32
 lib64
 ```
 
-Şimdi `paste` komutu ile her iki dosyayı da yan yana bastırabiliriz. 
+Şimdi `paste` komutu ile her iki dosyayı da yan yana bastırabiliriz.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ paste liste.txt liste2.txt 
+└─$ paste liste.txt liste2.txt
 bin     bin
 boot    boot
 dev     dev
@@ -382,13 +382,13 @@ lib32   lib32
 lib64   lib64
 ```
 
-Gördüğünüz gibi aynı verileri birden fazla dosyaya da yönlendirebiliyoruz. 
+Gördüğünüz gibi aynı verileri birden fazla dosyaya da yönlendirebiliyoruz.
 
-`tee` yaklaşımı sayesinde dilersek standart(`<` `>` `&>` vs..) yönlendirmelerin alternatifi olarak, yönlendirmelerin hem konsola hem de dosyalara kaydolmasını da sağlayabiliriz. Normalde sizin de bildiğiniz gibi eğer bir komutun çıktısını bir dosyaya yönlendirirsek konsola bir çıktı basılmaz. Hemen teyit etmek için `ls > liste` şeklinde komutumuzu girelim. 
+`tee` yaklaşımı sayesinde dilersek standart(`<` `>` `&>` vs..) yönlendirmelerin alternatifi olarak, yönlendirmelerin hem konsola hem de dosyalara kaydolmasını da sağlayabiliriz. Normalde sizin de bildiğiniz gibi eğer bir komutun çıktısını bir dosyaya yönlendirirsek konsola bir çıktı basılmaz. Hemen teyit etmek için `ls > liste` şeklinde komutumuzu girelim.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~/klasor]
-└─$ ls > liste                                                   
+└─$ ls > liste
 
 ┌──(taylan@linuxdersleri)-[~/klasor]
 └─$
@@ -398,7 +398,7 @@ Bakın `ls` komutunun çıktısı konsola basılmadı çünkü `ls` komutunun ç
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~/klasor]
-└─$ cat liste                                                    
+└─$ cat liste
 dosya1
 dosya2
 dosys3
@@ -406,11 +406,11 @@ liste
 oku-beni
 ```
 
-Şimdi aynı örneği `tee` komutunu ile tekrarlayalım. `ls | tee liste2` şeklinde komutumu giriyorum. 
+Şimdi aynı örneği `tee` komutunu ile tekrarlayalım. `ls | tee liste2` şeklinde komutumu giriyorum.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~/klasor]
-└─$ ls | tee liste2                                              
+└─$ ls | tee liste2
 dosya1
 dosya2
 dosys3
@@ -419,7 +419,7 @@ liste2
 oku-beni
 
 ┌──(taylan@linuxdersleri)-[~/klasor]
-└─$ cat liste2                                                   
+└─$ cat liste2
 dosya1
 dosya2
 dosys3
@@ -432,7 +432,7 @@ Bakın `tee` aracı sayesinde `ls` komutunun çıktıları konsola bastırılmak
 
 ![14.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin/14.webp)
 
-`tee` aracının kullanımı gördüğünüz gibi son derece kolay olduğu için daha fazla örneğe gerek yok. Yine de son olarak birkaç kullanım detayını daha bilmenizde fayda var. 
+`tee` aracının kullanımı gördüğünüz gibi son derece kolay olduğu için daha fazla örneğe gerek yok. Yine de son olarak birkaç kullanım detayını daha bilmenizde fayda var.
 
 ## Üzerine Ekleme
 
@@ -442,48 +442,48 @@ Ben denemek için `echo "deneme" | tee deneme.txt` komutunu giriyorum.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~/klasor]
-└─$ echo "deneme" | tee deneme.txt                               
+└─$ echo "deneme" | tee deneme.txt
 deneme
 
 ┌──(taylan@linuxdersleri)-[~/klasor]
-└─$ cat deneme.txt                                
+└─$ cat deneme.txt
 deneme
 ```
 
-Bakın veri kaydolmuş. Şimdi aynı dosyaya bu kez farklı veri göndermek için `echo “test” | tee deneme.txt` şeklinde aynı dosyanın ismini de yazıp komutumuzu girelim. 
+Bakın veri kaydolmuş. Şimdi aynı dosyaya bu kez farklı veri göndermek için `echo “test” | tee deneme.txt` şeklinde aynı dosyanın ismini de yazıp komutumuzu girelim.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~/klasor]
-└─$ echo "test" | tee deneme.txt                               
+└─$ echo "test" | tee deneme.txt
 test
 
 ┌──(taylan@linuxdersleri)-[~/klasor]
-└─$ cat deneme.txt                                               
+└─$ cat deneme.txt
 test
 ```
 
 Bakın dosyanın eski içeriği silinip `tee` aracının en son yönlendirdiği veri eklenmiş. Bizzat gördüğümüz gibi `tee` aracına özellikle belirtmediğimiz sürece tıpkı tek yönlendirme `>` operatörü kullandığımızdaki gibi hedefteki dosya içeriğinin üzerine yazılıyor.
 
-Ben verileri dosyanın sonuna eklemek istediğim için “**a**ppend” yani “ekleme” ifadesinin kısaltmasından gelen `a` seçeneği ile komutumu tekrar girmek istiyorum. 
+Ben verileri dosyanın sonuna eklemek istediğim için “**a**ppend” yani “ekleme” ifadesinin kısaltmasından gelen `a` seçeneği ile komutumu tekrar girmek istiyorum.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~/klasor]
-└─$ echo "test2" | tee -a deneme.txt                             
+└─$ echo "test2" | tee -a deneme.txt
 test2
 
 ┌──(taylan@linuxdersleri)-[~/klasor]
-└─$ cat deneme.txt                                               
+└─$ cat deneme.txt
 test
 test2
 ```
 
-Bakın `tee` aracın `echo` aracından “**test2**” ifadesini aldığı için bunu konsola bastırdı. Ayrıca `tee` aracına `a` seçeneğini de eklediğimiz için bu veriyi “***deneme.txt***” dosyasının sonuna ekliyor. Kısacası tıpkı yönlendirme operatörlerinde bir dosyanın sonuna yeni veri eklemek için çift operatör `>>` kullandığımız gibi `tee` komutu için de `a` seçeneğini kullanmamız gerekiyor. **Aksi halde `tee` aracı aynı isimli dosyanın üzerine yeni verileri yazıp eskilerini yok ediyor.**
+Bakın `tee` aracın `echo` aracından “**test2**” ifadesini aldığı için bunu konsola bastırdı. Ayrıca `tee` aracına `a` seçeneğini de eklediğimiz için bu veriyi “**_deneme.txt_**” dosyasının sonuna ekliyor. Kısacası tıpkı yönlendirme operatörlerinde bir dosyanın sonuna yeni veri eklemek için çift operatör `>>` kullandığımız gibi `tee` komutu için de `a` seçeneğini kullanmamız gerekiyor. **Aksi halde `tee` aracı aynı isimli dosyanın üzerine yeni verileri yazıp eskilerini yok ediyor.**
 
-Son olarak hazır `tee` komutundan bahsetmişken pratik bir kullanımından da bahsetmek istiyorum. Diyelim ki yetkimiz olmayan bir dosyaya örneğin ***/etc/apt/sources.list*** dosyasına ekleme yapmak istiyoruz.
+Son olarak hazır `tee` komutundan bahsetmişken pratik bir kullanımından da bahsetmek istiyorum. Diyelim ki yetkimiz olmayan bir dosyaya örneğin **_/etc/apt/sources.list_** dosyasına ekleme yapmak istiyoruz.
 
-Normalde yetki gerektiren bir görevi yerine getirmek için komutumuzun en başına `sudo` ifadesini yazıp eğer yetkimiz uygunsa çalıştırabiliyoruz. Normalde ***/etc/apt/sources.list***  dosyasını düzenlemek için yetkimiz yok fakat en yetkili kullanıcı gibi davranmak için komutumuzun başına `sudo` yazı işlemi yerine getirmeyi deneyebiliriz.
+Normalde yetki gerektiren bir görevi yerine getirmek için komutumuzun en başına `sudo` ifadesini yazıp eğer yetkimiz uygunsa çalıştırabiliyoruz. Normalde **_/etc/apt/sources.list_** dosyasını düzenlemek için yetkimiz yok fakat en yetkili kullanıcı gibi davranmak için komutumuzun başına `sudo` yazı işlemi yerine getirmeyi deneyebiliriz.
 
-Yani örneğin `sudo echo "eklenecek veri" >> /etc/apt/sources.list` şeklinde komutumuzu girebiliriz. 
+Yani örneğin `sudo echo "eklenecek veri" >> /etc/apt/sources.list` şeklinde komutumuzu girebiliriz.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~/klasor]
@@ -498,11 +498,11 @@ Burada `sudo` komutu işe yaramadı çünkü **yönlendirmeler üzerinde `sudo` 
 ```bash
 ┌──(taylan@linuxdersleri)-[~/klasor]
 └─$ echo "####" | sudo tee -a /etc/apt/sources.list
-[sudo] password for taylan:       
+[sudo] password for taylan:
 yeni satır
 ```
 
-Ve gördüğünüz gibi parolamızı girip komutu onayladığımızda herhangi bir yetki hatası almıyoruz. `cat` komutuyla dosya içeriğine de bakalım. 
+Ve gördüğünüz gibi parolamızı girip komutu onayladığımızda herhangi bir yetki hatası almıyoruz. `cat` komutuyla dosya içeriğine de bakalım.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~/klasor]
@@ -515,18 +515,18 @@ deb http://http.taylan.org/taylan taylan-rolling main contrib non-free
 yeni satır
 ```
 
-Bakın dosyanın en sonuna “**####**” ifadesi eklenmiş. 
+Bakın dosyanın en sonuna “**####**” ifadesi eklenmiş.
 
 <p class="kirmizi"><strong>❗Dikkat:</strong> Düzenleme yaptığımız dosya önemli bir konfigürasyon dosyası olduğu için dosya yapısını bozmamak adına yalnızca  “<strong>####</strong>” ifadesini ekledim. Eğer siz farkı bir veri eklerseniz sistemi güncelleme ve paket yükleme noktasında sorunlar yaşayabilirsiniz. Bu sebeple “<strong>#</strong>” hariç bir karakter eklemeyin veya eklediyseniz de <code class="language-plaintext highlighter-rouge">sudo nano /etc/apt/sources.list</code> komutu ile dosyayı açıp ilgili satırı silin ve <kbd>Ctrl</kbd> + <kbd>x</kbd> ile dosyayı kaydedip kapatın. </p>
 
-Böylelikle yönlendirme operatörlerinin `sudo` ile yetki kazanamadığından ve alternatif olarak `tee` komutu sayesinde yetkili şekilde dosya içeriğine veri yönlendirebileceğimizden de haberdar olduk. Ele aldığımız örnekleri de dikkate aldığımızda `tee` aracını tıpkı `T` boru gibi düşünmek bence oldukça mantıklı. Konsol üzerinde hem standart çıktıya hem de bir dosyaya yönlendirme yapmak istediğinizde veya bir yönlendirme işlemini yetkili şekilde yapmak istediğinizde `tee` aracını kullanabiliyoruz. Mesela ben en son girmiş olduğum komutta konsola çıktı bastırılmadan yalnızca dosyaya veri yönlendirmek isteseydim standart çıktıları ***/dev/null*** dizinine de yönlendirebilirdim. Ben denemek için en son komutumu çağırıp bu kez sonuna `> /dev/null` şeklinde yazıyorum ve komutumu bu şekilde onaylıyorum.
+Böylelikle yönlendirme operatörlerinin `sudo` ile yetki kazanamadığından ve alternatif olarak `tee` komutu sayesinde yetkili şekilde dosya içeriğine veri yönlendirebileceğimizden de haberdar olduk. Ele aldığımız örnekleri de dikkate aldığımızda `tee` aracını tıpkı `T` boru gibi düşünmek bence oldukça mantıklı. Konsol üzerinde hem standart çıktıya hem de bir dosyaya yönlendirme yapmak istediğinizde veya bir yönlendirme işlemini yetkili şekilde yapmak istediğinizde `tee` aracını kullanabiliyoruz. Mesela ben en son girmiş olduğum komutta konsola çıktı bastırılmadan yalnızca dosyaya veri yönlendirmek isteseydim standart çıktıları **_/dev/null_** dizinine de yönlendirebilirdim. Ben denemek için en son komutumu çağırıp bu kez sonuna `> /dev/null` şeklinde yazıyorum ve komutumu bu şekilde onaylıyorum.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~/klasor]
-└─$ echo "####" | sudo tee -a /etc/apt/sources.list > /dev/null  
+└─$ echo "####" | sudo tee -a /etc/apt/sources.list > /dev/null
 
 ┌──(taylan@linuxdersleri)-[~/klasor]
-└─$ cat /etc/apt/sources.list                                    
+└─$ cat /etc/apt/sources.list
 # See https://www.taylan.org/docs/general-use/taylan-linux-sources-list-repositories/
 deb http://http.taylan.org/taylan taylan-rolling main contrib non-free
 
@@ -537,17 +537,17 @@ deb http://http.taylan.org/taylan taylan-rolling main contrib non-free
 ####
 ```
 
-Bakın konsola herhangi bir çıktı bastırılmadı çünkü standart çıktıyı ***/dev/null*** dosyasına yönlendirerek yok etmiş oldum. Siz de bu şekilde pipe üzerinden gelen verileri bir dosyaya yazmak istediğinizde bu yaklaşımı kullanabilirsiniz.
+Bakın konsola herhangi bir çıktı bastırılmadı çünkü standart çıktıyı **_/dev/null_** dosyasına yönlendirerek yok etmiş oldum. Siz de bu şekilde pipe üzerinden gelen verileri bir dosyaya yazmak istediğinizde bu yaklaşımı kullanabilirsiniz.
 
 <p class="kirmizi"><strong>❗Dikkat:</strong> Örneklerimiz sırasında kullandığımız bu <strong><i>/etc/apt/sources.list</i></strong> dosyası, sistemin paket yönetimi için önemli bir dosya. O sebeple <code class="language-plaintext highlighter-rouge">sudo nano /etc/apt/sources.list</code> ile bu dosyayı tekrar açıp, eklediğiniz gereksiz verileri silmenizi öneriyorum. Aksi halde paket yönetimi konusunda sorun yaşayabilirsiniz.</p>
 
 # `grep` Komutu
 
-`grep` aracının ismi “**g**lobal **r**egular **e**xpression **p**rint” ifadesinin kısaltmasından geliyor. Ve tam olarak isminde de olduğu şekilde “regex” sayesinde verileri filtreleme konusunda çok yetenekli bir araç. 
+`grep` aracının ismi “**g**lobal **r**egular **e**xpression **p**rint” ifadesinin kısaltmasından geliyor. Ve tam olarak isminde de olduğu şekilde “regex” sayesinde verileri filtreleme konusunda çok yetenekli bir araç.
 
 `grep` aracı standart girdiden veya kendisine argüman olarak verilmiş olan dosyadan veri okuyup filtreleyebiliyor. Hemen bizzat görmek için en temel kullanımıyla başlayabiliriz.
 
-Ben denemek için ***/etc/passwd*** dosyasında kaç kez “**false**” ifadesinin geçtiğini öğrenmek üzere `grep` komutundan sonra araştırmak istediğim kelimeyi ve daha sonra da hangi dosyada araştırılacağını `grep "false" /etc/passwd` şeklinde giriyorum.
+Ben denemek için **_/etc/passwd_** dosyasında kaç kez “**false**” ifadesinin geçtiğini öğrenmek üzere `grep` komutundan sonra araştırmak istediğim kelimeyi ve daha sonra da hangi dosyada araştırılacağını `grep "false" /etc/passwd` şeklinde giriyorum.
 
 ![15.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin/15.webp)
 
@@ -555,7 +555,7 @@ Bakın içerisinde “**false**” ifadesi bulunan tüm satırlar listelendi. Be
 
 ![16.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin/16.webp)
 
-Bakın yine aynı sonucu elde ettik çünkü `cat` aracı ***/etc/passwd*** dosyasının içeriğini pipe ile `grep` aracına aktardı, `grep` de benim istediğim doğrultusunda içinde “**false**” ifadesi geçen satıları filtreleyip standart çıktıya yani konsola yönlendirdi. İşte `grep` aracının en temel kullanımı bu şekilde. İster dosyadan isterseniz de standart girdiden `grep` aracına veri yönlendirip verilerin okunmasını sağlayabilirsiniz.
+Bakın yine aynı sonucu elde ettik çünkü `cat` aracı **_/etc/passwd_** dosyasının içeriğini pipe ile `grep` aracına aktardı, `grep` de benim istediğim doğrultusunda içinde “**false**” ifadesi geçen satıları filtreleyip standart çıktıya yani konsola yönlendirdi. İşte `grep` aracının en temel kullanımı bu şekilde. İster dosyadan isterseniz de standart girdiden `grep` aracına veri yönlendirip verilerin okunmasını sağlayabilirsiniz.
 
 Şimdi ben `grep` aracının birkaç farklı kullanım özelliğinden daha bahsetmek istiyorum.
 
@@ -563,11 +563,11 @@ Bakın yine aynı sonucu elde ettik çünkü `cat` aracı ***/etc/passwd*** dosy
 
 Aradığımız kelime ile eşleşen verileri nasıl filtreleyebileceğimizi ele aldık. Eğer tersi şekilde aradığımız ifadenin geçmediği bölümleri istersek bulun için `grep` aracının hariç tutma özelliğini kullanabiliriz. Hariç tutma özelliğini kullanmak için de kısaca `v` seçeneğini kullanabiliyoruz.
 
-Yani örneğin ben ***/etc/passwd*** dosyasının içinde “false" ifadesinin geçmediği satırları listelemek istersem `grep -v "false" /etc/passwd` şeklinde komutumu girebilirim.
+Yani örneğin ben **_/etc/passwd_** dosyasının içinde “false" ifadesinin geçmediği satırları listelemek istersem `grep -v "false" /etc/passwd` şeklinde komutumu girebilirim.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ grep -v "false" /etc/passwd                                                            
+└─$ grep -v "false" /etc/passwd
 root:x:0:0:root:/root:/usr/bin/zsh
 daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
 bin:x:2:2:bin:/bin:/usr/sbin/nologin
@@ -620,7 +620,7 @@ taylan:x:1000:1000:taylan,,,:/home/taylan:/usr/bin/bash
 
 Bakın “false” ifadesinin geçtiği satırlar hariç tüm içerikler konsola bastırıldı.
 
-Ben yalnızca tek bir dosya üzerinde filtreleme yaptım ancak istersek birden fazla dosyanın tüm içeriğinde de filtreleme yapabiliriz. Ben denemek için ***/etc/passwd*** ve ***/etc/group*** dosya içeriklerinde “**root**” ifadesinin aranmasını istiyorum. Bunun için `grep “root” /etc/passwd /etc/group` şeklinde komutumu giriyorum.
+Ben yalnızca tek bir dosya üzerinde filtreleme yaptım ancak istersek birden fazla dosyanın tüm içeriğinde de filtreleme yapabiliriz. Ben denemek için **_/etc/passwd_** ve **_/etc/group_** dosya içeriklerinde “**root**” ifadesinin aranmasını istiyorum. Bunun için `grep “root” /etc/passwd /etc/group` şeklinde komutumu giriyorum.
 
 ![17.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin/17.webp)
 
@@ -628,7 +628,7 @@ Bakın eşleşmiş olan satırlar hangi dosyada bulundukları da belirtilerek fi
 
 ## Özyinelemeli Araştırma
 
-Örnek olarak “***/etc/***” dizini içinde, içinde “bashrc” ifadesi geçen tüm dosyaları filtrelemeyi deneyebiliriz. Bunun için `grep -r “bashrc” /etc/ 2> /dev/null` şeklinde komutumu giriyorum. Buradaki `-r` seçeneği benim hedef gösterdiğim bu dizinden başlayıp tüm alt dizinler de dahil olmak üzere tüm dosyalarda “test” ifadesinin geçtiği yerleri filtreleyip bana sunacak. Ayrıca yetki gibi nedenlerle oluşacak olan hatalı çıktıları yok etmek için `2> /dev/null` komutunu da ekledim.
+Örnek olarak “**_/etc/_**” dizini içinde, içinde “bashrc” ifadesi geçen tüm dosyaları filtrelemeyi deneyebiliriz. Bunun için `grep -r “bashrc” /etc/ 2> /dev/null` şeklinde komutumu giriyorum. Buradaki `-r` seçeneği benim hedef gösterdiğim bu dizinden başlayıp tüm alt dizinler de dahil olmak üzere tüm dosyalarda “test” ifadesinin geçtiği yerleri filtreleyip bana sunacak. Ayrıca yetki gibi nedenlerle oluşacak olan hatalı çıktıları yok etmek için `2> /dev/null` komutunu da ekledim.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -663,7 +663,7 @@ Bakın sırasıyla tüm dizinlerde gezildi ve “bashrc” ifadesi eşleşen sat
 grep: /etc/: Is a directory
 ```
 
-Bakın ***/etc/*** adresinin bir dizin olduğu, yani dosya olmadığı için “**bashrc**” ifadesi geçen bir eşleşme bulunamayacağı konusunda uyarıldık.  Bu sebeple alt dizinler de dahil, dizin içeriklerinde araştırma yapılabilmesi için “özyinelemeli” araştırma yapmak üzere `r` seçeneğini kullanmamız gerek. 
+Bakın **_/etc/_** adresinin bir dizin olduğu, yani dosya olmadığı için “**bashrc**” ifadesi geçen bir eşleşme bulunamayacağı konusunda uyarıldık. Bu sebeple alt dizinler de dahil, dizin içeriklerinde araştırma yapılabilmesi için “özyinelemeli” araştırma yapmak üzere `r` seçeneğini kullanmamız gerek.
 
 ## Yalnızca Dizin İsimlerini Bastırmak
 
@@ -694,7 +694,7 @@ Mesela ben isimler.txt dosyasında tam olarak “**ahmet can**” ifadesinin ge�
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ grep ahmet can isimler.txt                                                   
+└─$ grep ahmet can isimler.txt
 grep: can: No such file or directory
 isimler.txt:ahmet
 isimler.txt:ahmet kürşad
@@ -709,7 +709,7 @@ Bakın yalnızca başında “**ahmet**” olan satırlar getirildi ve “can”
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ grep "ahmet can" isimler.txt                                                   
+└─$ grep "ahmet can" isimler.txt
 ahmet can durmus
 ```
 
@@ -723,7 +723,7 @@ Fark ettiyseniz bir önceki örneğimizde aldığımız çıktıların hepsi kü
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ grep -i "ahmet can" isimler.txt                                                
+└─$ grep -i "ahmet can" isimler.txt
 Ahmet can
 Ahmet Can Yazar
 ahmet can durmus
@@ -735,11 +735,11 @@ Bakın bu kez küçük büyük harf demeden “ahmet can” ifadesi ile eşleşe
 
 Tam olarak aradığımız kelime ile eşleşenleri filtrelemek için “**w**ord” ifadesinin kısaltmasından gelen `w` seçeneğini kullanabiliyoruz.
 
-Kullanımını daha net gözlemleyebilmek için öncelikle `grep “ali” isimler.txt` komutunu girelim. 
+Kullanımını daha net gözlemleyebilmek için öncelikle `grep “ali” isimler.txt` komutunu girelim.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ grep "ali" isimler.txt                                                      
+└─$ grep "ali" isimler.txt
 halil cansun
 ali
 Halil cansun
@@ -751,11 +751,11 @@ ali said
 ali
 ```
 
-Bakın çıktılarda yalnızca “ali” ifadesi değil, satırın herhangi bir noktasında “ali” ifadesi geçenler de bastırılmış oldu. Eğer ben bu şekilde herhangi bir noktada değil de tek başına “ali” ifadesini arıyorsam aynı komutumu bu kez `w` seçeneğiyle birlikte kullanabilirim. 
+Bakın çıktılarda yalnızca “ali” ifadesi değil, satırın herhangi bir noktasında “ali” ifadesi geçenler de bastırılmış oldu. Eğer ben bu şekilde herhangi bir noktada değil de tek başına “ali” ifadesini arıyorsam aynı komutumu bu kez `w` seçeneğiyle birlikte kullanabilirim.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ grep -w "ali" isimler.txt                                                      
+└─$ grep -w "ali" isimler.txt
 ali
 Mehmet ali
 ahmet ali
@@ -767,11 +767,11 @@ Bakın bu kez yalnızca tam olarak “ali” kelimesinin tek başına bulunduğu
 
 ## Okunaklı Çıktılar
 
-Aldığımız çıktıları daha okunaklı hale getirebiliriz. Mesela eğer `n` seçeneğini eklersek, satır numaralarını da görmemiz mümkün. 
+Aldığımız çıktıları daha okunaklı hale getirebiliriz. Mesela eğer `n` seçeneğini eklersek, satır numaralarını da görmemiz mümkün.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ grep -wn "ali" isimler.txt                                                     
+└─$ grep -wn "ali" isimler.txt
 43:ali
 454:Mehmet ali
 536:ahmet ali
@@ -781,21 +781,21 @@ Aldığımız çıktıları daha okunaklı hale getirebiliriz. Mesela eğer `n` 
 
 Bakın bu kez bu ifadelerin tam olarak hangi satırda geçtiği satırın en başında yazıyor.
 
-Ayrıca satır numarası yerine istersek toplamda kaç eşleşme olduğunu öğrenmek için “**c**ount” ifadesinin kısaltmasından gelen `c` seçeneğini de kullanabiliriz. 
+Ayrıca satır numarası yerine istersek toplamda kaç eşleşme olduğunu öğrenmek için “**c**ount” ifadesinin kısaltmasından gelen `c` seçeneğini de kullanabiliriz.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ grep -wc "ali" isimler.txt                                                     
+└─$ grep -wc "ali" isimler.txt
 5
 ```
 
-Bakın toplam kaç eşleşme olduğu burada yazıyor. Benim dosyamda tam olarak 5 kere tamamı küçük harfli “ali” kelimesi geçiyormuş. 
+Bakın toplam kaç eşleşme olduğu burada yazıyor. Benim dosyamda tam olarak 5 kere tamamı küçük harfli “ali” kelimesi geçiyormuş.
 
 ## Çoklu Filtre
 
-Dilersek verileri aşamalı olarak filtreleyip istediğimiz nihai verilere ulaşabiliriz. 
+Dilersek verileri aşamalı olarak filtreleyip istediğimiz nihai verilere ulaşabiliriz.
 
-Örneğin ben /var/log/user.log dosyasında "kali" ve “error” ifadelerinin geçtiği satırları filtrelemek istiyorum. Eğer komutumu `cat /var/log/user.log | grep “kali”` şeklinde girecek olursam yalnızca “kali” ifadesinin geçtiği satırlar getirilecek. 
+Örneğin ben /var/log/user.log dosyasında "kali" ve “error” ifadelerinin geçtiği satırları filtrelemek istiyorum. Eğer komutumu `cat /var/log/user.log | grep “kali”` şeklinde girecek olursam yalnızca “kali” ifadesinin geçtiği satırlar getirilecek.
 
 ![25.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin/25.webp)
 
@@ -841,17 +841,17 @@ Biz öncelikle basit Regex’in temel karakterlerini tanıyarak başlayalım.
 
 `|` - Alternatifler arasında bir seçenek yani “ya da” koşulu belirtir.
 
-Ben örnek olması Regex kullanımını `grep` üzerinden çok kısaca ele alıyor olacağım ancak Linux üzerinde Regex’i destekleyen diğer araçlar üzerinde de aynı şekilde Regex kullanabilirsiniz. Bu konu hakkında daha fazla detay almak için “[Linux Üzerinde Regex Kullanımı]({{ site.url }}/linux-regex){:target="_blank"} ” blog yazısını okuyabilirsiniz. 
+Ben örnek olması Regex kullanımını `grep` üzerinden çok kısaca ele alıyor olacağım ancak Linux üzerinde Regex’i destekleyen diğer araçlar üzerinde de aynı şekilde Regex kullanabilirsiniz. Bu konu hakkında daha fazla detay almak için “[Linux Üzerinde Regex Kullanımı]({{ site.url }}/linux-regex){:target="\_blank"} ” blog yazısını okuyabilirsiniz.
 
 ### Satır Başı: `^`
 
 Spesifik olarak belirli bir ifadeyle başlayan satırları filtrelemek istersek şapka ya da düzeltme işareti olarak da bilinen bu `^` işareti kullanabiliyoruz.
 
-Örneğin ben “**ay**” ifadesiyle başlayan satırları filtrelemek istersem `grep “^ay” isimler.txt` şeklinde komutumu yazabilirim. 
+Örneğin ben “**ay**” ifadesiyle başlayan satırları filtrelemek istersem `grep “^ay” isimler.txt` şeklinde komutumu yazabilirim.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ grep "^ay" isimler.txt                                                     
+└─$ grep "^ay" isimler.txt
 aydin
 ayşe fulya
 ayşe gizem
@@ -869,7 +869,7 @@ Tersi şekilde eğer satır sonlarındaki karakterlere göre filtreleme yapmak i
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ grep "ay$" isimler.txt                                                         
+└─$ grep "ay$" isimler.txt
 Koray
 Mehmet koray
 Feray
@@ -880,7 +880,7 @@ Ilkay
 gökay
 ```
 
-Bakın yalnızca satır sonunda “**ay**” ifadesi olanlar bastırıldı. Bu tanımı yazarken dolar işaretini sona eklemiz gerektiğine dikkat edin lütfen. Eğer dolar işaretini bu şekilde sonda değil de başta yazacak olursanız ilgili eşleşme sağlanamaz. 
+Bakın yalnızca satır sonunda “**ay**” ifadesi olanlar bastırıldı. Bu tanımı yazarken dolar işaretini sona eklemiz gerektiğine dikkat edin lütfen. Eğer dolar işaretini bu şekilde sonda değil de başta yazacak olursanız ilgili eşleşme sağlanamaz.
 
 ### Nokta İşareti `.`
 
@@ -898,7 +898,7 @@ Bakın tam olarak beklediğimiz gibi “ay” ile başlayan ve devamında herhan
 
 ### Köşeli Parantez `[]`
 
-Eğer rastgele karakterler yerine spesifik olarak bizim istediğimiz bazı karakterlerin bulunduğu verileri filtrelemek istersek köşeli parantez kullanabiliriz. Köşeli parantez içinde karakter kümelerini liste şeklinde verebiliyoruz. 
+Eğer rastgele karakterler yerine spesifik olarak bizim istediğimiz bazı karakterlerin bulunduğu verileri filtrelemek istersek köşeli parantez kullanabiliriz. Köşeli parantez içinde karakter kümelerini liste şeklinde verebiliyoruz.
 
 Örneğin ben “a” karakterinden sonra yalnızca “k” “l” ve “r” karakterlerinden birini barındıran verileri filtrelemek istediğim için `grep “a[klr]” isimler.txt` şeklinde komutumu giriyorum.
 
@@ -908,9 +908,9 @@ Bakın tam olarak “a” karakterinden sonra köşeli parantez içinde belirtti
 
 ![21.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin/21.webp)
 
-Yani gördüğünüz gibi şapka işareti sayesinde buradaki karakterleri hariç tutarak filtreleme yapabiliyoruz. 
+Yani gördüğünüz gibi şapka işareti sayesinde buradaki karakterleri hariç tutarak filtreleme yapabiliyoruz.
 
-Burada dikkat ettiyseniz bizim köşeli parantez içinde yazdığımız karakterler yalnızca tek bir karakter ile eşleşme sağlıyor. Örneğin ben “a” karakterinden sonra “k” “l” “r” karakterlerini bulundurmayan ama “a” “b” ve “c” karakterinden birini bulunduran veriyi filtrelemek istersem komutumu `grep a[^klr][abc] isimler.txt` şeklinde girebilirim. 
+Burada dikkat ettiyseniz bizim köşeli parantez içinde yazdığımız karakterler yalnızca tek bir karakter ile eşleşme sağlıyor. Örneğin ben “a” karakterinden sonra “k” “l” “r” karakterlerini bulundurmayan ama “a” “b” ve “c” karakterinden birini bulunduran veriyi filtrelemek istersem komutumu `grep a[^klr][abc] isimler.txt` şeklinde girebilirim.
 
 ![22.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin/22.webp)
 
@@ -918,13 +918,13 @@ Bakın tam olarak “a” karakterinde sonra “k” “l” “r” karakterini
 
 Yani gördüğünüz gibi köşeli parantez sayesinde spesifik olarak tek bir karakterin nasıl olması veya olmaması gerektiğini belirtebiliyoruz. Ve tabii ki peş peşe burada olduğu gibi köşeli parantez kullanarak da hangi karakterin ne şekilde olabileceğini de spesifik olarak sınırlayabiliyoruz.
 
-İşte basit regex genişletmeleri bu şekilde. Ben hepsine tek tek değinmek istemiyorum. Daha fazla bilgi almak için mutlaka buradaki [blog]({{ site.url }}/linux-regex){:target="_blank"} yazısını baştan sonra okuyup öyle devam edin. Bu sayede Linux üzerinde Regex’i çok daha etkili şekilde kullanabiliyor olacaksınız. 
+İşte basit regex genişletmeleri bu şekilde. Ben hepsine tek tek değinmek istemiyorum. Daha fazla bilgi almak için mutlaka buradaki [blog]({{ site.url }}/linux-regex){:target="\_blank"} yazısını baştan sonra okuyup öyle devam edin. Bu sayede Linux üzerinde Regex’i çok daha etkili şekilde kullanabiliyor olacaksınız.
 
 ## `grep` Üzerinde Genişletilmiş Regex Kullanımı
 
-Ayrıca basit regex dışında, genişletilmiş regex kalıplarını kullanmamız da mümkün. Fakat ben bu eğitimde bunların detaylarına girmek istemiyorum. Daha fazla bilgi almak için blog yazısını okuyabilirsiniz. 
+Ayrıca basit regex dışında, genişletilmiş regex kalıplarını kullanmamız da mümkün. Fakat ben bu eğitimde bunların detaylarına girmek istemiyorum. Daha fazla bilgi almak için blog yazısını okuyabilirsiniz.
 
-Ben yalnızca örnek olması için genişletilmiş regex kullanımına bir tane örnek vermek istiyorum. 
+Ben yalnızca örnek olması için genişletilmiş regex kullanımına bir tane örnek vermek istiyorum.
 
 Örneğin regex için “ya da” anlamına gelen dik çizgi `|` işaretini kullanarak filtreleme yapmayı deneyebiliriz.
 
@@ -939,7 +939,7 @@ Bakın bu şekilde girince bir çıktı almadık çünkü buradaki kullandığı
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ grep -E "ahmet|can|ayse" isimler.txt                                           
+└─$ grep -E "ahmet|can|ayse" isimler.txt
 ahmet
 halil cansun
 yiğit can
@@ -956,13 +956,13 @@ ahmet can durmus
 can ahmet furkan
 ```
 
-Bakın bu kez “ahmet” “can” veya “ayse” ifadelerini barındıran satırların filtrelenmesini sağlamış olduk. Buradaki büyük `E` seçeneği “**E**xtended**”** yani “genişletilmiş” ifadesinin kısaltmasından gelen seçeneğimiz. Bu seçenek sayesinde tıpkı buradaki dikey çizgi `|` gibi, doğrudan genişletilmiş regex karakteri olarak algılanmayan regex karakterlerinin kullanılabilmesi de mümkün oluyor. 
+Bakın bu kez “ahmet” “can” veya “ayse” ifadelerini barındıran satırların filtrelenmesini sağlamış olduk. Buradaki büyük `E` seçeneği “**E**xtended**”** yani “genişletilmiş” ifadesinin kısaltmasından gelen seçeneğimiz. Bu seçenek sayesinde tıpkı buradaki dikey çizgi `|` gibi, doğrudan genişletilmiş regex karakteri olarak algılanmayan regex karakterlerinin kullanılabilmesi de mümkün oluyor.
 
-Linux üzerinde `?` `+` `{}` ve `|` metakarakterleri genişletilmiş regex dahilinde ele alındığı için bunları kullanırken ilgili araca bu durumu `grep` aracının `-E` seçeneğinde olduğu gibi açıkça ifade etmemiz gerek. Ayrıca bu karakterleri genişletilmiş regex yerine basit regex kurallarıyla birlikte kullanırken bu karakterlerden önce ters slash `\` koyarak bu karakterlerin özel anlamları ile ele alınmasını da sağlayabiliriz. 
+Linux üzerinde `?` `+` `{}` ve `|` metakarakterleri genişletilmiş regex dahilinde ele alındığı için bunları kullanırken ilgili araca bu durumu `grep` aracının `-E` seçeneğinde olduğu gibi açıkça ifade etmemiz gerek. Ayrıca bu karakterleri genişletilmiş regex yerine basit regex kurallarıyla birlikte kullanırken bu karakterlerden önce ters slash `\` koyarak bu karakterlerin özel anlamları ile ele alınmasını da sağlayabiliriz.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ grep "ahmet\|can\|ayse" isimler.txt                                  
+└─$ grep "ahmet\|can\|ayse" isimler.txt
 ahmet
 halil cansun
 yiğit can
@@ -979,7 +979,7 @@ ahmet can durmus
 can ahmet furkan
 ```
 
-Bakın basit regex üzerinden genişletilmiş regex metakarakterlerini kullanmak için bu karakterlerden önce ters slash kullanabileceğimizi bizzat görmüş olduk. Birden fazla kez tekrarladığım gibi Linux üzerinde Regex kullanımını daha net anlamak için mutlaka buradaki blog içeriğine göz atın. Ben bu blog yazısını okuduğunuzu yani regex kullanımını bildiğinizi varsayarak eğitime devam ediyor olacağım. 
+Bakın basit regex üzerinden genişletilmiş regex metakarakterlerini kullanmak için bu karakterlerden önce ters slash kullanabileceğimizi bizzat görmüş olduk. Birden fazla kez tekrarladığım gibi Linux üzerinde Regex kullanımını daha net anlamak için mutlaka buradaki blog içeriğine göz atın. Ben bu blog yazısını okuduğunuzu yani regex kullanımını bildiğinizi varsayarak eğitime devam ediyor olacağım.
 
 Benim şimdilik regex ve `grep` aracı hakkında bahsetmek istediklerim bu kadar. Zaten temelde bilmemiz gerekenlerden bahsettik. Daha fazlası için hem `grep` aracının yardım sayfasına hem de regex için harici kaynaklara bakmanız yeterli.
 
@@ -1002,7 +1002,7 @@ Böylelikle aynı isimli dosya ve klasörümüzü farklı dizinlerde oluşturmu�
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ find . -name "bulbeni"                                    
+└─$ find . -name "bulbeni"
 ./Documents/bulbeni
 ./Pictures/bulbeni
 ```
@@ -1015,15 +1015,15 @@ Bakın isimle eşleşen hem klasör hem de dosya, tam konumlarıyla birlikte lis
 
 Eğer **yalnızca dosyaları** filtrelemek istiyorsak `type` seçeneğinin ardından “**f**ile” yani “dosya” ifadesinin kısaltmasından gelen `f` parametresini yazmamız gerekiyor. Eğer **klasörleri filtrelemek** istersek de “**d**irectory” yani “klasör” ifadesinin kısaltmasından gelen `d` ifadesini kullanabiliyoruz. Hemen örneğimiz üzerinden deneyelim.
 
-Ben öncelikle “bulbeni” isimli **dosyayı** araştırmak istediğim için `find .  -name “bulbeni” -type f` şeklinde yazıyorum. 
+Ben öncelikle “bulbeni” isimli **dosyayı** araştırmak istediğim için `find .  -name “bulbeni” -type f` şeklinde yazıyorum.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ find . -name "bulbeni" -type f                               
+└─$ find . -name "bulbeni" -type f
 ./Documents/bulbeni
 ```
 
-Bakın burada aldığımız çıktı yalnızca dosyanın konumunu veriyor. 
+Bakın burada aldığımız çıktı yalnızca dosyanın konumunu veriyor.
 
 Benzer şekilde yalnızca klasörü bulmak için `d` parametresi ile araştırma yapabiliriz.
 
@@ -1035,15 +1035,15 @@ Benzer şekilde yalnızca klasörü bulmak için `d` parametresi ile araştırma
 ./Pictures/bulbeni
 ```
 
-Bakın bu çıktı da klasörün konumuna işaret ediyor. 
+Bakın bu çıktı da klasörün konumuna işaret ediyor.
 
 Yani bakın bizzat teyit ettiğimiz gibi `find` ile araştırma yapılırken bu şekilde dosya ve klasör olma durumuna göre yani tipine göre filtreleme yapabiliyoruz.
 
-Mesela ben yalnızca mevcut bulunduğum dizinde araştırma yaptım ama aslında istediğim bir dizin altında araştırma yapılmasını sağlayabilirim. Denemek için bu kez “***/etc/***” dizini atlında sonu “**.conf**” ile biten tüm içerikleri bastırmak istiyorum. Bunun için `find /etc/ -name “*.conf”` komutunu girebiliriz. 
+Mesela ben yalnızca mevcut bulunduğum dizinde araştırma yaptım ama aslında istediğim bir dizin altında araştırma yapılmasını sağlayabilirim. Denemek için bu kez “**_/etc/_**” dizini atlında sonu “**.conf**” ile biten tüm içerikleri bastırmak istiyorum. Bunun için `find /etc/ -name “*.conf”` komutunu girebiliriz.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ find /etc/ -name "*.conf"                                    
+└─$ find /etc/ -name "*.conf"
 /etc/inetsim/inetsim.conf
 /etc/initramfs-tools/initramfs.conf
 /etc/initramfs-tools/update-initramfs.conf
@@ -1058,11 +1058,11 @@ Mesela ben yalnızca mevcut bulunduğum dizinde araştırma yaptım ama aslında
 
 <p class="mavi"><strong>ℹ️ Not:</strong> Çıktı çok uzun olduğu için kısaltarak ekledim.</p>
 
-Bakın “***/etc/***” dizini atlında isminin sonu “.conf” ile biten tüm dosya ve dizinler filtrelenmiş oldu. Eğer yalnızca “***/etc/***” dizini altında değil de tüm sistem genelinde araştırma yapmak istersek araştırılacak dizin olarak yalnızca slash `/` karakterini yazmamız da yeterli. 
+Bakın “**_/etc/_**” dizini atlında isminin sonu “.conf” ile biten tüm dosya ve dizinler filtrelenmiş oldu. Eğer yalnızca “**_/etc/_**” dizini altında değil de tüm sistem genelinde araştırma yapmak istersek araştırılacak dizin olarak yalnızca slash `/` karakterini yazmamız da yeterli.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ find / -name "*.conf"                                    
+└─$ find / -name "*.conf"
 /home/taylan/.config/qt5ct/qt5ct.conf
 find: ‘/root’: Permission denied
 /usr/lib32/gconv/gconv-modules.d/gconv-modules-extra.conf
@@ -1099,11 +1099,11 @@ Boyuta göre filtreleme yapmak için `size` seçeneğini kullanmamız gerekiyor.
 .
 ```
 
-Bakın buradaki tüm dosyalar 1 megabayttan büyük olan dosyalar. Eğer küçük olanları istersek artı yerine eksi `-` işaretini girebiliriz. 
+Bakın buradaki tüm dosyalar 1 megabayttan büyük olan dosyalar. Eğer küçük olanları istersek artı yerine eksi `-` işaretini girebiliriz.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ find . -type f -size -1M                                    
+└─$ find . -type f -size -1M
 ./dosya1
 ./dosya2
 ./klasor/dosya1
@@ -1124,13 +1124,13 @@ Bakın buradaki tüm dosyalar 1 megabayttan büyük olan dosyalar. Eğer küçü
 
 Bakın bu aldığımız çıktılar da 1 megabayttan küçük olanlar.
 
-Boyutu farklı girmek isterseniz; 
+Boyutu farklı girmek isterseniz;
 
-**bayt** için **b,** 
+**bayt** için **b,**
 
-**kilobayt** için **k** 
+**kilobayt** için **k**
 
-**megabayt** için büyük **M** 
+**megabayt** için büyük **M**
 
 **gigabayt** için büyük **G** kullanabilirsiniz.
 
@@ -1144,7 +1144,7 @@ Boyutu farklı girmek isterseniz;
 
 <p class="mavi"><strong>ℹ️ Not:</strong> Kök dizin altında yetki hatası aldığımız için hatalı çıktıları <code class="language-plaintext highlighter-rouge">2> /dev/null</code> komutu ile yok ettim.</p>
 
-Gördüğünüz gibi 1 gigabayttan büyük olan dosyam bulunmuş oldu. Siz de istediğiniz büyüklük birimine göre filtreleme yapabilirsiniz. 
+Gördüğünüz gibi 1 gigabayttan büyük olan dosyam bulunmuş oldu. Siz de istediğiniz büyüklük birimine göre filtreleme yapabilirsiniz.
 
 ## Tarihlerine Göre Filtreleme
 
@@ -1152,11 +1152,11 @@ Ayrıca erişim, değişim ve düzenleme tarihlerine göre de filtrelemeniz de m
 
 Örneğin düzenlenme(modify) tarihi için `mtime` kullanılıyorken, değişim(change) tarihi için `ctime`, erişim(access) tarihi için de `atime` parametrelerini kullanabiliyoruz.
 
-Daha azı için eksi `-` 
+Daha azı için eksi `-`
 
 Daha fazlası için artı `+`
 
-Tam tarih için doğrudan günü belirtebiliyoruz. 
+Tam tarih için doğrudan günü belirtebiliyoruz.
 
 Eğer ben mevcut bulunduğum dizinde **tam olarak 10 gün önce** düzenlenmiş içerikleri görmek istersem `find -mtime 10` şeklinde komutumu girebilirim.
 
@@ -1170,7 +1170,7 @@ Eğer ben mevcut bulunduğum dizinde **tam olarak 10 gün önce** düzenlenmiş 
 
 Bakın buradaki içerikler tam olarak 10 gün önce düzenlenmiş dosya ve klasörler.
 
-Eğer 2 günden daha kısa bir süre önce düzenlenmişleri öğrenmek istersek `-2` ile iki günden öncesini belirtebiliriz. 
+Eğer 2 günden daha kısa bir süre önce düzenlenmişleri öğrenmek istersek `-2` ile iki günden öncesini belirtebiliriz.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -1208,7 +1208,7 @@ Eğer 2 günden daha kısa bir süre önce düzenlenmişleri öğrenmek istersek
 ./liste2.txt
 ```
 
-Bakın bunlar bu gün veya dün düzenlenmiş olan içerikler. 
+Bakın bunlar bu gün veya dün düzenlenmiş olan içerikler.
 
 Eğer düzenleme süresi 5 günden daha önceki tarihler olan içerikleri görmek istersek de `find -mtime +5` şeklinde düzenlenme tarihinden 5 günden daha fazla zaman geçmiş olacağını belirtebiliriz.
 
@@ -1270,11 +1270,11 @@ Bakın buradaki dosyalarım tamamı, en yakın 6 gün önce düzenlemiş olanlar
 
 Ben örnekler sırasında düzenlenme tarihleri için `mtime` seçeneğini kullandım ama siz değişim tarihleri için `ctime`, erişim tarihleri için de aynı şekilde `atime` seçeneklerini kullanarak arama sonuçlarını filtreleyebilirsiniz.
 
-Ayrıca ben hep günler üzerinden ele aldım ancak aslında `min` parametresi sayesinde dakika üzerinden de bu filtrelemeyi yapmamız mümkün. Örneğin son 50 dakika içinde düzenlenmiş(modify) olanları filtrelemek için `find -mmin -50` şeklinde komutumu girebilirim. 
+Ayrıca ben hep günler üzerinden ele aldım ancak aslında `min` parametresi sayesinde dakika üzerinden de bu filtrelemeyi yapmamız mümkün. Örneğin son 50 dakika içinde düzenlenmiş(modify) olanları filtrelemek için `find -mmin -50` şeklinde komutumu girebilirim.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ find -mmin -50                                               
+└─$ find -mmin -50
 .
 ./.bash_history
 ./Documents
@@ -1289,7 +1289,7 @@ Ayrıca ben hep günler üzerinden ele aldım ancak aslında `min` parametresi s
 
 Bakın bunlar son 50 dakika içerisine düzenlenmiş olanlar. **Günleri** belirtirken **time** şeklinde yazıyorken, dakikaları belirtmek için “**min**utes” ifadesinin kısaltmasından gelen “**min**” seçeneğini kullanıyoruz. Yani düzenlenme(modify) dakikası için `mmin`, değişim(change) dakikası için `cmin`, erişim(access) dakikası için de `amin`, seçeneklerinin ardından dakikayı belirtebiliyoruz. Ben burada `-50` şeklinde yazdığım için **son 50 dakika içerisindekileri** kapsadım. Örneğin `+50` yazacak olursam, düzenlenme tarihi son 50 dakikayı geçmiş olan tüm içerikleri kastetmiş oluyorum.
 
-Örneğin ben son 1 saat içerisinde hiç açmadığım yani erişmediğim içerikleri listelemek istersem, `find -amin +60` şeklinde komutumu girebilirim. 
+Örneğin ben son 1 saat içerisinde hiç açmadığım yani erişmediğim içerikleri listelemek istersem, `find -amin +60` şeklinde komutumu girebilirim.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -1309,7 +1309,7 @@ Bakın burada listelenmiş olan içeriklerin hiç birisine son 1 saat içerisind
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ find -amin -60                                              
+└─$ find -amin -60
 .
 ./.gnupg/private-keys-v1.d
 ./.local/state/pipewire/media-session.d
@@ -1330,7 +1330,7 @@ Bakın bunlar da son bir saat içerisinde erişim sağlanmış olanlar. Bence ku
 
 Ayrıca tüm bu bahsettiklerimiz dışında eğer `man find` şeklinde yazarsanız, aslında ne kadar çok filtreleme seçeneği olduğunu kendiniz de görebilirsiniz. Ancak ben hepsine değinmeyeceğim. İhtiyacınız olduğunda manuel sayfasından açıp bakabilirsiniz.
 
-Henüz daha öğrenmediğimiz için yetkilere ve sahipliğe göre filtrelemeden bahsetmek istemiyorum. Ama zaten aynı şekilde `find` aracının yardım bilgilerinde belirtilen tüm seçenekleri ihtiyacınıza göre kullanabilirsiniz. Örneğin içerikleri yetkilerine göre filtrelemek için `perm` seçeneğini kullanıyorken, sahipliğine göre filtrelemek için de `user` seçeneğini kullanabiliyoruz. Ve bunlar gibi yardım sayfasında görebileceğiniz çeşitli filtreleme seçenekleri mevcut. İhtiyaç duyduğunuzda açıp yardım bilgisinden hangi seçeneği kullanmanız  gerektiğini öğrenebilirsiniz.
+Henüz daha öğrenmediğimiz için yetkilere ve sahipliğe göre filtrelemeden bahsetmek istemiyorum. Ama zaten aynı şekilde `find` aracının yardım bilgilerinde belirtilen tüm seçenekleri ihtiyacınıza göre kullanabilirsiniz. Örneğin içerikleri yetkilerine göre filtrelemek için `perm` seçeneğini kullanıyorken, sahipliğine göre filtrelemek için de `user` seçeneğini kullanabiliyoruz. Ve bunlar gibi yardım sayfasında görebileceğiniz çeşitli filtreleme seçenekleri mevcut. İhtiyaç duyduğunuzda açıp yardım bilgisinden hangi seçeneği kullanmanız gerektiğini öğrenebilirsiniz.
 
 Ben dediğim gibi yetki ve sahip kavramlarından henüz bahsetmediğimiz için kafanızın karşımasını istemiyorum, zaten aynı şekilde tek yaptığımız bu özelliklere göre filtreleme yapmak. Bu konuları öğrendiğinizde dönüp `find` ile bu kriterlere göre filtreleme yapmakta özgürsünüz.
 
@@ -1338,11 +1338,11 @@ Ben dediğim gibi yetki ve sahip kavramlarından henüz bahsetmediğimiz için k
 
 İlgili seçenekten önce `-not` seçeneğini kullanarak, ilgili filtrelemenin tam tersini elde edebiliriz.
 
-Örneğin ben `find -name “*.webp”` komutuyla mevcut dizinim altındaki sonu “**.webp**” ile biten tüm içerikleri filtrelersem, gördüğünüz gibi tam istediğim gibi bu adresleri öğrenebiliyoruz. 
+Örneğin ben `find -name “*.webp”` komutuyla mevcut dizinim altındaki sonu “**.webp**” ile biten tüm içerikleri filtrelersem, gördüğünüz gibi tam istediğim gibi bu adresleri öğrenebiliyoruz.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ find -name "*.webp"                                           
+└─$ find -name "*.webp"
 ./.cache/thumbnails/large/3ab698ceca6c7925eb3d1b884a26e75d.webp
 ./.cache/thumbnails/large/c338c09e4cee3d0a205c77d2888f0fc0.webp
 ./.cache/thumbnails/large/52e5c5b7a8eaeca56e0bf2634080a8f3.webp
@@ -1372,7 +1372,7 @@ Ben dediğim gibi yetki ve sahip kavramlarından henüz bahsetmediğimiz için k
 ./Pictures/Screenshot_2022-07-03_06_45_24.webp
 ```
 
-Eğer ben bu komutumu tekrar çağırıp, tersini kullanmak istediğim seçenekten hemen önce `-not` seçeneğini ekleyecek olursam yani `find -not -name “*.webp”` şeklinde komut girersem bu kez sonunda “***.webp***” ismi olanlar **hariç** tüm içerikler bulunup konsola bastırılacak.
+Eğer ben bu komutumu tekrar çağırıp, tersini kullanmak istediğim seçenekten hemen önce `-not` seçeneğini ekleyecek olursam yani `find -not -name “*.webp”` şeklinde komut girersem bu kez sonunda “**_.webp_**” ismi olanlar **hariç** tüm içerikler bulunup konsola bastırılacak.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -1393,7 +1393,7 @@ Eğer ben bu komutumu tekrar çağırıp, tersini kullanmak istediğim seçenekt
 .
 ```
 
-İşte burada benim yalnızca isim seçeneği üzerinden gösterdiğim bu `-not` seçeneği sayesinde tüm filtrelerin tersi şekilde çalışmasını sağlayabilirsiniz. Örneğin ben tam olarak 10 gün önce düzenlenmiş içerikleri filtrelemek için `find -mtime 10` şeklinde komut girersem, tam olarak 10 gün önce düzenlenmiş içerikler listeleniyor. 
+İşte burada benim yalnızca isim seçeneği üzerinden gösterdiğim bu `-not` seçeneği sayesinde tüm filtrelerin tersi şekilde çalışmasını sağlayabilirsiniz. Örneğin ben tam olarak 10 gün önce düzenlenmiş içerikleri filtrelemek için `find -mtime 10` şeklinde komut girersem, tam olarak 10 gün önce düzenlenmiş içerikler listeleniyor.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -1431,7 +1431,7 @@ Bakın burada isim filtrelemesi için iki özel isim belirtip, bu isimlerin aras
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ find -name "*.txt" -or -name "*.webp"                         
+└─$ find -name "*.txt" -or -name "*.webp"
 ./dosya.txt
 ./hatasız.txt
 ./metin1.txt
@@ -1504,7 +1504,7 @@ Bakın tam da beklediğimiz gibi koşul çalıştı ve “**.txt**” ile **veya
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ find -name "*.webp" -and -size +100k                          
+└─$ find -name "*.webp" -and -size +100k
 ./Pictures/Screenshot_2023-05-30_10_28_23.webp
 ./Pictures/Screenshot_2023-05-24_11_11_16.webp
 ./Pictures/Screenshot_2022-07-03_06_45_05.webp
@@ -1520,7 +1520,7 @@ Bakın tam da beklediğimiz gibi koşul çalıştı ve “**.txt**” ile **veya
 ./Pictures/Screenshot_2022-07-03_06_45_24.webp
 ```
 
-Bakın isim ve boyut filtreleri arasında kullanmış olduğumuz `-and` seçeneği sayesinde bu iki filtreyi birbirine bağlayıp hem “.webp” ile biten hem de boyutu 100 kilobayttan büyük olanları filtrelemiş olduk. 
+Bakın isim ve boyut filtreleri arasında kullanmış olduğumuz `-and` seçeneği sayesinde bu iki filtreyi birbirine bağlayıp hem “.webp” ile biten hem de boyutu 100 kilobayttan büyük olanları filtrelemiş olduk.
 
 İşte siz de bu şekilde spesifik olarak aradığınız özelliklere uyan filtremeler yapmak için bu koşul seçeneklerini kullanabilirsiniz.
 
@@ -1528,11 +1528,11 @@ Bakın isim ve boyut filtreleri arasında kullanmış olduğumuz `-and` seçene�
 
 Normalde `find` komutu biz aksini `-regex` seçeneği ile belirtmediğimiz sürece daha önce kabuk genişletmeleri bölümünde ele aldığımız “wildcards” yaklaşımını kullanıyor. Yani biz `-name` seçeneğini kullandığımızda isimler aslında “wildcards” kuralları dahilinde değerlendiriliyor.
 
-Örneğin `find -name "*.webp"`  komutunu kullandığımda, mevcut bulunduğum dizin altında başında herhangi bir karakter olan devamındaki “.webp” ifadesi yer alan tüm dosya ve klasörler getiriliyor. Dosya ismi genişletmesinden bahsederken benzer örnekler yapmıştık hatırlarsanız.
+Örneğin `find -name "*.webp"` komutunu kullandığımda, mevcut bulunduğum dizin altında başında herhangi bir karakter olan devamındaki “.webp” ifadesi yer alan tüm dosya ve klasörler getiriliyor. Dosya ismi genişletmesinden bahsederken benzer örnekler yapmıştık hatırlarsanız.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ find -name "*.webp" 
+└─$ find -name "*.webp"
 ./.cache/thumbnails/large/3ab698ceca6c7925eb3d1b884a26e75d.webp
 ./.cache/thumbnails/large/c338c09e4cee3d0a205c77d2888f0fc0.webp
 ./.cache/thumbnails/large/52e5c5b7a8eaeca56e0bf2634080a8f3.webp
@@ -1567,17 +1567,17 @@ Eğer buradaki “`*.webp`” ifadesi wildcards olarak ele alınmıyor olsaydı 
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ find -name "*.webp" 
+└─$ find -name "*.webp"
 
 ┌──(taylan@linuxdersleri)-[~]
 └─$
 ```
 
-Bakın herhangi bir çıktı alamadık çünkü regex kuralları gereği yıldız işareti kendisinden önceki karakteri sıfır veya daha fazla kez tekrar ediyor. Fakat burada yıldız karakterinden önce bir karakter bulunmadığı için regex kurallarına göre tekrar eden bir örüntü tanımlaması da yapılmamış oluyor. Regex ile bu filtrelemeyi yapmak için "`.*.webp`” ifadesini kullanabiliriz. 
+Bakın herhangi bir çıktı alamadık çünkü regex kuralları gereği yıldız işareti kendisinden önceki karakteri sıfır veya daha fazla kez tekrar ediyor. Fakat burada yıldız karakterinden önce bir karakter bulunmadığı için regex kurallarına göre tekrar eden bir örüntü tanımlaması da yapılmamış oluyor. Regex ile bu filtrelemeyi yapmak için "`.*.webp`” ifadesini kullanabiliriz.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ find -regex ".*.webp"                                         
+└─$ find -regex ".*.webp"
 ./.cache/thumbnails/large/3ab698ceca6c7925eb3d1b884a26e75d.webp
 ./.cache/thumbnails/large/c338c09e4cee3d0a205c77d2888f0fc0.webp
 ./.cache/thumbnails/large/52e5c5b7a8eaeca56e0bf2634080a8f3.webp
@@ -1608,19 +1608,19 @@ Bakın herhangi bir çıktı alamadık çünkü regex kuralları gereği yıldı
 ./Pictures/Screenshot_2022-07-03_06_45_24.webp
 ```
 
-Bakın bu kez “.webp” uzantılı dosyaları bulabildik. Çünkü yıldız işaretinden önce kullandığımız nokta işareti herhangi bir tek karakteri temsil ediyor, dolayısıyla yıldız işareti de sıfır veya daha fazla sayıda herhangi bir karakteri barındıran ifadeleri kapsamış oluyor. 
+Bakın bu kez “.webp” uzantılı dosyaları bulabildik. Çünkü yıldız işaretinden önce kullandığımız nokta işareti herhangi bir tek karakteri temsil ediyor, dolayısıyla yıldız işareti de sıfır veya daha fazla sayıda herhangi bir karakteri barındıran ifadeleri kapsamış oluyor.
 
 **Wildcards ve Regex farkını özetleyecek olursak;**
 
 **Dosya ismi genişletmesi kuralına göre yıldız karakteri:** sıfır veya sıfırdan daha fazla sayıda herhangi bir karakter ile eşleşebiliyor.
 
-**Regex kuralına göre yıldız karakteri:** kendisinden önceki karakteri sıfır veya daha fazla sayıda tekrar eden örüntüler ile eşleşebiliyor. 
+**Regex kuralına göre yıldız karakteri:** kendisinden önceki karakteri sıfır veya daha fazla sayıda tekrar eden örüntüler ile eşleşebiliyor.
 
 Aldığımız çıktılardaki değişimler de tam olarak bu farklardan kaynaklanıyor.
 
-Örnekler üzerinden bizzat teyit ettiğimiz gibi biz aksini `-regex` seçeneği ile belirtmediğimiz sürece `-name` seçeneği wildcards kuralları dahilinde filtreleme yapılmasını sağlıyor. 
+Örnekler üzerinden bizzat teyit ettiğimiz gibi biz aksini `-regex` seçeneği ile belirtmediğimiz sürece `-name` seçeneği wildcards kuralları dahilinde filtreleme yapılmasını sağlıyor.
 
-Tamamdır, benim `find` komutu hakkında bahsetmek istediğim tüm temel bilgiler bu şekilde. Tabii ki yardım sayfasından da görebileceğimiz gibi aslında `find` aracının çok daha fazla özelliği mevcut ancak temel seviye için ilk aşamada bunların hepsi fazla gelebilir. Ayrıca tüm seçeneklere sürekli ihtiyacınız da olmayacak. İhtiyaç duydukça yardım sayfalarını açıp bakmakta özgürsünüz. 
+Tamamdır, benim `find` komutu hakkında bahsetmek istediğim tüm temel bilgiler bu şekilde. Tabii ki yardım sayfasından da görebileceğimiz gibi aslında `find` aracının çok daha fazla özelliği mevcut ancak temel seviye için ilk aşamada bunların hepsi fazla gelebilir. Ayrıca tüm seçeneklere sürekli ihtiyacınız da olmayacak. İhtiyaç duydukça yardım sayfalarını açıp bakmakta özgürsünüz.
 
 Ben şimdi araştırma yapma konusunda bir diğer alternatifimiz olan `locate` aracından bahsederek devam etmek istiyorum.
 
@@ -1632,7 +1632,7 @@ Ben şimdi araştırma yapma konusunda bir diğer alternatifimiz olan `locate` a
 
 Aracımızın en temel kullanımı `locate aranacak-isim` şeklinde. Fakat dediğim gibi `locate` aracı kendisine ait olan veritabanı üzerinden araştırma yaptığı için araştırmalarımız sırasında daha sağlıklı çıktılar elde edebilmek adına bu veritabanını güncellememiz gerekiyor.
 
-Ben hemen test etmek için bir önceki derste `find` aracıyla bulmak için oluşturduğum farklı konumlardaki “***bulbeni***” isimli dosya ve klasörleri `locate bulbeni` komutuyla sorgulamak istiyorum.
+Ben hemen test etmek için bir önceki derste `find` aracıyla bulmak için oluşturduğum farklı konumlardaki “**_bulbeni_**” isimli dosya ve klasörleri `locate bulbeni` komutuyla sorgulamak istiyorum.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -1645,7 +1645,7 @@ Bakın herhangi bir çıktı almadık. Biz bu dosya ve klasörü yeni oluşturdu
 
 ## `locate` Veritabanını Güncellemek | `updatedb`
 
-`locate` veritabanını güncellemek için `sudo updatedb` şeklinde komutumuzu girebiliriz. İşlemi yetkili olarak gerçekleştirdiğimiz için parolamızı girip anlayamamız gerek.  Ayrıca yeni dizinlerin eklenmesini de bir süre beklememiz gerek. 
+`locate` veritabanını güncellemek için `sudo updatedb` şeklinde komutumuzu girebiliriz. İşlemi yetkili olarak gerçekleştirdiğimiz için parolamızı girip anlayamamız gerek. Ayrıca yeni dizinlerin eklenmesini de bir süre beklememiz gerek.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -1673,16 +1673,16 @@ Bakın bu kez anında aradığım kelimeyle eşleşen dosya ve dizinlerin adresi
 
 Eğer aradığınız dosya isminde küçük büyük harf duyarlığının görmezden gelinmesini isterseniz komutunuza `i` seçeneğini de ekleyebilirsiniz.
 
-Ben denemek için `locate ABC` şeklinde yazıp içerisinde tamamı büyük harflerden oluşan **ABC** karakterlerini barından dosya ve klasör isimlerini listelemek istiyorum. 
+Ben denemek için `locate ABC` şeklinde yazıp içerisinde tamamı büyük harflerden oluşan **ABC** karakterlerini barından dosya ve klasör isimlerini listelemek istiyorum.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ locate ABC                                                   
+└─$ locate ABC
 /home/taylan/ABC
 /home/taylan/.cache/mozilla/firefox/d5n1etpa.default-esr/cache2/entries/1F001ABC732598300E8297AC686A75B32E5186EB
 ```
 
-Bakın buradaki çıktıların hepsinde yalnızca tamamı büyük olan ABC ifadesi geçiyor. Eğer küçük büyük harf duyarlılığını kaldırmak istersek komutumuzu tekrar çağırıp `i` seçeneğini ekleyebiliriz. 
+Bakın buradaki çıktıların hepsinde yalnızca tamamı büyük olan ABC ifadesi geçiyor. Eğer küçük büyük harf duyarlılığını kaldırmak istersek komutumuzu tekrar çağırıp `i` seçeneğini ekleyebiliriz.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -1694,29 +1694,29 @@ Bakın buradaki çıktıların hepsinde yalnızca tamamı büyük olan ABC ifade
 /home/taylan/.cache/go-build/0d/0d0abc24b077b8fe4a2db64ca931edc2ed3107a8d4c35f0e230f762e70514359-a
 ```
 
-<p class="mavi"><strong>ℹ️ Not:</strong> Çıktılar kısaltılarak verilmiştir.</p> 
+<p class="mavi"><strong>ℹ️ Not:</strong> Çıktılar kısaltılarak verilmiştir.</p>
 
 Bakın bu kez küçük büyük harf fark etmeksizin tüm dosya ve klasörler listelenmiş oldu.
 
 ## Eşleşme Sayısını Öğrenmek
 
-Kaç eşleşme olduğun saymak istersek “**c**ount” yani “saymak” ifadesinin kısaltmasından gelen `c` seçeneğini ekleyebiliriz. 
+Kaç eşleşme olduğun saymak istersek “**c**ount” yani “saymak” ifadesinin kısaltmasından gelen `c` seçeneğini ekleyebiliriz.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ locate -ic ABC                                               
+└─$ locate -ic ABC
 142
 
 ┌──(taylan@linuxdersleri)-[~]
-└─$ locate -c ABC                                           
+└─$ locate -c ABC
 17
 ```
 
-Gördüğünüz gibi harf duyarlılığı olamadan arma yaptığımızda 142 eşleşme olurken, harf duyarlılığı varken yalnızca 17 eşleşme bulunmuş. 
+Gördüğünüz gibi harf duyarlılığı olamadan arma yaptığımızda 142 eşleşme olurken, harf duyarlılığı varken yalnızca 17 eşleşme bulunmuş.
 
 ## `locate` Üzerinde Regex Kullanımı
 
-`locate` aracında regex kullanmak istediğimizde bunu özellikle `—regex` seçeneğiyle belirtmemiz gerekiyor. Ben denemek için öncelikle `locate "(\.rar|\.zip)”` şeklinde regex tanımıyla eşleşme sağlamak üzere komutumu giriyorum. 
+`locate` aracında regex kullanmak istediğimizde bunu özellikle `—regex` seçeneğiyle belirtmemiz gerekiyor. Ben denemek için öncelikle `locate "(\.rar|\.zip)”` şeklinde regex tanımıyla eşleşme sağlamak üzere komutumu giriyorum.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -1726,11 +1726,11 @@ Gördüğünüz gibi harf duyarlılığı olamadan arma yaptığımızda 142 eş
 └─$
 ```
 
-Bakın herhangi bir çıktı almadık çünkü regex çalışmadı. Bu girmiş olduğumuz tanımın özellikle genişletilmiş regex kuralları dahilinde değerlendirilmesi için `—regex` seçeneğini eklememiz gerekiyor. 
+Bakın herhangi bir çıktı almadık çünkü regex çalışmadı. Bu girmiş olduğumuz tanımın özellikle genişletilmiş regex kuralları dahilinde değerlendirilmesi için `—regex` seçeneğini eklememiz gerekiyor.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ locate --regex "(\.rar|\.zip)"                               
+└─$ locate --regex "(\.rar|\.zip)"
 /home/taylan/Downloads/linux.zip
 /usr/lib/jvm/java-11-openjdk-amd64/legal/jdk.zipfs
 /usr/lib/jvm/java-11-openjdk-amd64/legal/jdk.zipfs/ASSEMBLY_EXCEPTION
@@ -1743,7 +1743,7 @@ Bakın herhangi bir çıktı almadık çünkü regex çalışmadı. Bu girmiş o
 /usr/share/set/src/teensy/x10/libraries.zip
 ```
 
-Bakın bu kez tam olarak isminin herhangi bir noktasında “.rar” veya “.zip” geçen tüm içerikler bastırılmış oldu. Ayrıca mesela `locate —help` komutuyla bir bakacak olursak: 
+Bakın bu kez tam olarak isminin herhangi bir noktasında “.rar” veya “.zip” geçen tüm içerikler bastırılmış oldu. Ayrıca mesela `locate —help` komutuyla bir bakacak olursak:
 
 ![23.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin/23.webp)
 
@@ -1751,29 +1751,29 @@ Bakın genişletilmiş regex kuralları için `—regex` kullanırken, **basit r
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ locate -r "(\.rar\|\.zip)"                            
+└─$ locate -r "(\.rar\|\.zip)"
 
 ┌──(taylan@linuxdersleri)-[~]
 └─$
 ```
 
-Komutu doğru girmiş olmama karşın herhangi bir çıktı almadım. Bunun sebebi `locate` aracının yalnızca Posix regex kurallarını destekliyor olması. Posix basit regex tanımında `|` metakarakteri bulunmadığı için `locate` aracını bu karakteri tanımadı. Dolayısıyla bir eşleşme de sağlanamadı. İşte tıpkı bu örneğimizde gördüğümüz gibi araçların regex kurallarını tanıma ve işleme noktasında bu gibi farklara sahip olabileceğinin farkında olmanız gerekiyor. 
+Komutu doğru girmiş olmama karşın herhangi bir çıktı almadım. Bunun sebebi `locate` aracının yalnızca Posix regex kurallarını destekliyor olması. Posix basit regex tanımında `|` metakarakteri bulunmadığı için `locate` aracını bu karakteri tanımadı. Dolayısıyla bir eşleşme de sağlanamadı. İşte tıpkı bu örneğimizde gördüğümüz gibi araçların regex kurallarını tanıma ve işleme noktasında bu gibi farklara sahip olabileceğinin farkında olmanız gerekiyor.
 
 Tamamdır en nihayetinde benim `locate` aracı hakkında bahsetmek istediklerim bunlar. Son olarak `locate` ile `find` arasındaki farkı vurgulamak istiyorum.
 
 ## `locate` ve `find` Arasındaki Fark
 
-`find` komutu ile dosyaları özniteliklerine göre filtreleyebildiğiniz için çok daha fazla seçeneğe sahibiz. Zaten `find` komutunu ele alırken dosyaların çeşitli özelliklerine göre nasıl filtreleme yapabileceğimizi ele aldık. `locate` komutu ise yalnızca kendi veritabanındaki dosya isimleri ile eşleşme var mı diye kontrol ettiği için, `find` komutu ile kullanabileceğiniz dosya özelliklerini filtreleme gibi işlevleri `locate` aracında kullanamazsınız. 
+`find` komutu ile dosyaları özniteliklerine göre filtreleyebildiğiniz için çok daha fazla seçeneğe sahibiz. Zaten `find` komutunu ele alırken dosyaların çeşitli özelliklerine göre nasıl filtreleme yapabileceğimizi ele aldık. `locate` komutu ise yalnızca kendi veritabanındaki dosya isimleri ile eşleşme var mı diye kontrol ettiği için, `find` komutu ile kullanabileceğiniz dosya özelliklerini filtreleme gibi işlevleri `locate` aracında kullanamazsınız.
 
 Yalnızca dosya isimleri üzerinden hızlıca araştırma yapmak istiyorsanız `locate` aracını kullanabilirsiniz. Tabii ki araştırmadan önce `updatedb` komutuyla veritabanını güncellemeyi de unutmamız gerekiyor.
 
-Eğer o anda sistemdeki spesifik bir dosya veya klasör hakkında araştırma yapmak istiyorsanız da `find` aracını kullanabilirsiniz. `find` aracı mevcut dosya sistemi üzerinde araştırma yaptığı için `locate` gibi bir statik veriler ile çalışmadan en güncel bilgileri filtreli şekilde sunabiliyor. 
+Eğer o anda sistemdeki spesifik bir dosya veya klasör hakkında araştırma yapmak istiyorsanız da `find` aracını kullanabilirsiniz. `find` aracı mevcut dosya sistemi üzerinde araştırma yaptığı için `locate` gibi bir statik veriler ile çalışmadan en güncel bilgileri filtreli şekilde sunabiliyor.
 
 # `cut` Komutu
 
 `cut` komutu, satırların istenilen bölümlerinin kesilmesini sağlıyor. Zaten isminde geçen “cut” ifadesi Türkçe olarak “kesmek” anlamına geliyor. Ben örnekler sırasında basit bir metin dosyası üzerinde çalışıyor olacağım ancak siz okunabilir formatta olan tüm metinsel verilerinizi `cut` komutu ile kesip biçimlendirebilirsiniz.
 
-Öncelikle dosya içeriğini `cat` komutu ile görüntüleyelim. 
+Öncelikle dosya içeriğini `cat` komutu ile görüntüleyelim.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -1820,11 +1820,11 @@ satir7sutun1;satir7sutun2;satir7sutun3;satir7sutun4;satir7sutun5
 satir8sutun1;satir8sutun2;satir8sutun3;satir8sutun4;satir8sutun5
 ```
 
-Bakın buradaki tüm bölümler virgülle birbirinden ayrılmış durumda. Şimdi biz bu verileri kesmek istersek virgüllerin sınırlayıcı değer olduğunu özellikle belirtmemiz gerekiyor. Bu durumu bizzat teyit etmek için virgülü belirtmeden önceki komutumuzu yani boşluk karakterini sınırlayıcı olarak belirttiğimiz komutumuzu bu dosya üzerinde de uygulamayı deneyebiliriz. 
+Bakın buradaki tüm bölümler virgülle birbirinden ayrılmış durumda. Şimdi biz bu verileri kesmek istersek virgüllerin sınırlayıcı değer olduğunu özellikle belirtmemiz gerekiyor. Bu durumu bizzat teyit etmek için virgülü belirtmeden önceki komutumuzu yani boşluk karakterini sınırlayıcı olarak belirttiğimiz komutumuzu bu dosya üzerinde de uygulamayı deneyebiliriz.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ cut -d " " -f 1-3 metin2                                    
+└─$ cut -d " " -f 1-3 metin2
 satir1sutun1;satir1sutun2;satir1sutun3;satir1sutun4;satir1sutun5
 satir2sutun1;satir2sutun2;satir2sutun3;satir2sutun4;satir2sutun5
 satir3sutun1;satir3sutun2;satir3sutun3;satir3sutun4;satir3sutun5
@@ -1835,11 +1835,11 @@ satir7sutun1;satir7sutun2;satir7sutun3;satir7sutun4;satir7sutun5
 satir8sutun1;satir8sutun2;satir8sutun3;satir8sutun4;satir8sutun5
 ```
 
-Bakın herhangi bir kesme işlemi uygulanmadı. Şimdi buradaki “delimiter” yani “sınırlayıcı” karakteri olarak tırnak içine noktalı virgül karakterini ekleyip komutumuzu bu şekilde çalıştıralım. 
+Bakın herhangi bir kesme işlemi uygulanmadı. Şimdi buradaki “delimiter” yani “sınırlayıcı” karakteri olarak tırnak içine noktalı virgül karakterini ekleyip komutumuzu bu şekilde çalıştıralım.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ cut -d ";" -f 1-3 metin2                                      
+└─$ cut -d ";" -f 1-3 metin2
 satir1sutun1;satir1sutun2;satir1sutun3
 satir2sutun1;satir2sutun2;satir2sutun3
 satir3sutun1;satir3sutun2;satir3sutun3
@@ -1850,13 +1850,13 @@ satir7sutun1;satir7sutun2;satir7sutun3
 satir8sutun1;satir8sutun2;satir8sutun3
 ```
 
-Bakın noktalı virgül karakteri sayesinde birbirinden ayrıştırılan bölümler `cut` komutu tarafından işlenip tam olarak istediğim bölüm aralığı sunuldu. Bu örnek üzerinden de görebildiğimiz gibi elimizdeki verinin türüne göre sınırlayıcı olan değeri doğru şekilde belirtmezsek, kesme işlemi de uygulanamıyor. 
+Bakın noktalı virgül karakteri sayesinde birbirinden ayrıştırılan bölümler `cut` komutu tarafından işlenip tam olarak istediğim bölüm aralığı sunuldu. Bu örnek üzerinden de görebildiğimiz gibi elimizdeki verinin türüne göre sınırlayıcı olan değeri doğru şekilde belirtmezsek, kesme işlemi de uygulanamıyor.
 
 Eğer bir aralığı değil de spesifik olarak listelemek istediğiniz sütunlar varsa -f seçeneğinden sonra virgülle ayırarak belirtebilirsiniz.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ cut -d ";" -f 1,4 metin2                                    
+└─$ cut -d ";" -f 1,4 metin2
 satir1sutun1;satir1sutun4
 satir2sutun1;satir2sutun4
 satir3sutun1;satir3sutun4
@@ -1867,7 +1867,7 @@ satir7sutun1;satir7sutun4
 satir8sutun1;satir8sutun4
 
 ┌──(taylan@linuxdersleri)-[~]
-└─$ cut -d ";" -f 4 metin2                                      
+└─$ cut -d ";" -f 4 metin2
 satir1sutun4
 satir2sutun4
 satir3sutun4
@@ -1880,24 +1880,24 @@ satir8sutun4
 
 Bakın tam olarak belirttiğim bölümler karşıma getirildi.
 
-Aslında `cut` komutun başka seçenekleri de bulunuyor ancak diğer seçeneklerin detaylarına girmeyi düşünmüyorum. Zaten temel çalışma yapısını anladığınız için `cut —help` komutu ile elde edeceğiniz buradaki tüm açıklamaları rahatlıkla anlayıp uygulayarak test edebilirsiniz. 
+Aslında `cut` komutun başka seçenekleri de bulunuyor ancak diğer seçeneklerin detaylarına girmeyi düşünmüyorum. Zaten temel çalışma yapısını anladığınız için `cut —help` komutu ile elde edeceğiniz buradaki tüm açıklamaları rahatlıkla anlayıp uygulayarak test edebilirsiniz.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
 └─$ cut --help
-Usage: cut OPTION... [FILE]...                                   
-Print selected parts of lines from each FILE to standard output.         
-                                                                         
-With no FILE, or when FILE is -, read standard input.                              
-                                                                                   
-Mandatory arguments to long options are mandatory for short options too.           
-  -b, --bytes=LIST        select only these bytes                                        
-  -c, --characters=LIST   select only these characters                                   
-  -d, --delimiter=DELIM   use DELIM instead of TAB for field delimiter                          
-  -f, --fields=LIST       select only these fields;  also print any line                        
-                            that contains no delimiter character, unless                        
-                            the -s option is specified                                          
-  -n                      (ignored)                                                                     
+Usage: cut OPTION... [FILE]...
+Print selected parts of lines from each FILE to standard output.
+
+With no FILE, or when FILE is -, read standard input.
+
+Mandatory arguments to long options are mandatory for short options too.
+  -b, --bytes=LIST        select only these bytes
+  -c, --characters=LIST   select only these characters
+  -d, --delimiter=DELIM   use DELIM instead of TAB for field delimiter
+  -f, --fields=LIST       select only these fields;  also print any line
+                            that contains no delimiter character, unless
+                            the -s option is specified
+  -n                      (ignored)
       --complement        complement the set of selected bytes, characters
                             or fields
   -s, --only-delimited    do not print lines not containing delimiters
@@ -1922,7 +1922,7 @@ Full documentation <https://www.gnu.org/software/coreutils/cut>
 or available locally via: info '(coreutils) cut invocation'
 ```
 
-Örneğin bakın “complement” seçeneği, bizim belirttiğimiz bölümlerin haricindeki bölümleri bastıran bir seçenekmiş. Bu durumu görmek için en son girdiğimiz komutu tekrar girelim. 
+Örneğin bakın “complement” seçeneği, bizim belirttiğimiz bölümlerin haricindeki bölümleri bastıran bir seçenekmiş. Bu durumu görmek için en son girdiğimiz komutu tekrar girelim.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -1937,7 +1937,7 @@ satir7sutun1;satir7sutun4
 satir8sutun1;satir8sutun4
 
 ┌──(taylan@linuxdersleri)-[~]
-└─$ cut -d ";" -f 1,4 metin2 --complement                                                                
+└─$ cut -d ";" -f 1,4 metin2 --complement
 satir1sutun2;satir1sutun3;satir1sutun5
 satir2sutun2;satir2sutun3;satir2sutun5
 satir3sutun2;satir3sutun3;satir3sutun5
@@ -1956,7 +1956,7 @@ Bakın ilk komutta tam olarak belirttiğimiz bölümler bastırılırken, “`�
 
 `tr` komutunun ismi “**tr**anslate” yani "çevirmek-dönüştürmek" ifadesinden geliyor. Temelde mevcut veriler içindeki karakterleri değiştirmek veya silmek için bu aracımızı kullanabiliyoruz. Küçük ve büyük harf değişimi, tekrar eden karakterlerin silinmesi, özel karakterlerin silinmesi ve bulup değiştirme gibi pek çok işlevi var. Biz temel birkaç işlevinden bahsediyor olacağız.
 
-`tr` komutu standart girdiden veri okuduğu için pipe ile veri aktarmak en sık tercih edilen kullanım yöntemidir. Ben kolay bir örnek olması için küçük “i” ve küçük “e” karakterlerini büyükleri ile değiştirmek üzere `echo "linux dersleri" | tr "ie" "IE"` şeklinde komutumu giriyorum. 
+`tr` komutu standart girdiden veri okuduğu için pipe ile veri aktarmak en sık tercih edilen kullanım yöntemidir. Ben kolay bir örnek olması için küçük “i” ve küçük “e” karakterlerini büyükleri ile değiştirmek üzere `echo "linux dersleri" | tr "ie" "IE"` şeklinde komutumu giriyorum.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -1976,7 +1976,7 @@ lEnux dIrslIrE
 
 Bakın bu çıktı da komutta belirttiğim sırlama dahilinde yani küçük “i” için büyük “E” küçük “e” için de büyük “I” karakteri şeklinde oldu.
 
-Örneğin tüm küçük harfleri büyük harflere dönüştürmek istersek aralık belirterek komut girebiliriz. 
+Örneğin tüm küçük harfleri büyük harflere dönüştürmek istersek aralık belirterek komut girebiliriz.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -1986,7 +1986,7 @@ LINUX DERSLERI
 
 Bakın tüm karakterler büyükleri ile otomatik olarak yer değiştirdi.
 
-Ayrıca kullanabileceğimiz bazı özel kalıplar da bulunuyor. Bunları görmek için `tr —help` komutunu kullanabiliriz. 
+Ayrıca kullanabileceğimiz bazı özel kalıplar da bulunuyor. Bunları görmek için `tr —help` komutunu kullanabiliriz.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -2038,11 +2038,11 @@ Gördüğünüz gibi Linux üzerinde regex kullanımından bahsederken ele aldı
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ echo "linux dersleri" | tr [:lower:] [:upper:]                                                      
+└─$ echo "linux dersleri" | tr [:lower:] [:upper:]
 LINUX DERSLERI
 ```
 
-Gördüğünüz gibi tüm küçük harfli karakterler büyük harfler ile değiştirilmiş oldu. Tabii ki istersek tersi şekilde komut girerek, büyük harflerin küçük harfler ile değiştirilmesini de sağlayabiliriz.  Sizler de bu listeye göz atıp, ihtiyacınız olan kalıpları kolayca kullanabilirsiniz.
+Gördüğünüz gibi tüm küçük harfli karakterler büyük harfler ile değiştirilmiş oldu. Tabii ki istersek tersi şekilde komut girerek, büyük harflerin küçük harfler ile değiştirilmesini de sağlayabiliriz. Sizler de bu listeye göz atıp, ihtiyacınız olan kalıpları kolayca kullanabilirsiniz.
 
 Bir örnek daha yapalım ben PATH değişkenin çıktıların yer alan iki nokta karakterini yeni satır karakteri ile değiştirmek istiyorum. Öncelikle standart şekilde nasıl göründüğüne bakmak için `echo $PATH` komutu ile değişkeni konsola bastıralım.
 
@@ -2056,7 +2056,7 @@ Bakın PATH yoluna ekli olan her bir dizin birbirinden iki nokta üst üste kara
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ echo $PATH | tr ":" "\n"                                                                            
+└─$ echo $PATH | tr ":" "\n"
 /usr/local/sbin
 /usr/local/bin
 /usr/sbin
@@ -2080,7 +2080,7 @@ Eğer peş peşe tekrar eden karakterlerden yalnızca bir tane kalmasını ister
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ echo "www.linuxdersleri.net" | tr -s "w"                                                           
+└─$ echo "www.linuxdersleri.net" | tr -s "w"
 w.linuxdersleri.net
 ```
 
@@ -2090,17 +2090,17 @@ Hatta istersem bastırılabilir olan tüm tekrar eden karakterlerin otomatik ola
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ echo "bbu biirrr deneeeme33344 yazısı123" | tr -s [:graph:] 
+└─$ echo "bbu biirrr deneeeme33344 yazısı123" | tr -s [:graph:]
 bu bir deneme34 yazısı123
 ```
 
-Gördüğünüz gibi `[:graph:]` seçeneği sayesinde bastırılabilir(boşluk hariç, rakam, harf, sembol gibi) karakterleri kapsayıp, bunlar içinde tekrar edenleri teke düşürmek için de `-s` seçeneğini kullanmış olduk. 
+Gördüğünüz gibi `[:graph:]` seçeneği sayesinde bastırılabilir(boşluk hariç, rakam, harf, sembol gibi) karakterleri kapsayıp, bunlar içinde tekrar edenleri teke düşürmek için de `-s` seçeneğini kullanmış olduk.
 
-Yani bu örnek üzerinden de gördüğümüz gibi aslında spesifik olarak belirtmemiz gereken karakterler yoksa, `tr —help` komutunun çıktısında yer alan ifadeler ve kalıplar zaten pek çok tanımı karşılıyor. Örneğin yalnızca tekrar eden sayıları mı düzenlemek istiyorsunuz, `[:digit:]` tanımı kullanılabilir. 
+Yani bu örnek üzerinden de gördüğümüz gibi aslında spesifik olarak belirtmemiz gereken karakterler yoksa, `tr —help` komutunun çıktısında yer alan ifadeler ve kalıplar zaten pek çok tanımı karşılıyor. Örneğin yalnızca tekrar eden sayıları mı düzenlemek istiyorsunuz, `[:digit:]` tanımı kullanılabilir.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ echo "bbu biirrr deneeeme33344 yazısı123##" | tr -s [:digit:]                                       
+└─$ echo "bbu biirrr deneeeme33344 yazısı123##" | tr -s [:digit:]
 bbu biirrr deneeeme34 yazısı123##
 ```
 
@@ -2108,7 +2108,7 @@ Bakın `[:digit:]` kalıbı sayesinde yalnızca peş peşe tekrar eden sayılar 
 
 İşte sizler de gerektiğinde yardım sayfasından göz atıp, bu ifadeleri kolayca kullanabilirsiniz.
 
-Her neyse, neticede `s` seçeneğinin **art arda tekrar eden** karakterleri teke düşürdüğünü teyit etmiş olduk. Tekrarların peşi sıra gerçekleştiğine dikkat edin. 
+Her neyse, neticede `s` seçeneğinin **art arda tekrar eden** karakterleri teke düşürdüğünü teyit etmiş olduk. Tekrarların peşi sıra gerçekleştiğine dikkat edin.
 
 ## Karakterlerin Silinmesi
 
@@ -2124,11 +2124,11 @@ Bakın gördüğünüz gibi yalnızca belirttiğim şekilde nokta karakterleri s
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ echo www.linuxdersleri.net | tr -d "de"                                                            
+└─$ echo www.linuxdersleri.net | tr -d "de"
 www.linuxrslri.nt
 ```
 
-Bakın yazdığım tüm karakterler ayrı ayrı ele alındı ve eşleşen karakterler kaldırıldı. Yani doğrudan “de” ifadesini aranmadı, “d” ve “e” karakterleri ayrı ayrı aranıp bulunduğunda teker teker silindiler. 
+Bakın yazdığım tüm karakterler ayrı ayrı ele alındı ve eşleşen karakterler kaldırıldı. Yani doğrudan “de” ifadesini aranmadı, “d” ve “e” karakterleri ayrı ayrı aranıp bulunduğunda teker teker silindiler.
 
 Eğer bitişik yapıdaki birden fazla karakteri kapsayacak değişiklikler istiyorsanız ileride ele alacağımız `sed` veya `awk` gibi araçlardan yararlanabilirsiniz. `tr` aracı yalnızca bir karakter ile başka bir tanesini değiştirme silme veya tekrar edenleri sadeleştirmek gibi işler için kullanılıyor.
 
@@ -2145,27 +2145,26 @@ bu bir deneme34 yazısı123#
 
 Bakın gördüğünüz gibi yönlendirmiş olduğumuz dosyadaki veri `tr` komutu tarafından okunup, filtrelenmiş oldu. Yani bizzat teyit ettiğimiz gibi `tr` komutunu yalnızca pipe ile kullanmak zorunda değiliz. `tr` aracı verilerini standart girdiden okuyor. Dolayısıyla standart girdisine verileri yönlendirdiğimiz sürece `tr` aracı ilgili verileri işleyip çıktıları standart çıktıya yani biz aksini belirtmediğimiz sürece konsolumuza yönlendiriyor olacak.
 
-Eğer bu çıktıları bir dosyaya kaydetmek istersek örneğin aynı komutun sonuna `> kaydet` şeklinde yazabiliriz. 
+Eğer bu çıktıları bir dosyaya kaydetmek istersek örneğin aynı komutun sonuna `> kaydet` şeklinde yazabiliriz.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
 └─$ tr -s [:graph:] < test > kaydet
 
 ┌──(taylan@linuxdersleri)-[~]
-└─$ cat kaydet                                                                                          
+└─$ cat kaydet
 bu bir deneme34 yazısı123#
 ```
 
-Bakın çıktıların “***kaydet***” isimli dosyaya sorunsuzca yönlendirilmiş olduğunu `cat` komutu ile de teyit etmiş olduk. 
+Bakın çıktıların “**_kaydet_**” isimli dosyaya sorunsuzca yönlendirilmiş olduğunu `cat` komutu ile de teyit etmiş olduk.
 
-Benim `tr` aracı hakkında bahsetmek istediklerim bu kadar. 
-
+Benim `tr` aracı hakkında bahsetmek istediklerim bu kadar.
 
 # `sed`
 
-`sed` komutu “**s**tream **ed**itor” ifadesinin kısaltmasından gelen metin manipülasyon aracıdır. Daha önce, “her şey bir dosyadadır, her şey bir bayt akışıdır” demiştik. İşte “stream” yani “akış-aktarım” ifadesi de bu bayt akışının manipülasyonu dolayısıyla kullanılmış. 
+`sed` komutu “**s**tream **ed**itor” ifadesinin kısaltmasından gelen metin manipülasyon aracıdır. Daha önce, “her şey bir dosyadadır, her şey bir bayt akışıdır” demiştik. İşte “stream” yani “akış-aktarım” ifadesi de bu bayt akışının manipülasyonu dolayısıyla kullanılmış.
 
-Basit ve genişletilmiş regex kurallarının da yardımıyla `sed` aracı sayesinde, bulma değiştirme, ekleme, ve silme gibi işlemleri yerine getirebiliyoruz. 
+Basit ve genişletilmiş regex kurallarının da yardımıyla `sed` aracı sayesinde, bulma değiştirme, ekleme, ve silme gibi işlemleri yerine getirebiliyoruz.
 
 ## Bulup Değiştirme
 
@@ -2193,7 +2192,7 @@ yeni bölüm ve son bölüm
 yeni veri ve son veri
 ```
 
-Gördüğünüz gibi “**satır**” ifadesini “**bölüm**” ile değiştirmiş oldum. 
+Gördüğünüz gibi “**satır**” ifadesini “**bölüm**” ile değiştirmiş oldum.
 
 ### Tüm Satırlardaki İlk Eşleşme
 
@@ -2208,13 +2207,13 @@ yeni bölüm ve son satır
 yeni veri ve son veri
 ```
 
-Bakın her bir satırdaki yalnızca ilk eşleşmeler değiştirildi. 
+Bakın her bir satırdaki yalnızca ilk eşleşmeler değiştirildi.
 
 ### Satır Numarası Belirtmek
 
-Özellikle hangi satırların dahil edileceğini `s` parametresinden önce belirtebiliriz. 
+Özellikle hangi satırların dahil edileceğini `s` parametresinden önce belirtebiliriz.
 
-Örneğin ben yalnızca 3. satırı kapsamak istersem `3s` şeklinde belirtebilirim. 
+Örneğin ben yalnızca 3. satırı kapsamak istersem `3s` şeklinde belirtebilirim.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
@@ -2225,7 +2224,7 @@ yeni bölüm ve son satır
 yeni veri ve son veri
 
 ┌──(taylan@linuxdersleri)-[~]
-└─$ sed '3s/satır/bölüm/g' veri                                                                               
+└─$ sed '3s/satır/bölüm/g' veri
 bu ilk satır bu ikinci satır bu da son satır
 satır iki ve satır sonu
 yeni bölüm ve son bölüm
@@ -2236,14 +2235,14 @@ Ayrıca birden fazla belirtmemiz de mümkün. Ben 1’den 3. satıra kadar olanl
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ sed '1,3s/satır/bölüm/' veri                                                                              
+└─$ sed '1,3s/satır/bölüm/' veri
 bu ilk bölüm bu ikinci satır bu da son satır
 bölüm iki ve satır sonu
 yeni bölüm ve son satır
 yeni veri ve son veri
 
 ┌──(taylan@linuxdersleri)-[~]
-└─$ sed '1,3s/satır/bölüm/g' veri                                                                             
+└─$ sed '1,3s/satır/bölüm/g' veri
 bu ilk bölüm bu ikinci bölüm bu da son bölüm
 bölüm iki ve bölüm sonu
 yeni bölüm ve son bölüm
@@ -2271,7 +2270,7 @@ yeni satır ve son satır
 yeni veri ve son veri
 
 ┌──(taylan@linuxdersleri)-[~]
-└─$ sed '2,4d' veri                                                                                           
+└─$ sed '2,4d' veri
 bu ilk satır bu ikinci satır bu da son satır
 ```
 
@@ -2297,18 +2296,18 @@ Bakın “yeni” ifadesi ile eşleşme sağlananlar silinmiş oldu.
 
 ### Eşleşme Haricindeki Satırları Silmek
 
-Aradığımız ifade ile eşleşen satırlar hariç tüm satırları silmek istersek `d` parametresinden önce `!` ünlem işaretini kullanabiliriz. 
+Aradığımız ifade ile eşleşen satırlar hariç tüm satırları silmek istersek `d` parametresinden önce `!` ünlem işaretini kullanabiliriz.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ cat veri                                                                                        
+└─$ cat veri
 bu ilk satır bu ikinci satır bu da son satır
 satır iki ve satır sonu
 yeni satır ve son satır
 yeni veri ve son veri
 
 ┌──(taylan@linuxdersleri)-[~]
-└─$ sed '/yeni/!d' veri                                                                                       
+└─$ sed '/yeni/!d' veri
 yeni satır ve son satır
 yeni veri ve son veri
 ```
@@ -2323,7 +2322,7 @@ Eşleşmeden önceki satıra eklemek için `i` parametresini kullanıyoruz.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ sed '/veri/i\oncesi' veri                                                                                
+└─$ sed '/veri/i\oncesi' veri
 bu ilk satır bu ikinci satır bu da son satır
 satır iki ve satır sonu
 yeni satır ve son satır
@@ -2337,7 +2336,7 @@ Eşleşmeden sonraki satıra eklemek için `a` parametresini kullanıyoruz.
 
 ```bash
 ┌──(taylan@linuxdersleri)-[~]
-└─$ sed '/veri/a\sonrası' veri                                                                                
+└─$ sed '/veri/a\sonrası' veri
 bu ilk satır bu ikinci satır bu da son satır
 satır iki ve satır sonu
 yeni satır ve son satır
@@ -2345,7 +2344,7 @@ yeni veri ve son veri
 sonrası
 ```
 
-`sed` komutu kesinlikle burada bahsettiklerimle sınırlı değil fakat ilk aşama için temelde bilmemiz gerekenler bu kadar. Eğer biraz araştırma yapacak olursanız `sed` aracının aslında script olarak yazılıp metinsel verileri ihtiyaca göre manipüle edebileceğini de göreceksiniz. Fakat ben bu eğitimde daha fazla detaydan bahsetmeyi planlamıyorum. Günlük hayatta da daha fazlasına ihtiyacım olmuyor. Olsa bile internet üzerinden ek olarak ihtiyacıma yönelik araştırma yapıp çözümü uyguluyorum. 
+`sed` komutu kesinlikle burada bahsettiklerimle sınırlı değil fakat ilk aşama için temelde bilmemiz gerekenler bu kadar. Eğer biraz araştırma yapacak olursanız `sed` aracının aslında script olarak yazılıp metinsel verileri ihtiyaca göre manipüle edebileceğini de göreceksiniz. Fakat ben bu eğitimde daha fazla detaydan bahsetmeyi planlamıyorum. Günlük hayatta da daha fazlasına ihtiyacım olmuyor. Olsa bile internet üzerinden ek olarak ihtiyacıma yönelik araştırma yapıp çözümü uyguluyorum.
 
 # `awk` | `gawk`
 
@@ -2353,7 +2352,7 @@ sonrası
 
 `awk` aracının pek çok farklı sürümü bulunuyor. Biz **GNU** `awk` yani `gawk` aracını ele alacağız. Pek çok Linux dağıtımında `gawk` aracı `awk` komutuna sembolik olarak bağlı. Yani biz `awk` komutunu giriyoruz ama `gawk` aracını kullanıyoruz.
 
-`awk` aracında veriler, kayıtlar(records) ve alanlar(fields) olmak üzere iki parçaya ayrılıyorlar. 
+`awk` aracında veriler, kayıtlar(records) ve alanlar(fields) olmak üzere iki parçaya ayrılıyorlar.
 
 ![awk1.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin/awk1.webp)
 
@@ -2361,7 +2360,7 @@ sonrası
 
 ![awk1.gif](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin/awk1.gif)
 
-Alanalar(fields) ise boşluk karakteri ile birbirinden ayrılıp, kayıtları(records) oluşturuyor. Her kayıttaki alanlara da dolar işareti (`$`) ve ardından 1 den başlayan sıralı alan numarası veriliyor. Yani ilk alan `$1` ile, ikincisi `$2` ile vb. temsil ediliyor. En sondaki alana ise doğrudan `$NF` özel değişkeni ile ulaşılabiliyor. Tüm alanlara yani aslında kaydın(ilgili satırın) tamamına da `$0` değişkeni ile ulaşılabiliyor. 
+Alanalar(fields) ise boşluk karakteri ile birbirinden ayrılıp, kayıtları(records) oluşturuyor. Her kayıttaki alanlara da dolar işareti (`$`) ve ardından 1 den başlayan sıralı alan numarası veriliyor. Yani ilk alan `$1` ile, ikincisi `$2` ile vb. temsil ediliyor. En sondaki alana ise doğrudan `$NF` özel değişkeni ile ulaşılabiliyor. Tüm alanlara yani aslında kaydın(ilgili satırın) tamamına da `$0` değişkeni ile ulaşılabiliyor.
 
 ![awk-complete-record.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin/awk-complete-record.webp)
 
@@ -2369,7 +2368,7 @@ Bu detaylar `awk` kullanımı için bilmemiz gereken birkaç temel bilgi sadece.
 
 ## `awk` Programı
 
-`awk` aslında bir programlama dili gibi, işlenecek veriler için çeşitli programlar yazabilmemize olanak tanıyor. Fakat biz çok temel düzeyde birkaç işlevini ele alacağız. Nasıl programlanabileceğini öğrenmek için kısa bir ek araştırma yapmanız yeterli. 
+`awk` aslında bir programlama dili gibi, işlenecek veriler için çeşitli programlar yazabilmemize olanak tanıyor. Fakat biz çok temel düzeyde birkaç işlevini ele alacağız. Nasıl programlanabileceğini öğrenmek için kısa bir ek araştırma yapmanız yeterli.
 
 `awk` aracını kullanmak için gireceğimiz komutlar aşağıdaki gibi olacak.
 
@@ -2377,11 +2376,11 @@ Bu detaylar `awk` kullanımı için bilmemiz gereken birkaç temel bilgi sadece.
 desen {aksiyon}
 ```
 
-Eğer “desen”, kayıt yani satırla eşleşme sağlarsa “aksiyon” olarak belirtilen görev yerine getirilecek. Aksiyonlar, kıvırcık parantez içinde “özel ifadeler” ile birlikte belirtiliyor. İfadeler sayesinde, aksiyonun ne olması gerektiğini belirtebiliyoruz. Awk üzerinde en yaygın kullanıma sahip olan ifade "***print***" ifadesidir.
+Eğer “desen”, kayıt yani satırla eşleşme sağlarsa “aksiyon” olarak belirtilen görev yerine getirilecek. Aksiyonlar, kıvırcık parantez içinde “özel ifadeler” ile birlikte belirtiliyor. İfadeler sayesinde, aksiyonun ne olması gerektiğini belirtebiliyoruz. Awk üzerinde en yaygın kullanıma sahip olan ifade "**_print_**" ifadesidir.
 
 `print`: Kayıtları, alanları, değişkenleri ve özel metni yazdırmamızı sağlar.
 
-Ben örnekler için aşağıdaki ***veri.txt*** dosyası üzerinde çalışıyor olacağım.
+Ben örnekler için aşağıdaki **_veri.txt_** dosyası üzerinde çalışıyor olacağım.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -2405,7 +2404,7 @@ aylin
 naz
 ```
 
-Bakın `awk` aracı her bir satırı ayrı ayrı ele aldığı ve `$1` parametresi de ilk alanı temsil ettiği için ilk sütunlardaki tüm verileri `print` ile bastırmış olduk. Burada tek tırnak kullanmamız önemli, çünkü süslü parantezin kabuk tarafından yorumlanmasını istemiyoruz. 
+Bakın `awk` aracı her bir satırı ayrı ayrı ele aldığı ve `$1` parametresi de ilk alanı temsil ettiği için ilk sütunlardaki tüm verileri `print` ile bastırmış olduk. Burada tek tırnak kullanmamız önemli, çünkü süslü parantezin kabuk tarafından yorumlanmasını istemiyoruz.
 
 Örneğin ben son yani 3. sütundakileri filtrelemek istersem `$3` yada sonda olduğu için `$NF` değişkenini kullanabilirim.
 
@@ -2429,7 +2428,7 @@ sabah
 
 ## Birden Fazla Sütunu Bastırmak
 
-Dilersek birden fazla sütun üzerinde de çalışabiliriz. 
+Dilersek birden fazla sütun üzerinde de çalışabiliriz.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
@@ -2445,7 +2444,7 @@ Fakat bu şekilde gördüğünüz gibi sütunlar arasında boşluk bulunmuyor. E
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ awk '{print $1 " " $3}' veri                                 
+└─$ awk '{print $1 " " $3}' veri
 Ahmet 33
 hasan 19
 aylin 24
@@ -2458,27 +2457,28 @@ naz sabah
 Eğer spesifik bir satırda işlem yapılmasını istiyorsak bunu "NR"(number record) değişkeni ile özellikle belirtebiliyoruz.
 
 ```bash
-┌──(taylan㉿linuxdersleri)-[~]                                                                                                                              
-└─$ awk 'NR==2 {print $1 " "  $3}' veri.txt                                                                                                                 
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ awk 'NR==2 {print $1 " "  $3}' veri.txt
 hasan 19
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ awk 'NR==4 {print $1 " "  $3}' veri.txt                                                                                                                 
+└─$ awk 'NR==4 {print $1 " "  $3}' veri.txt
 32 KARA
 
 ```
-Ayrıca `substr` tanımı ardından hangi karakterden sonrasının alınacağını belirtebiliriz. 
+
+Ayrıca `substr` tanımı ardından hangi karakterden sonrasının alınacağını belirtebiliriz.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ awk '{print $1 }' veri.txt                                                                                                                
+└─$ awk '{print $1 }' veri.txt
 Ahmet
 hasan
 aylin
 32
 naz
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ awk '{print substr($1,1) }' veri.txt                                                                                                                    
+└─$ awk '{print substr($1,1) }' veri.txt
 Ahmet
 hasan
 aylin
@@ -2486,7 +2486,7 @@ aylin
 naz
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ awk '{print substr($1,2) }' veri.txt                                                                                                                    
+└─$ awk '{print substr($1,2) }' veri.txt
 hmet
 asan
 ylin
@@ -2494,7 +2494,7 @@ ylin
 az
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ awk '{print substr($1,1,3) }' veri.txt                                                                                                                  
+└─$ awk '{print substr($1,1,3) }' veri.txt
 Ahm
 has
 ayl
@@ -2503,20 +2503,20 @@ naz
 
 ```
 
-
 Ayrıca varsayılan ayırıcı karakteri olan boşluk yerine `-F'ayıcı-karakter'` tanımlaması sayesinde istediğimiz bir karakteri, ayırıcı olarak belirtebiliyoruz. Örneğin ben denemek için iki nokta üst üste karakterini ayırıcı olarak belirtmek üzere `-F':'` tanımlamasını kullanabilirim. Denemek için PATH değişkeninde tanımlı olan 1. ve ikinci dizinleri alt alta yazdırmak istiyorum.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ echo $PATH 
+└─$ echo $PATH
 /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games:/home/taylan/Desktop/yeni-dizin
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ echo $PATH | awk -F':' '{print $1 "\n" $2}'                                                                                                            
+└─$ echo $PATH | awk -F':' '{print $1 "\n" $2}'
 /usr/local/sbin
 /usr/local/bin
 
 ```
+
 `awk` aracının en temel kullanımı burada ele aldığımız şekilde. Ayrıca daha geniş eşleşmeler için Regex kullanabiliyoruz.
 
 ## Regex Kullanımı
@@ -2527,7 +2527,7 @@ Ayrıca varsayılan ayırıcı karakteri olan boşluk yerine `-F'ayıcı-karakte
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ cat veri.txt 
+└─$ cat veri.txt
 Ahmet Yaz 33
 hasan mert 19
 aylin uzun 24
@@ -2535,40 +2535,39 @@ aylin uzun 24
 naz 29 sabah
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ awk '/[0-9]$/{print $NF}' veri.txt 
+└─$ awk '/[0-9]$/{print $NF}' veri.txt
 33
 19
 24
 
 ```
 
-Gördüğünüz gibi `[0-9]$` regex tanımı sonunda sayısal veri bulunan satırlar ile eşleşme sağladı, `{print $NF}` ise bu satırların yalnızca son sütunlarının bastırılmasını sağladı. Benzer şekilde sonunda sayı bulunan satırların hepsini bastırmak için `$NF` yerine `$0` değişkenini kullanabilirdik. 
+Gördüğünüz gibi `[0-9]$` regex tanımı sonunda sayısal veri bulunan satırlar ile eşleşme sağladı, `{print $NF}` ise bu satırların yalnızca son sütunlarının bastırılmasını sağladı. Benzer şekilde sonunda sayı bulunan satırların hepsini bastırmak için `$NF` yerine `$0` değişkenini kullanabilirdik.
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ awk '/[0-9]$/{print $0}' veri.txt 
+└─$ awk '/[0-9]$/{print $0}' veri.txt
 Ahmet Yaz 33
 hasan mert 19
 aylin uzun 24
 
 ```
 
-
 ## Regex için Spesifik Bölüm Belirtmek
 
-Eğer regex kalıbının tüm kayıt üzerinde değil de yalnızca belirli alanlar üzerinde aranmasını istersek dolar işareti ile aranmasını istediğimiz bölümü belirtip peşine tilde `~` işareti eklememiz yeterli. 
+Eğer regex kalıbının tüm kayıt üzerinde değil de yalnızca belirli alanlar üzerinde aranmasını istersek dolar işareti ile aranmasını istediğimiz bölümü belirtip peşine tilde `~` işareti eklememiz yeterli.
 
 Örneğin ben yalnızca 2. sütununda rakam bulunduran satırların 1. sütunlarını bastırmak istiyorum.
 
 ```bash
-└─$ awk '$2 ~ /[0-9]/{print $1}' veri                            
+└─$ awk '$2 ~ /[0-9]/{print $1}' veri
 naz
 ```
 
 Buradaki `$2 ~` tanımı `[0-9]` regex kalıbının yalnızca 2. alanda yani ikinci sütunda eşleşme aramasını sağladı. `{print $1}` ise sağlanmış olan bu eşleşmelerin 1. sütunlarını konsola bastırmış oldu. Yalnızca ilk sütunu değil de tüm kaydı bastırırsak, zaten bu satırın 2. sütununda rakam geçtiğini kendimiz de görebiliriz.
 
 ```bash
-└─$ awk '$2 ~ /[0-9]/{print $0}' veri                            
+└─$ awk '$2 ~ /[0-9]/{print $0}' veri
 naz 29 sabah
 ```
 
@@ -2578,11 +2577,11 @@ Eğer spesifik olarak dahil edilmesini istemediğimiz alan varsa bunu tilde işa
 
 ```bash
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ awk '$2 ~ /[0-9]$/{print $0}' veri.txt 
+└─$ awk '$2 ~ /[0-9]$/{print $0}' veri.txt
 naz 29 sabah
 
 ┌──(taylan㉿linuxdersleri)-[~]
-└─$ awk '$2 !~ /[0-9]$/{print $0}' veri.txt 
+└─$ awk '$2 !~ /[0-9]$/{print $0}' veri.txt
 Ahmet Yaz 33
 hasan mert 19
 aylin uzun 24
@@ -2596,15 +2595,15 @@ Gördüğünüz gibi 2. sütununda sayısal veri bulunduran hariç tüm sütunla
 
 # Konsolda Okunaklı Çıktılar Almak
 
-Şimdiye kadar nasıl dosya oluşturabileceğimizi, dosyaları nasıl okuyup, içeriklerini istediğimiz gibi filtreleyip değiştirebileceğimizi öğrendik. Şimdi de konsol üzerinden verileri okumak istediğimizde bizlere kolay okuma imkanı sunan araçlardan bahsedelim istiyorum. 
+Şimdiye kadar nasıl dosya oluşturabileceğimizi, dosyaları nasıl okuyup, içeriklerini istediğimiz gibi filtreleyip değiştirebileceğimizi öğrendik. Şimdi de konsol üzerinden verileri okumak istediğimizde bizlere kolay okuma imkanı sunan araçlardan bahsedelim istiyorum.
 
-Komut satırı üzerinde çalışıyorken, araçların ürettiği çıktıları yine komut satırımız üzerinde yazılı şekilde takip ediyoruz. Fakat sizin de bildiğiniz gibi komut satırının da bir görüntüleme sınırı var. Eğer grafiksel arayüzdeki bir komut satırında çalışıyorsak, zaten terminal aracı çıktıların konsola sığmayan kadarını görebilmemizi sağlayan kaydırma çubuğu gibi özellikler sunuyor. 
+Komut satırı üzerinde çalışıyorken, araçların ürettiği çıktıları yine komut satırımız üzerinde yazılı şekilde takip ediyoruz. Fakat sizin de bildiğiniz gibi komut satırının da bir görüntüleme sınırı var. Eğer grafiksel arayüzdeki bir komut satırında çalışıyorsak, zaten terminal aracı çıktıların konsola sığmayan kadarını görebilmemizi sağlayan kaydırma çubuğu gibi özellikler sunuyor.
 
 ![terminal-scroll.gif](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin/terminal-scroll.gif)
 
 İşte bizzat test ettiğimiz gibi grafiksel arayüzdeki bu konsol aracımız, çıktıların tamamını bu pencere içerisinde tek seferde gösteremiyor olsa da, tamamını görebilmemiz için bize kolaylık sağlıyor. Fakat komut satırı arayüzündeki tty konsollarında çalışırken, önceki çıktılara dönme gibi bir imkanımız olmuyor. Dolayısıyla uzun çıktılar üreten araçların tüm çıktılarını yalnız komut satırı arayüzünün bulunduğu tty konsollarında tam şekilde görüntüleyemiyoruz.
 
-Denemek isterseniz komut satırı arayüzüne geçip uzun bir dosya içeriğini `cat` komutu ile okuyabilirsiniz. Ben denemek için daha önce oluşturduğum “***isimler.txt***” dosyamı okumak için `cat isimler.txt` komutunu giriyorum.
+Denemek isterseniz komut satırı arayüzüne geçip uzun bir dosya içeriğini `cat` komutu ile okuyabilirsiniz. Ben denemek için daha önce oluşturduğum “**_isimler.txt_**” dosyamı okumak için `cat isimler.txt` komutunu giriyorum.
 
 ![tty-scroll.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin/tty-scroll.webp)
 
@@ -2618,25 +2617,25 @@ Bakın yalnızca dosyanın sonunu görebiliyoruz. Faremizin scroll tuşu ile dah
 
 Zaten `more` ismi de “daha” anlamına geliyor. Biz istedikçe verilerin geri kalanını yani daha fazlasını bize parça parça sunduğu için `more` ismi verilmiş.
 
-Ben örnek olması için ***/etc*** dizinin içeriğini listeleyip, tüm listeye parça parça bakmak istiyorum. Örneğin `ls -l /etc` şeklinde komutumuzu girdiğimizde tek seferde tüm çıktıları göremeyiz.
+Ben örnek olması için **_/etc_** dizinin içeriğini listeleyip, tüm listeye parça parça bakmak istiyorum. Örneğin `ls -l /etc` şeklinde komutumuzu girdiğimizde tek seferde tüm çıktıları göremeyiz.
 
 ![without-more.webp](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin/without-more.webp)
 
-Bu sorunu çözmek içim bu çıktıları pipe ile `more` aracına yönlendirip çıktılara parça parça bakabiliriz. 
+Bu sorunu çözmek içim bu çıktıları pipe ile `more` aracına yönlendirip çıktılara parça parça bakabiliriz.
 
 ![more.gif](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin/more.gif)
 
-Gördüğünüz gibi bu kez, içerik listesinin en başından itibaren yalnızca ekranıma sığan kadarlık kısmını görüyoruz ve altta “**more**”  ifadesi var. Bu ifade, ileride daha fazla verinin olduğuna işaret ediyor. Eğer bir satır sonrasını görmek istersek <kbd>enter</kbd> tuşunu, eğer ekranımıza sığan bir sonraki tüm bölümü görmek istersek de <kbd>space</kbd> tuşunu kullanabiliyoruz.
+Gördüğünüz gibi bu kez, içerik listesinin en başından itibaren yalnızca ekranıma sığan kadarlık kısmını görüyoruz ve altta “**more**” ifadesi var. Bu ifade, ileride daha fazla verinin olduğuna işaret ediyor. Eğer bir satır sonrasını görmek istersek <kbd>enter</kbd> tuşunu, eğer ekranımıza sığan bir sonraki tüm bölümü görmek istersek de <kbd>space</kbd> tuşunu kullanabiliyoruz.
 
-Gördüğünüz gibi tamamı konsol ekranımıza sığmayacak kadar olan tüm verileri, `more` aracına yönlendirip, bu araç vasıtasıyla ekranımıza sığan kadarlık kısmını parça parça veya satır satır **ileriye doğru** görüntüleyebiliyoruz. Fark ettiyseniz özellikle “ileriye doğru” dedim çünkü `more` aracı önceki çıktılara dönmemizi sağlamıyor. Tek yönlü şekilde yani hep daha fazlası için en baştan en sona doğru verileri görüntüleyebiliyoruz. Örneğin space ile geçtiğiniz önceki parçaya dönmek isterseniz bu `more` aracı ile mümkün değil. Bunun için birazdan bahsedeceğimiz `less` aracını kullanabiliriz. 
+Gördüğünüz gibi tamamı konsol ekranımıza sığmayacak kadar olan tüm verileri, `more` aracına yönlendirip, bu araç vasıtasıyla ekranımıza sığan kadarlık kısmını parça parça veya satır satır **ileriye doğru** görüntüleyebiliyoruz. Fark ettiyseniz özellikle “ileriye doğru” dedim çünkü `more` aracı önceki çıktılara dönmemizi sağlamıyor. Tek yönlü şekilde yani hep daha fazlası için en baştan en sona doğru verileri görüntüleyebiliyoruz. Örneğin space ile geçtiğiniz önceki parçaya dönmek isterseniz bu `more` aracı ile mümkün değil. Bunun için birazdan bahsedeceğimiz `less` aracını kullanabiliriz.
 
-Eğer yalnızca ileriye doğru okuma yapacaksanız dosyalar veya pipe üzerinden `more` aracına okunacak verileri verebilirsiniz. Biz özellikle ele almadık ama elbette `more` aracı ile doğrudan dosya içeriklerini de okuyabiliyoruz. 
+Eğer yalnızca ileriye doğru okuma yapacaksanız dosyalar veya pipe üzerinden `more` aracına okunacak verileri verebilirsiniz. Biz özellikle ele almadık ama elbette `more` aracı ile doğrudan dosya içeriklerini de okuyabiliyoruz.
 
 ![more-with-file.gif](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin/more-with-file.gif)
 
 Yani bizzat test ettiğimiz gibi `more` aracı standart girdiden veri almasına ek olarak, kendisine argüman olarak verilmiş olan dosya içeriğini de parça parça konsol üzerinden görüntüleyebilmemize olanak tanıyor.
 
-Hatta dilerseniz `more` aracına aynı anda birden fazla dosya ismini verip, birden fazla verinin de sırasıyla `more` aracı üzerinden okunmasını sağlayabilirsiniz. 
+Hatta dilerseniz `more` aracına aynı anda birden fazla dosya ismini verip, birden fazla verinin de sırasıyla `more` aracı üzerinden okunmasını sağlayabilirsiniz.
 
 Tüm bunlar dışında eğer `more` aracını kullanırken içeriğin sonuna gelmeyi beklemeden aracı sonlandırmak isterseniz <kbd>q</kbd> tuşuna basmanız yeterli. Ben denemek için birden fazla dosyayı `more` ile açıp, dosyaların sonuna gelmeden <kbd>q</kbd> tuşuna basıp `more` aracını kapatıyorum.
 
@@ -2650,19 +2649,19 @@ Bakın <kbd>q</kbd> tuşuna bastığım anda araç kapatıldı.
 
 `less` komutu `more` komutundan farklı olarak dosya içeriğinde aşağı yukarı, sağa ve sola doğru kaydırma hareketlerine imkan tanıyor.
 
-Test etmek için ***/etc/passwd*** dosyasını okumayı deneyebiliriz. 
+Test etmek için **_/etc/passwd_** dosyasını okumayı deneyebiliriz.
 
-Eğer bir satır aşağı inmek istersem klavyemdeki aşağı yön tuşunu kullanabilirim. Benzer şekilde bir üst satıra çıkmak için de klavyemdeki yukarı yön tuşunu kullanmam yeterli. Ayrıca `more` komutunda olduğu şekilde <kbd>enter</kbd> ile de bir satır aşağı inip, <kbd>space</kbd> ile birer sayfa ileriye atlayabiliyoruz. Space tuşu haricinde bir sayfa ileri gitmek için “**f**orward” yani “ileri” ifadesinin kısaltması olan <kbd>f</kbd> tuşunu da kullanabiliyoruz. Bir sayfa geri gelmek için de “**b**ackward” yani “geriye” ifadesinin kısaltması olan <kbd>b</kbd> tuşunu kullanabiliyoruz. Okuma işimiz bittiğinde aracı kapatmak için <kbd>q</kbd> tuşuna basmamız yeterli. 
+Eğer bir satır aşağı inmek istersem klavyemdeki aşağı yön tuşunu kullanabilirim. Benzer şekilde bir üst satıra çıkmak için de klavyemdeki yukarı yön tuşunu kullanmam yeterli. Ayrıca `more` komutunda olduğu şekilde <kbd>enter</kbd> ile de bir satır aşağı inip, <kbd>space</kbd> ile birer sayfa ileriye atlayabiliyoruz. Space tuşu haricinde bir sayfa ileri gitmek için “**f**orward” yani “ileri” ifadesinin kısaltması olan <kbd>f</kbd> tuşunu da kullanabiliyoruz. Bir sayfa geri gelmek için de “**b**ackward” yani “geriye” ifadesinin kısaltması olan <kbd>b</kbd> tuşunu kullanabiliyoruz. Okuma işimiz bittiğinde aracı kapatmak için <kbd>q</kbd> tuşuna basmamız yeterli.
 
 ![less.gif](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin/less.gif)
 
-Ben doğrudan dosya ismini argüman olarak verdim ancak dilerseniz tabii ki standart girdiden de istediğiniz veriyi yönlendirebilirsiniz. Örneğim `ls -l /etc | less` komutu ile ***/etc*** dizininin ayrıntılı çıktılarını parça parça inceleyebilirsiniz.
+Ben doğrudan dosya ismini argüman olarak verdim ancak dilerseniz tabii ki standart girdiden de istediğiniz veriyi yönlendirebilirsiniz. Örneğim `ls -l /etc | less` komutu ile **_/etc_** dizininin ayrıntılı çıktılarını parça parça inceleyebilirsiniz.
 
-Bence `less` aracı hakkında bu kadarlık bilgi yeterli.  Daha fazlasını öğrenmek veya unuttuğunuzda hatırlamak için `less —help` komutunu kullanıp `less` aracının yardım sayfasından faydalanabilirsiniz.
+Bence `less` aracı hakkında bu kadarlık bilgi yeterli. Daha fazlasını öğrenmek veya unuttuğunuzda hatırlamak için `less —help` komutunu kullanıp `less` aracının yardım sayfasından faydalanabilirsiniz.
 
 ## `head` Komutu
 
-İsminin de çağrışım yaptığı gibi `head` komutu kendisine yönlendirilen içeriğin başından itibaren okunabilmesini sağlıyor. Herhangi bir seçenek belirtmediğimizde `head` aracı ilk 10 satırı konsola bastırıyor. Ben denemek için `head /etc/passwd` komutu ile dosyamı okumak istiyorum. 
+İsminin de çağrışım yaptığı gibi `head` komutu kendisine yönlendirilen içeriğin başından itibaren okunabilmesini sağlıyor. Herhangi bir seçenek belirtmediğimizde `head` aracı ilk 10 satırı konsola bastırıyor. Ben denemek için `head /etc/passwd` komutu ile dosyamı okumak istiyorum.
 
 ```bash
 └─$ head /etc/passwd
@@ -2680,7 +2679,7 @@ news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
 
 Dosya içeriğinin yalnızca ilk 10 satırı bastırılmış oldu.
 
-Birden fazla dosya okunmasını da sağlayabiliriz. Eğer aynı anda birden fazla dosya okunuyorsa her bir dosyanın ilk 10 satırını bastırıyor. Hemen deneyelim. 
+Birden fazla dosya okunmasını da sağlayabiliriz. Eğer aynı anda birden fazla dosya okunuyorsa her bir dosyanın ilk 10 satırını bastırıyor. Hemen deneyelim.
 
 ```bash
 └─$ head /etc/passwd /etc/group
@@ -2711,10 +2710,10 @@ news:x:9:
 
 Bakın en başta hangi dosya olduğunu da açıkça belirtilerek her iki dosyanın da ilk 10'ar satırı bastırılmış.
 
-Bu temel kullanım dışında eğer kaç satır bastırılmasını gerektiğini belirtmek istiyorsak, `-n` seçeneğinin ardından kaç satır basılacağını da yazabiliyor. Ben denemek için dosyanın ilk 5 satırını bastırmak üzere `head -n 5 dosya_adı` şeklinde komutumu giriyorum. 
+Bu temel kullanım dışında eğer kaç satır bastırılmasını gerektiğini belirtmek istiyorsak, `-n` seçeneğinin ardından kaç satır basılacağını da yazabiliyor. Ben denemek için dosyanın ilk 5 satırını bastırmak üzere `head -n 5 dosya_adı` şeklinde komutumu giriyorum.
 
 ```bash
-└─$ head -n 5 /etc/passwd /etc/group                                   
+└─$ head -n 5 /etc/passwd /etc/group
 ==> /etc/passwd <==
 root:x:0:0:root:/root:/usr/bin/zsh
 daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
@@ -2730,7 +2729,7 @@ sys:x:3:
 adm:x:4:taylan,root
 
 ┌──(taylan@linuxdersleri)-[~]
-└─$ head -n 5 /etc/passwd                                    
+└─$ head -n 5 /etc/passwd
 root:x:0:0:root:/root:/usr/bin/zsh
 daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
 bin:x:2:2:bin:/bin:/usr/sbin/nologin
@@ -2738,10 +2737,10 @@ sys:x:3:3:sys:/dev:/usr/sbin/nologin
 sync:x:4:65534:sync:/bin:/bin/sync
 ```
 
-Bakın dosyaların yalnızca ilk 5 satırı bastırıldı. Ayrıca bu kullanım dışında doğrudan `head -5 dosya_adı` komutu ile de aynı şekilde ilk 5 satırın bastırılmasını sağlayabiliriz. 
+Bakın dosyaların yalnızca ilk 5 satırı bastırıldı. Ayrıca bu kullanım dışında doğrudan `head -5 dosya_adı` komutu ile de aynı şekilde ilk 5 satırın bastırılmasını sağlayabiliriz.
 
 ```bash
-└─$ head -5 /etc/passwd /etc/group                                    
+└─$ head -5 /etc/passwd /etc/group
 ==> /etc/passwd <==
 root:x:0:0:root:/root:/usr/bin/zsh
 daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
@@ -2759,7 +2758,7 @@ adm:x:4:taylan,root
 
 Yani bakın, `n` seçeneği olmadan doğrudan tire işaretinden sonra kaç satır bastırılmasını gerektiğini de bu şekilde belirtebiliyoruz. Aynı çıktıyı aldık.
 
-Tahmin ettiğiniz gibi tabii ki yalnızca dosyalar üzerinde çalışmak zorunda da değiliz. Örneğin `ls -l /etc` komutunu çıktılarını pipe ile `head` aracına yönlendirip ilk 10 satırın bastırılmasını sağlayabiliriz. 
+Tahmin ettiğiniz gibi tabii ki yalnızca dosyalar üzerinde çalışmak zorunda da değiliz. Örneğin `ls -l /etc` komutunu çıktılarını pipe ile `head` aracına yönlendirip ilk 10 satırın bastırılmasını sağlayabiliriz.
 
 ```bash
 └─$ ls -l /etc/ | head
@@ -2775,13 +2774,13 @@ drwxr-xr-x  7 root     root      4096 Jun 14 11:40 apt
 drwxr-xr-x  3 root     root      4096 Feb 11  2022 avahi
 ```
 
-Bakın yalnızca 10 satırı bastırıldı. Mesela bastırılan satır sayısını teyit etmek için pipe ile `nl` aracını da kullanabiliriz. 
+Bakın yalnızca 10 satırı bastırıldı. Mesela bastırılan satır sayısını teyit etmek için pipe ile `nl` aracını da kullanabiliriz.
 
 ```bash
 └─$ ls -l /etc/ | head | nl
-     1  total 1320                                                         
-     2  -rw-r--r--  1 root     root      2981 Feb 11  2022 adduser.conf    
-     3  -rw-r--r--  1 root     root        44 Feb 11  2022 adjtime               
+     1  total 1320
+     2  -rw-r--r--  1 root     root      2981 Feb 11  2022 adduser.conf
+     3  -rw-r--r--  1 root     root        44 Feb 11  2022 adjtime
      4  drwxr-xr-x  3 root     root      4096 Feb 11  2022 alsa
      5  drwxr-xr-x  2 root     root     20480 Jun 28  2022 alternatives
      6  drwxr-xr-x  8 root     root      4096 Feb 11  2022 apache2
@@ -2797,10 +2796,10 @@ Ayrıca `head` aracının başka seçenekleri de var fakat diğer seçeneklerine
 
 ## `tail` Komutu
 
-`tail` ifadesi Türkçe “kuyruk” anlamına geliyor. İsminden de kolayca anlaşılabileceği gibi `tail` komutu dosyaların **sondaki satırlarının** bastırılmasını sağlıyor. Yani `tail` aracını `head` aracının tersten çalışan versiyonu olarak düşünebilirsiniz. `tail`, ekstra bir seçenek kullanılmadığında varsayılan olarak ilgili dosyanın **sondan 10** satırını bastırıyor. Hemen denemek için ***/etc/passwd*** dosyasını okumayı deneyelim.
+`tail` ifadesi Türkçe “kuyruk” anlamına geliyor. İsminden de kolayca anlaşılabileceği gibi `tail` komutu dosyaların **sondaki satırlarının** bastırılmasını sağlıyor. Yani `tail` aracını `head` aracının tersten çalışan versiyonu olarak düşünebilirsiniz. `tail`, ekstra bir seçenek kullanılmadığında varsayılan olarak ilgili dosyanın **sondan 10** satırını bastırıyor. Hemen denemek için **_/etc/passwd_** dosyasını okumayı deneyelim.
 
 ```bash
-└─$ tail /etc/passwd                                                        
+└─$ tail /etc/passwd
 sslh:x:125:130::/nonexistent:/usr/sbin/nologin
 postgres:x:126:131:PostgreSQL administrator,,,:/var/lib/postgresql:/bin/bash
 pulse:x:127:132:PulseAudio daemon,,,:/run/pulse:/usr/sbin/nologin
@@ -2827,10 +2826,10 @@ taylan:x:1000:1000:taylan,,,:/home/taylan:/usr/bin/bash
 
 Bakın yalnızca sondan 6 satır bastırılmış.
 
-Ayrıca tıpkı `head` komutunda olduğu gibi elbette birden fazla dosyayı da aynı anda açabiliriz. Ben ***passwd*** ve ***group*** dosyalarının sondan 3 satırını bastırmak için `tail -n 3 /etc/passwd /etc/group` komutunu giriyorum. 
+Ayrıca tıpkı `head` komutunda olduğu gibi elbette birden fazla dosyayı da aynı anda açabiliriz. Ben **_passwd_** ve **_group_** dosyalarının sondan 3 satırını bastırmak için `tail -n 3 /etc/passwd /etc/group` komutunu giriyorum.
 
 ```bash
-└─$ tail -n3 /etc/passwd /etc/group                                              
+└─$ tail -n3 /etc/passwd /etc/group
 ==> /etc/passwd <==
 geoclue:x:132:140::/var/lib/geoclue:/usr/sbin/nologin
 king-phisher:x:133:141::/var/lib/king-phisher:/usr/sbin/nologin
@@ -2847,7 +2846,7 @@ Bakın sırasıyla her iki dosyanın da sondan 3 er satırı bastırıldı.
 Dosya içeriklerinin okunması yerine standart girdiden alınan verilerin kullanılması da mümkün. Ben `ls /etc/` komutu ile dizin içeriğinin listelenip, pipe ile bu çıktıların `tail` aracına aktarılmasını istiyorum.
 
 ```bash
-└─$ ls /etc/ | tail                                                              
+└─$ ls /etc/ | tail
 wgetrc
 wireshark
 wpa_supplicant
@@ -2860,13 +2859,13 @@ zsh
 zsh_command_not_found
 ```
 
-Bakın bu sayede gördüğünüz gibi ***/etc*** dizin içeriğinin sondan 10 satırı konsola bastırılmış oldu.
+Bakın bu sayede gördüğünüz gibi **_/etc_** dizin içeriğinin sondan 10 satırı konsola bastırılmış oldu.
 
 ### Verilerin Anlık Takibi `-f`
 
 Bu basit kullanımlar dışında, `tail` aracının `-f` seçeneği sayesinde sürekli güncellenen verilerin takip etmemiz de mümkün oluyor. Bu `-f` seçeneği, özellikle log dosyalarındaki en son değişikliklerin takibi için sıklıkla kullanıyor. Seçeneğin kısaltması da "**f**ollow" yani "takip etme" ifadesinin kısaltmasından geldiği için işlevinin hatırlanması son derece kolay.
 
-Ben test etmek için iki konsol üzerinden çalışacağım. İlk konsola `cat > yeni.txt` komutu ile yeni bir dosya açıp veri girişi yapmak üzere giriş yapıyorum. İkinci konsola da ***yeni.txt*** dosyasındaki değişikliklerin anlık olarak takip edilmesi için `tail -f yeni.txt` komutunu giriyorum. Bu sayede ben ***yeni.txt*** dosyasına veri ekledikçe bunları `tail -f` komutu sayesinde anlık olarak takip edebiliyor olacağız.
+Ben test etmek için iki konsol üzerinden çalışacağım. İlk konsola `cat > yeni.txt` komutu ile yeni bir dosya açıp veri girişi yapmak üzere giriş yapıyorum. İkinci konsola da **_yeni.txt_** dosyasındaki değişikliklerin anlık olarak takip edilmesi için `tail -f yeni.txt` komutunu giriyorum. Bu sayede ben **_yeni.txt_** dosyasına veri ekledikçe bunları `tail -f` komutu sayesinde anlık olarak takip edebiliyor olacağız.
 
 ![tail-f.gif](https://raw.githubusercontent.com/taylanbildik/Linux_Dersleri/master/img/metin/tail-f.gif)
 
